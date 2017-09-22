@@ -1,0 +1,73 @@
+<!DOCTYPE html>  ##### WdatePicker 日期选择器的使用  ######
+<html>
+<head>
+##    引入需要的css
+<link rel="stylesheet" href="/static/My97DatePicker/skin/WdatePicker.css">
+
+
+
+##    引入需要的js文件
+    <script src="/static/jquery.min.js"></script>
+    ##以下两个包必须同时引入  相互依赖 才能正确显示时间选择器
+    <script src="/static/My97DatePicker/WdatePicker.js"></script>
+    <script src="/static/My97DatePicker/calendar.js"></script>
+## 引入布局框架 jquery.layout
+    <script src="/static/jquery.layout-latest.js"></script>
+</head>
+<body>
+    <div class="ui-layout-west" style="border: 2px;border-color: #3b3b3b">
+
+    </div>
+    <div class="ui-layout-center" id="center" style="border: 2px;border-color: #3b3b3b" >
+        <div class="ui-layout-north"  style="border: 2px;border-color: #3b3b3b">
+
+        </div>
+        <div class="ui-layout-center" style="border: 2px;border-color: #3b3b3b">
+            <div style="border: 2px;border-color: #3b3b3b">
+                <label>选择时间：</label>
+                <input type="text" name="wdate" placeholder="点击添加时间"
+                       onclick="showtime()">
+            </div>
+        </div>
+    </div>
+    ## 书写js脚本
+    <script>
+        var _iframe_layout;
+        $(document).ready(function () {
+            //初始化布局框架
+            _iframe_layout = $("body").layout({
+                center__maskContents: true,
+                //基本设置
+                defaults: {
+                    resizable: true,
+                    closable: true,
+                    spacing_open: 0
+                },
+                //中心页面设置
+                center: {
+                },
+                //左侧页面设置
+                west: {
+                    size: 260
+                }
+            });
+            $("#center").layout({
+                north: {
+                    size : 100
+                }
+            })
+        })
+        /**
+         * 展示日期选择器
+         */
+        function showtime(){
+            WdatePicker({
+                position: {top: 34, left: 159},
+                dateFmt: 'yyyy-MM-dd HH:mm:ss'
+            });
+        }
+
+    </script>
+</body>
+
+</html>

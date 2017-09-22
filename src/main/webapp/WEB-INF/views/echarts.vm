@@ -1,0 +1,314 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html;charset=utf-8"/>
+
+</head>
+<body>
+#*<div id="main" style="width: 600px;height:400px;"></div>*#
+
+    #demo("content","sdfsdf");
+<div id="psLine" style="height:300px;width:600px;">
+
+
+</div>
+
+
+<script src="/static/jquery.min.js"></script>
+<script src="/static/echarts-all.js"></script>
+<script>
+    //var echarts = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    /*var option = {
+        title: {
+            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+            data:['销量','个数','测试']
+        },
+        xAxis: {
+            data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"],
+
+        },
+        yAxis: {},
+        series: [{
+            name: '销量',
+            type: 'bar',
+            data: [5, 20, 26, 13, 2, 20]
+        },{
+            name: '测试',
+            type: 'bar',
+            data: [34, 20, 36, 10, 45, 20]
+        },{
+            name: '个数',
+            type: 'bar',
+            data: [5, 20, 3, 14, 10, 64]
+        }]
+    };
+*/
+    // 使用刚指定的配置项和数据显示图表。
+    // echarts.setOption(option);
+
+    //图表
+    var psLineChar = echarts.init(document.getElementById('psLine'));
+    /* var option ={
+         "title": {
+             "text": "地市数据"
+         },
+         "toolbox": {
+             "feature": {
+                 "mark": {
+                     "show": true,
+                     "title": {
+                         "mark": "辅助线开关",
+                         "markClear": "清空辅助线",
+                         "markUndo": "删除辅助线"
+                     },
+                     "lineStyle": {
+                         "color": "#1e90ff",
+                         "type": "dashed",
+                         "width": 2
+                     }
+                 },
+                 "dataView": {
+                     "show": true,
+                     "title": "数据视图",
+                     "readOnly": false,
+                     "lang": ["数据视图", "关闭", "刷新"]
+                 },
+                 "magicType": {
+                     "show": true,
+                     "title": {
+                         "line": "折线图切换",
+                         "stack": "堆积",
+                         "bar": "柱形图切换",
+                         "tiled": "平铺"
+                     },
+                     "type": ["line", "bar"]
+                 },
+                 "restore": {
+                     "show": true,
+                     "title": "还原"
+                 },
+                 "saveAsImage": {
+                     "show": true,
+                     "title": "保存为图片",
+                     "type": "png",
+                     "lang": ["点击保存"]
+                 }
+             },
+             "show": true
+         },
+         "tooltip": {
+             "formatter": "{a} <br/>{b} : {c}",
+             "show": true
+         },
+         "legend": {
+             "data": ["地市数据"]
+         },
+         "xAxis": [{
+             "type": "category",
+             "data": ["广州", "深圳", "珠海", "汕头", "韶关", "佛山"]
+         }],
+         "yAxis": [{
+             "type": "value"
+         }],
+         "series": [{
+             "name": "地市数据",
+             "type": "bar",
+             "data": [{
+                 "value": 6030,
+                 "itemStyle": {
+                     "normal": {
+                         "color": "rgb(2,111,230)"
+                     }
+                 }
+             }, {
+                 "value": 7800,
+                 "itemStyle": {
+                     "normal": {
+                         "color": "rgb(186,73,46)"
+                     }
+                 }
+             }, {
+                 "value": 5200,
+                 "itemStyle": {
+                     "normal": {
+                         "color": "rgb(78,154,97)"
+                     }
+                 }
+             }, {
+                 "value": 3444,
+                 "itemStyle": {
+                     "normal": {
+                         "color": "rgb(2,111,230)"
+                     }
+                 }
+             }, {
+                 "value": 2666,
+                 "itemStyle": {
+                     "normal": {
+                         "color": "rgb(186,73,46)"
+                     }
+                 }
+             }, {
+                 "value": 5708,
+                 "itemStyle": {
+                     "normal": {
+                         "color": "rgb(78,154,97)"
+                     }
+                 }
+             }]
+         }]
+     }
+
+     var tion = {
+         calculable: true,
+         toolbox: {
+             show: true,
+             feature: {
+                 restore: {
+                     show: true,
+                     title: "还原"
+                 },
+                 magicType: {
+                     show: true,
+                     title: {
+                         line: "折线图切换",
+                         stack: "堆积",
+                         bar: "柱形图切换",
+                         tiled: "平铺"
+                     },
+                     type: ["line", "bar"]
+                 },
+                 dataView: {
+                     show: true,
+                     title: "数据视图",
+                     readOnly: false,
+                     lang: ["Data View", "close", "refresh"]
+                 },
+                 mark: {
+                     show: true,
+                     title: {
+                         mark: "辅助线开关",
+                         markClear: "清空辅助线",
+                         markUndo: "删除辅助线"
+                     },
+                     lineStyle: {
+                         color: "#1e90ff",
+                         type: "dashed",
+                         width: 2
+                     }
+                 },
+                 saveAsImage: {
+                     show: true,
+                     title: "保存为图片",
+                     type: "png",
+                     lang: ["点击保存"]
+                 }
+             }
+         },
+         tooltip: {
+             trigger: "axis",
+             formatter: "Temperature : \u003cbr/\u003e{b}km : {c}°C"
+         },
+         legend: {
+             data: ["高度(km)与气温(°C)变化关系"]
+         },
+         xAxis: [{
+             type: "value",
+             axisLabel: {
+                 formatter: "{value} °C"
+             }
+         }],
+         yAxis: [{
+             type: "category",
+             boundaryGap: false,
+             axisLine: {
+                 onZero: false
+             },
+             axisLabel: {
+                 formatter: "{value} km"
+             },
+             data: [
+                 0, 10, 20, 30, 40, 50, 60, 70, 80
+             ]
+         }],
+         series: [{
+             smooth: true,
+             name: "高度(km)与气温(°C)变化关系",
+             type: "line",
+             itemStyle: {
+                 normal: {
+                     lineStyle: {
+                         shadowColor: "rgba(0,0,0,0.4)"
+                     }
+                 },
+                 emphasis: {}
+             },
+             data: [
+                 15, -50, -56.5, -46.5, -22.1, -2.5, -27.7, -55.7, -76.5
+             ]
+         }]
+     }
+     psLineChar.setOption(option);
+*/
+    //查询
+
+    loadDrugs();
+    function loadDrugs() {
+        psLineChar.clear();
+        psLineChar.showLoading({text: '正在努力的读取数据中...'});
+        $.ajax({
+            url: "/echart/line",
+            type: "post",
+            data: {"name": "星迷"},
+
+            success: function (data) {
+                var option = eval("(" + data + ")");
+
+
+                psLineChar.setOption(option);
+                psLineChar.hideLoading();
+            }
+        })
+
+
+    }
+    psLineChar.on("dblclick", function (param) {
+        console.log(param)
+        alert(param.name)
+        alert(param.type)
+        //alert(param.data.name);
+        // alert("亲 你是来搞笑的吗 你点我干嘛  是不是有病")
+    })
+    /*var option = {
+        tooltip: {
+            trigger: 'item',
+            formatter: '{b}'
+        },
+        series: [
+            {
+                name: '中国',
+                type: 'map',
+                mapType: 'china',
+                selectedMode : 'multiple',
+                label: {
+                    normal: {
+                        show: true
+                    },
+                    emphasis: {
+                        show: true
+                    }
+                },
+                data:[
+                    {name:'广东', selected:true}
+                ]
+            }
+        ]
+    };
+    psLineChar.setOption(option);*/
+</script>
+
+</html>

@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html;charset=utf-8"/>
+
+</head>
+<body>
+<div>
+    <table>
+        <form id="formId">
+            <input type="text" name="start"  value="xioaming">
+            <input type="text" name="end"  value="hahha">
+            <input type="text" name="mulit" value="dfsf">
+            <input type="submit" id="btn" value="提交数据">
+        </form>
+    </table>
+
+</div>
+</body>
+<script src="/static/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        //点击提交按钮 打印两种序列化方式出来的字符串
+        $("#btn").click(function () {
+            console.log($("#formId").serialize());
+            console.log($("#formId").serializeArray())
+        })
+
+        //异步提交不想一个表单一个表单的写传输数据可以直接序列还表单如下：
+        $.ajax({
+            url:"/demo",
+            type:"post",
+            data:$("#formId").serialize(),
+            success:function (data) {
+                //请求完成之后回调函数
+            }
+        })
+    });
+    //创建一个转化的方法
+    function getFormData(formId){
+
+        if(formId){
+            //首先获取表单的序列化数组
+            var arr = $(formId).serializeArray();
+            if(arr && arr.length > 0){
+                var b = {};//创建一个空的对象 以便装数组数据
+                $.each(arr,function(index,it){//index为数组的下标 it为数组对应的数据对象
+                    if(it.value){//判断值是否为空
+                        if(d[it.name]){//判断值是否有同名的多个数据
+                            d[it.name] = d[it.name] +","+ it.value;
+
+                        }else{
+                            d[it.name] = it.value;
+                        }
+                    }
+                }
+                return b ; // 返回已经拼装好的对象
+            }
+        }
+        return {};//如果不存在此id则传出一个空的对象
+    }
+
+
+
+    //以上述数据为例 返回的对象如下
+    var result= {"start":"xioaming","end":"hahha","mulit":"dsdf"}
+
+</script>

@@ -1,0 +1,9 @@
+#set($vilate = "demo")
+$name
+#foreach($string in $strings)
+    $string
+#end
+#foreach($i in $list)
+    $i
+#end
+$vilate

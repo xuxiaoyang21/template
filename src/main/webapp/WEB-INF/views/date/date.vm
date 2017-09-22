@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta content="text/html;charset=utf-8"/>
+
+</head>
+<body>
+    <div>
+        <input type="text" name="start" placeholder="请输入开始时间">
+        <input type="text" name="end" placeholder="请输入结束时间">
+    </div>
+</body>
+<script src="/static/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        diff();
+        //计算两个日期的相差的天数 第二种
+        function  diff() {
+            var start = "2017-09-10";
+            var end = "2017-09-20";
+            var array , startDate,endDate,count;
+            //把日期字符串转换为日期
+            var str = new Date(start);//将日期字符串转换为日期
+            //获取日期的毫秒数
+            startDate = str.getTime();//获取开始时间毫秒数
+            endDate = new Date(end).getTime();//获取结束时间毫秒数
+            count = parseInt(Math.abs(startDate-endDate) /  1000  /  60  /  60  /24)
+
+            return count ;//count = 10;
+
+        }
+
+
+
+    })
+
+</script>
