@@ -52,7 +52,7 @@
                             d[it.name] = it.value;
                         }
                     }
-                }
+                })
                 return b ; // 返回已经拼装好的对象
             }
         }

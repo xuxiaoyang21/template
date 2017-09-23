@@ -1,0 +1,130 @@
+<html>
+<head>
+    <title>kendo window测试页面</title>
+    <meta content="text/html;charset=utf-8"/>
+
+    <link rel="stylesheet" href="/static/framework/styles/kendo.common.min.css">
+    <link rel="stylesheet" href="/static/framework/styles/kendo.default.min.css">
+
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/jquery.layout-latest.js"></script>
+    <script src="/static/framework/js/kendo.web.min.js"></script>
+</head>
+<body>
+<div class="ui-layout-west">
+</div>
+<div class="ui-layout-center">
+    <div id="dialog">
+        <table>
+            <form action="">
+                <input type="text" name="name">
+                <input type="password" name="password">
+            </form>
+        </table>
+    </div>
+</div>
+
+</body>
+
+<script>
+    $(document).ready(function () {
+
+        //初始化window
+        $("#dialog").kendoWindow({
+            ##### kendowindow 的内置属性
+
+            title:"标题头",//用来设置标题头
+            actions:["Minimize","Maximize","close"],//设置窗口的右上角的调整按钮
+            animation:{//值可以是个boolean的也可以是个object
+                //窗口关闭时展示动画
+                close:{//可以是boolean | object
+                    effects:"fade:out", //渐隐
+                    duration:3000//关闭延迟时间设置
+                },
+                open:{
+                    effect:"fade:in",//设置显示时动画方式
+                    duration:300 //设置显示时窗口弹出时间 毫秒数
+                },//窗口打开时展示动画
+            },
+            visible:false,//窗口加载完成是否显示
+            //appendTo:"",//追加到 TODO
+            autoFocus:true,//确定打开窗口时是否自动对焦
+            //content:"/test",//设置窗口的内容可以去另一个url中去去
+            content:{
+                url:"/test",
+                dataType:"json",
+                iframe:false,//是否使用内嵌框架  使用显示是 url中过来的数据  不用则使用dialog里的
+                //template:
+            },
+            draggable:true,//设置窗口是否可拖拽
+            iframe:true,//和content众的iframe一样用法但比他优先级更高
+            height:300,//设置窗口的高度
+            maxHeight:450,//设置窗口最大高度
+            width:200,//设置窗口的宽度
+            maxWidth:300,//设置窗口的最大宽度
+            minHeight:100,//设置窗口最小可调整高度
+            minWidth:100,//设置窗口最小可调整宽度
+            modal:false,//设置父页面是否被覆盖 是否为不可操作形态
+            pinned:true,//设置窗口是否被固定，在滚动期间是否与页面内容一起动
+            position:{//设置窗口的位置
+                top:100,
+                left:100
+            },
+            resizable:false,//设置窗口尺寸是否可调节
+            scrollable:true,//
+
+            ###### 基本属性以上这些  完毕#############
+
+        });
+        #####以下　叙述kendoWindow  内置的方法
+
+        var dialog = $("#dialog").data("kendoWindow");//获取kendoWindow对象
+
+
+        dialog.open();//打开窗口
+        dialog.center();//设置窗口剧中显示  优先级最高
+
+        //窗口关闭方法  一般结合 时间过期方法使用
+        //设置三秒后窗口关闭
+        setTimeout(function () {
+            //dialog.close();//窗口关闭
+        },3000);
+        dialog.content() ;//无参数获取的窗口中的内容
+        dialog.content("新的content内容");//有参数就是设置新的窗口内容
+        //dialog.destroy();//窗口销毁方法
+
+
+        dialog.maximize();//是窗口变成最大尺寸
+        dialog.minimize();//设置为窗口最小尺寸
+        //var str = dialog.isMaximized();//判断窗口是否是最大尺寸
+        //var str = dialog.isMinimized(); //测试时暂时不能用
+        dialog.pin();//此方法设置窗口为固定位置 不随页面的移动而移动
+        dialog.refresh({
+            url:"/",
+            data:"",//传递参数
+            dataType:"json",//参数类型
+            template:""//模板
+        });
+        dialog.restore();
+        //dialog.setOption({
+            //写上面的属性
+
+        //});//设置window的属性
+        dialog.title();//无参数时  获取当前窗口的title  有参数 是设置title
+        //dialog.toFront();
+        dialog.unpin();//禁止窗口不能随页面滑动
+        dialog.toggleMaximization();
+
+        #### 内置方法结束 #################################
+
+        #### 内置事件开始##################################
+
+
+
+        #### 内置事件结束 #################################
+
+    })
+
+
+</script>
+</html>

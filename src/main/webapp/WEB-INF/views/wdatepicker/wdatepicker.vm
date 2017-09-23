@@ -48,12 +48,12 @@
                 },
                 //左侧页面设置
                 west: {
-                    size: 260
+                    //size: 260
                 }
             });
             $("#center").layout({
                 north: {
-                    size : 100
+                   // size : 100
                 }
             })
         })
@@ -62,7 +62,7 @@
          */
         function showtime(){
             WdatePicker({
-                position: {top: 34, left: 159},
+                position: {top: 34, left: 60},
                 dateFmt: 'yyyy-MM-dd HH:mm:ss'
             });
         }
