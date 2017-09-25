@@ -10,3 +10,5 @@
 #### 4.kendo ui window 测试页面
 >引入必要的js和css,  书写天出window窗口的 基本属性，方法和事件以便于以后的查阅和使用
 
+#### 5.FTP代理的连接方法
+>引入必要的jar  commons-net

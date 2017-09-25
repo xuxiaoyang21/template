@@ -34,7 +34,7 @@
             ##### kendowindow 的内置属性
 
             title:"标题头",//用来设置标题头
-            actions:["Minimize","Maximize","close"],//设置窗口的右上角的调整按钮
+            actions:["Minimize","Maximize","Refresh","close"],//设置窗口的右上角的调整按钮
             animation:{//值可以是个boolean的也可以是个object
                 //窗口关闭时展示动画
                 close:{//可以是boolean | object
