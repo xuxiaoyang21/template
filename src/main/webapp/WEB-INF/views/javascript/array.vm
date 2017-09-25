@@ -1,0 +1,109 @@
+###  javascript中array对象的测试用例
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Array对象</title>
+    <meta content="text/html,charset-utf-8">
+
+
+    ##引入依赖jar包
+    <script src="/static/jquery.min.js"></script>
+</head>
+
+<body onunload="alert('The onunload event was triggered')">
+ <h2 align = "center">array对象测试页面</h2>
+ <video id="myVideo" width="320" height="240" controls>
+##     <source src="/static/movie.mp4" type="video/mp4">
+     <source src="/static/movie.ogg" type="video/ogg">
+     Your browser does not support the video tag.
+ </video>
+<script>
+    $(document).ready(function () {
+        //创建Arrau()对象
+        var array  = new Array();
+        //可以通过构造方法设置对象数组长度
+        array = new Array(4);
+        alert("对象的长度："+array.length);
+        //通过构造方法进行设置内容
+        array = new Array("element00","element1","element2");
+        alert(array[0]);//获取对象中的第一个元素
+                    #################################
+                    ######   array对象的属性 #########
+                    #################################
+                    ################################
+
+
+        ## 　length;//返回数组中的元素个数
+        alert(array.length);
+
+
+        ##################################################
+        ##　prototype;//使你有能力向对象中添加属性和方法#####
+        ##################################################
+        // protorype exmple
+        function test(name,address) {
+            this.name = name;
+            this.address = address;
+        }
+
+        //获取test对象 并且给这个对象的属性赋值
+        var test_instance = new test("韩菱纱","仙剑客栈");
+        //给test添加一个属性并赋值为空  调用prototype
+        test.prototype.color = null;
+        //给此属性赋值
+        test_instance.color = '红色';
+        //打印并输出 新增属性的颜色
+        //document.write(test_instance.color); //输出结果 ： 红色
+
+
+        ##############################################
+        ## 　constructor;//返回创建此对象数组的引用 ####
+        ##############################################
+        // constructor example
+        function employee(name,job,born)
+        {
+            this.name=name;
+            this.job=job;
+            this.born=born;
+        }
+
+        var bill=new employee("Bill Gates","Engineer",1985);
+
+        //document.write(bill.constructor); //输出结果： function employee(name,job,born) { this.name=name; this.job=job; this.born=born; }
+
+
+                            #####################################
+                            ########Array对象 方法的使用 #########
+                            #####################################
+        // 方法是用可参考 W3cSchool教程
+
+        ###  javascript中的正则表达式的使用
+        console.log(new RegExp("[a-h]"));//返回的结果是  /[a-h]/
+        var str = 'esdfwerfdsfsdf';
+        var patt1=/[a-h]/g;
+        //对str字符串按patt1进行全局搜索
+        var result = str.match(patt1);//返回的是个单字节数组
+        console.log(result);
+        alert(result[0])
+        ## search()搜索方法
+        ## match() 匹配方法
+        ## replace() 替换方法
+        ## split() 分割方法
+
+
+
+        ####  Document 对象 ######################
+
+        alert(document.URL);
+        alert(document.referrer);
+        alert(document.lastModified)
+
+
+    })
+
+
+
+</script>
+</body>
+
+</html>
