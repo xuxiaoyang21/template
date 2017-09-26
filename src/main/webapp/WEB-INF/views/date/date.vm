@@ -1,5 +1,6 @@
 ####  日期字符串和日期的测试
 #parse("platform/head.vm")
+<title>日期字符串使用</title>
 </head>
 <body>
     <div class="container">

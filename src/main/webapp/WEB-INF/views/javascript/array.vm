@@ -1,21 +1,47 @@
 ###  javascript中array对象的测试用例
-<html>
-<head>
+#parse("platform/head.vm")
     <title>Array对象</title>
-    <meta content="text/html,charset-utf-8">
 
-
-    ##引入依赖jar包
-    <script src="/static/jquery.min.js"></script>
 </head>
 
 <body>
- <h2 align = "center">array对象测试页面</h2>
- <video id="myVideo" width="320" height="240" controls      >
-##     <source src="/static/movie.mp4" type="video/mp4">
-     <source src="/static/video/movie.ogg" type="video/ogg">
-     Your browser does not support the video tag.
- </video>
+    <div class="container">
+        #parse("platform/navbar.vm")
+        <div class="row">
+        ## 设置导航条一下 左侧栏导航
+            <div class="col-md-2">
+
+            </div>
+        ## 内容
+            <div class="row col-md-9">
+                <div class="row" style="height: 50px;width: auto">
+
+                </div>
+                <div class="row">
+                    <h2 align = "center">下面是video视频的显示播放</h2>
+                    <video id="myVideo" width="320" height="240" controls      >
+                    ##     <source src="/static/movie.mp4" type="video/mp4">
+                        <source src="/static/video/movie.ogg" type="video/ogg">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+
+                <p>
+                    <h4>
+                        注意 ：js脚本中书写了对array对象属性和方法的基本使用情况 <br>
+                        测试生成的内容可以通过f12查看  通过console.log()打印
+                    </h4>
+                </p>
+            </div>
+            <div class="row col-md-1"></div>
+        </div>
+    </div>
+
+
+
+</body>
+#parse("platform/footer.vm")
+
 
 <script>
     $(document).ready(function () {
@@ -23,10 +49,10 @@
         var array  = new Array();
         //可以通过构造方法设置对象数组长度
         array = new Array(4);
-        alert("对象的长度："+array.length);
+        console.log("对象的长度："+array.length);
         //通过构造方法进行设置内容
         array = new Array("element00","element1","element2");
-        alert(array[0]);//获取对象中的第一个元素
+        console.log("array对象的第一个元素是："+array[0]);//获取对象中的第一个元素
                     #################################
                     ######   array对象的属性 #########
                     #################################
@@ -34,7 +60,7 @@
 
 
         ## 　length;//返回数组中的元素个数
-        alert(array.length);
+        console.log("array属性length的使用"+array.length);
 
 
         ##################################################
@@ -53,7 +79,7 @@
         //给此属性赋值
         test_instance.color = '红色';
         //打印并输出 新增属性的颜色
-        //document.write(test_instance.color); //输出结果 ： 红色
+        console.log("打印新增属性："+test_instance.color); //输出结果 ： 红色
 
 
         ##############################################
@@ -69,7 +95,7 @@
 
         var bill=new employee("Bill Gates","Engineer",1985);
 
-        //document.write(bill.constructor); //输出结果： function employee(name,job,born) { this.name=name; this.job=job; this.born=born; }
+        console.log("打印constructor对象的引用："+bill.constructor); //输出结果： function employee(name,job,born) { this.name=name; this.job=job; this.born=born; }
 
 
                             #####################################
@@ -84,7 +110,7 @@
         //对str字符串按patt1进行全局搜索
         var result = str.match(patt1);//返回的是个单字节数组
         console.log(result);
-        alert(result[0])
+        console.log(result[0])
         ## search()搜索方法
         ## match() 匹配方法
         ## replace() 替换方法
@@ -94,9 +120,9 @@
 
         ####  Document 对象 ######################
 
-        alert(document.URL);
-        alert(document.referrer);
-        alert(document.lastModified)
+        console.log("document对象获取url:"+document.URL);
+        console.log("document对象获取上一个页面的url:"+document.referrer);
+        console.log("document对象获取最后一次修改时间:"+document.lastModified)
 
 
     })
@@ -104,6 +130,6 @@
 
 
 </script>
-</body>
+
 
 </html>
