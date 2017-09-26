@@ -1,18 +1,143 @@
 ##  欢迎页
-<html>
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>xuxy首页</title>
+##    给标题添加 logo
+
+    ## 标题栏logo
+    <link rel="icon" href="/static/images/title.ico" type="image/x-icon">
+    ## 收藏夹 logo
+    ## <link rel="shortcut icon" href="/static/images/title.ico" type="image/x-icon">
+
+    <!-- Bootstrap -->
+    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+<style>
+    body {
+        background-color: #fef5fd;
+    }
+</style>
 <body>
-<h3>hello jsp</h3>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                ##  导航条
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button">
+                    首页
+                    </button>
+                </div>
+                ##   折叠菜单 列表
+                <div class="collapse navbar-collapse" id="navbar-menu">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/menu">HOME</a></li>## 跳转到主页
+                        ## 添加下拉菜单
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CONTENT</a>
+                            <ul class="dropdown-menu  animated">
+                                <li><a href="/content/ajax">表单序列化</a></li>
+                                <li><a href="/content/date">日期和日期字符串</a></li>
+                                <li><a href="/content/array">Array对象使用</a></li>
+                                <li><a href="/content/flexslider">滚动动画</a></li>
+                                <li><a href="/content/window">kendo中window使用</a></li>
+                                <li><a href="/content/wdatepicker">Wdatepicker</a></li>
+                                <li><a href="#">百度echarts</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">COSTOM </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">SSSSSMENU</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a href="#">功能</a></li>
+                        <li><a href="#">插件</a></li>
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">Velocity</a></li>
+                        <li><a href="#">JOSN</a></li>
+                        <li><a href="#">KENDO</a></li>
+                        <li><a href="#">ABOUT US</a></li>
+                    </ul>
+                </div>
 
+            </div>
+        </div>
+        <div class="row" >
+            ## 设置导航条一下 左侧栏导航
+            <div class="col-md-2">
+
+            </div>
+            ## 内容
+            <div class="row col-md-9">
+                <div class="row" style="height: 50px;width: auto">
+
+                </div>
+                <div class="row">
+                ## 表格的样式
+                    <div class="col-md-4">
+                        <table class="table table-bordered">##表格带边框的
+                            <thead>
+                            <tr>
+                                <td>封神留名</td>
+                                <td>英雄名</td>
+                                <td>密码</td>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>无敌是多么寂寞</td>
+                                <td>妖妖</td>
+                                <td>741</td>
+                            </tr>
+                            <tr>
+                                <td>无敌是多么寂寞</td>
+                                <td>妖妖</td>
+                                <td>741</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                ##  表单的设置和提交样式
+                    <div class="col-md-3">
+                        <form action="">
+                        ##  表单样式的css 处理
+                            <div class="form-group">
+                                <label for="">账号:</label>
+                                <input type="text" class="form-control" name="name">
+                            </div>
+                            <div class="form-group">
+                                <label for="">密码:</label>
+                                <input type="password" class="form-control" name="password">
+                            </div>
+                        ## 提交按钮的css
+                            <button type="button" class="btn btn-primary">提交</button>
+                            <button type="button" class="btn btn-default">取消</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/static/jquery.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="/static/bootstrap/js/bootstrap.min.js"></script>
 </body>
-
-<script>
-    alert(window.screen.availHeight);
-    alert(window.screen.availWidth);
-    alert(window.screen.height);
-    alert(window.screen.width);
-
-</script>
 </html>

@@ -1,15 +1,42 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta content="text/html;charset=utf-8"/>
-
+####  日期字符串和日期的测试
+#parse("platform/head.vm")
 </head>
 <body>
-    <div>
-        <input type="text" name="start" placeholder="请输入开始时间">
-        <input type="text" name="end" placeholder="请输入结束时间">
+    <div class="container">
+        #parse("platform/navbar.vm")
+        <div class="row">
+        ## 设置导航条一下 左侧栏导航
+            <div class="col-md-2">
+
+            </div>
+        ## 内容
+            <div class="row col-md-9">
+                <div class="row" style="height: 50px;width: auto">
+
+                </div>
+                <div class="row">
+                    <form action="" class="col-md-4">
+                        <div class="form-group">
+                            <label for="">开始时间：</label>
+                            <input type="text" class="form-control" name="start" placeholder="请输入开始时间">
+                        </div>
+                        <div class="form-group">
+                            <label for="">结束时间：</label>
+                            <input type="text" class="form-control" name="end" placeholder="请输入结束时间">
+                        </div>
+
+                        <button type="button" class="btn btn-primary">查询</button>
+                    </form>
+
+                </div>
+                <p class="bg-danger">
+                    注意：
+                </p>
+            </div>
+        </div>
     </div>
 </body>
-<script src="/static/jquery.min.js"></script>
+#parse("platform/footer.vm")
 <script>
     $(document).ready(function () {
 
@@ -33,5 +60,7 @@
 
 
     })
-
 </script>
+
+
+</html>

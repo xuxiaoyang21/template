@@ -1,22 +1,54 @@
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta content="text/html;charset=utf-8"/>
+## 引入页面的表头数据
+#parse("platform/head.vm")
+
+<title>表单的序列化</title>
 
 </head>
+
 <body>
-<div>
-    <table>
-        <form id="formId">
-            <input type="text" name="start"  value="xioaming">
-            <input type="text" name="end"  value="hahha">
-            <input type="text" name="mulit" value="dfsf">
-            <input type="submit" id="btn" value="提交数据">
-        </form>
-    </table>
+<div class="container">
+    ## 引入页面的导航条
+    #parse("platform/navbar.vm")
+    <div class="row" >
+    ## 设置导航条一下 左侧栏导航
+        <div class="col-md-2">
+
+        </div>
+    ## 内容
+        <div class="row col-md-9">
+            <div class="row" style="height: 50px;width: auto">
+
+            </div>
+            <div class="row">
+            ##  表单的设置和提交样式
+                <div class="col-md-3">
+                    <form action="" id="formId">
+                    ##  表单样式的css 处理
+                        <div class="form-group">
+                            <label for="">账号:</label>
+                            <input type="text" class="form-control" name="id" value="无敌是多么寂寞">
+                        </div>
+                        <div class="form-group">
+                            <label for="">姓名:</label>
+                            <input type="text" class="form-control" name="name" value="韩菱纱">
+                        </div>
+                        <div class="form-group">
+                            <label for="">住址:</label>
+                            <input type="text" class="form-control" name="address" value="仙剑客栈">
+                        </div>
+                    ## 提交按钮的css
+                        <button type="button" id="btn" class="btn btn-primary">提交</button>
+                        <button type="button" id="reset" class="btn btn-default">取消</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
-</body>
-<script src="/static/jquery.min.js"></script>
+#parse("platform/footer.vm")
 <script>
     $(document).ready(function () {
         //点击提交按钮 打印两种序列化方式出来的字符串
@@ -65,3 +97,7 @@
     var result= {"start":"xioaming","end":"hahha","mulit":"dsdf"}
 
 </script>
+</body>
+</html>
+
+
