@@ -202,7 +202,7 @@
     <dependency>
       <groupId>org.jodd</groupId>
       <artifactId>jodd-core</artifactId>
-      <version>3.9.1</version>
+      <version>3.7.1</version>
     </dependency>
 
     <!--jodd -http代理依赖包-->
