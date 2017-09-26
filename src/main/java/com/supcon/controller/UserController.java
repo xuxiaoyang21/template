@@ -30,7 +30,8 @@ public class UserController {
         //return "date/date"; //日期字符串和日期的转换和使用
         //return "ajax/serialize";//表单的序列还
         //return "kendo/window";//kendowindow测试页面
-        return "javascript/array";//javascript测试页面
+        //return "javascript/array";//javascript测试页面
+        return "jqueryFlexSlider/flexslider";
     }
     @RequestMapping("/test")
     public String test(){

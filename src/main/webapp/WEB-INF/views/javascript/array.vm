@@ -1,6 +1,5 @@
 ###  javascript中array对象的测试用例
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <title>Array对象</title>
     <meta content="text/html,charset-utf-8">
@@ -10,13 +9,14 @@
     <script src="/static/jquery.min.js"></script>
 </head>
 
-<body onunload="alert('The onunload event was triggered')">
+<body>
  <h2 align = "center">array对象测试页面</h2>
- <video id="myVideo" width="320" height="240" controls>
+ <video id="myVideo" width="320" height="240" controls      >
 ##     <source src="/static/movie.mp4" type="video/mp4">
-     <source src="/static/movie.ogg" type="video/ogg">
+     <source src="/static/video/movie.ogg" type="video/ogg">
      Your browser does not support the video tag.
  </video>
+
 <script>
     $(document).ready(function () {
         //创建Arrau()对象

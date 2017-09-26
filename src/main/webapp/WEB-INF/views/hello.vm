@@ -1,0 +1,18 @@
+##  欢迎页
+<html>
+<head>
+    <title>xuxy首页</title>
+</head>
+<body>
+<h3>hello jsp</h3>
+
+</body>
+
+<script>
+    alert(window.screen.availHeight);
+    alert(window.screen.availWidth);
+    alert(window.screen.height);
+    alert(window.screen.width);
+
+</script>
+</html>
