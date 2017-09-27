@@ -1,8 +1,8 @@
-package com.supcon.util.jpinyin;
+package com.xuxy.utils.jpinyin;
 
 import com.github.stuxuhai.jpinyin.PinyinFormat;
 import com.github.stuxuhai.jpinyin.PinyinHelper;
-import com.supcon.util.StringUtils;
+import com.xuxy.utils.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;

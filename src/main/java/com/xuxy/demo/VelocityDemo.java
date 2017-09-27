@@ -1,4 +1,4 @@
-package com.supcon.demo;
+package com.xuxy.demo;
 
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;

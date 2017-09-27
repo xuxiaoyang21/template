@@ -1,4 +1,4 @@
-package com.supcon.controller.jodd;
+package com.xuxy.controllers.jodd;
 
 import jodd.mail.*;
 

@@ -1,4 +1,4 @@
-package com.supcon.util;
+package com.xuxy.utils;
 
 
 import java.util.Collection;

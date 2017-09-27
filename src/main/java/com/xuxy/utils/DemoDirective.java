@@ -1,4 +1,4 @@
-package com.supcon.util;
+package com.xuxy.utils;
 
 import org.apache.velocity.context.InternalContextAdapter;
 import org.apache.velocity.exception.MethodInvocationException;

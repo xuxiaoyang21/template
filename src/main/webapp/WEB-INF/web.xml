@@ -46,7 +46,7 @@
     <param-value>classpath:applicationContext*.xml</param-value>
   </context-param>
 
-  <!--加载Spring容器-->
+  <!--加载Spring容器 监听器-->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>

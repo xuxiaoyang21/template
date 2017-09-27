@@ -1,4 +1,4 @@
-package com.supcon.controller;
+package com.xuxy.controllers;
 
 import com.github.abel533.echarts.Option;
 import com.github.abel533.echarts.axis.CategoryAxis;
@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;

@@ -8,7 +8,7 @@
     <context:property-placeholder location="classpath:config.properties"/>
 
     <!--自动扫描Controller-->
-    <context:component-scan base-package="com.supcon.controller"/>
+    <context:component-scan base-package="com.xuxy.controllers"/>
 
     <!--基于注解的Controller-->
     <mvc:annotation-driven>

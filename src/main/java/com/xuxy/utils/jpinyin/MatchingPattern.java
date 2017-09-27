@@ -1,4 +1,4 @@
-package com.supcon.util.jpinyin;
+package com.xuxy.utils.jpinyin;
 
 /**
  * Created with IDEA.

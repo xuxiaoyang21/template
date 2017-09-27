@@ -1,4 +1,4 @@
-package com.supcon.util;
+package com.xuxy.utils;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPClientConfig;

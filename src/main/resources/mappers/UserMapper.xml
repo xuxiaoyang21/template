@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://hc.supconit.com/mybatis-3-mapper.dtd">
+
+<!--  MAPPER ; CREATE AT Mon Nov 30 16:45:03 CST 2015 BY **@supcon.com-->
+<mapper namespace="com.xuxy.mappers.UserMapper">
+
+
+    <insert id="insert"  >
+        insert into t_user (name,address) values(#{name},#{address})
+    </insert>
+
+
+</mapper>
