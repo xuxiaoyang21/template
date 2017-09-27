@@ -106,4 +106,17 @@ public class MenuController {
 
         return "wdatepicker/wdatepicker";
     }
+
+    /**
+     * Created by Intellij IDEA
+     * @author:xuxiaoyang
+     * @Date: 2017/9/27 13:59
+     * @Description: kendo中grid的使用
+     * @return
+     */
+    @RequestMapping("grid")
+    public String grid(){
+
+        return "kendo/grid";
+    }
 }

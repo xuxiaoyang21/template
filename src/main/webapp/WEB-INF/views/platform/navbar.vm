@@ -27,6 +27,7 @@
                                 <li><a href="#">SSSSSMENU</a></li>
                             </ul>
                         </li>
+                        <li><a href="/content/grid">kendo中grid的使用</a></li>
                     </ul>
                 </li>
                 <li><a href="#">功能</a></li>
