@@ -2,6 +2,8 @@ package com.xuxy.services;
 
 import com.xuxy.entities.User;
 
+import java.util.List;
+
 /**
  * Created by Intellij IDEA
  *
@@ -12,4 +14,6 @@ import com.xuxy.entities.User;
 public interface UserService {
 
     void insert(User user);
+
+    List<User> findByPager();
 }

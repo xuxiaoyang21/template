@@ -10,6 +10,10 @@
     <insert id="insert"  >
         insert into t_user (name,address) values(#{name},#{address})
     </insert>
+    <select id="findByPager" resultType="com.xuxy.entities.User">
+        select * from t_user
+    </select>
+
 
 
 </mapper>

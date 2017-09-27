@@ -16,7 +16,7 @@
 
     <!-- Bootstrap -->
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="/static/layui/css/modules/layer/default/layer.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -139,6 +139,8 @@
 <script src="/static/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+##    引入弹窗插件js
+<script src="/static/layui/lay/modules/layer.js"></script>
 </body>
 <script>
     $(function () {
@@ -146,7 +148,8 @@
         $("#btn").click(function () {
             $.post("/user/add",$("#formId").serialize(),function (data) {
 
-                alert("添加成功！")
+                //layer.msg("添加成功！")
+                layer.alert("数据添加成功！");
             })
         })
     })

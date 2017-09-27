@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  * Created by Intellij IDEA
@@ -34,6 +35,15 @@ public class UserController {
         userService.insert(user);
 
         return "success";
+    }
+
+    @RequestMapping(value = "/list",method = RequestMethod.POST)
+    @ResponseBody
+    public List<User> list(ModelMap modelMap){
+
+        List<User> list = userService.findByPager();
+
+        return  list;
     }
 
 }

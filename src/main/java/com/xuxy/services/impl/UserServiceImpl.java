@@ -6,6 +6,8 @@ import com.xuxy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created by Intellij IDEA
  *
@@ -22,5 +24,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public void insert(User user) {
         userMapper.insert(user);
+    }
+
+    @Override
+    public List<User> findByPager() {
+        return userMapper.findByPager();
     }
 }
