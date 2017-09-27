@@ -1,31 +1,44 @@
-<html>
-<head>
+#parse("platform/head.vm")
     <title>kendo window测试页面</title>
-    <meta content="text/html;charset=utf-8"/>
 
     <link rel="stylesheet" href="/static/framework/styles/kendo.common.min.css">
     <link rel="stylesheet" href="/static/framework/styles/kendo.default.min.css">
 
-    <script src="/static/jquery.min.js"></script>
-    <script src="/static/jquery.layout-latest.js"></script>
-    <script src="/static/framework/js/kendo.web.min.js"></script>
 </head>
 <body>
-<div class="ui-layout-west">
-</div>
-<div class="ui-layout-center">
-    <div id="dialog">
-        <table>
-            <form action="">
-                <input type="text" name="name">
-                <input type="password" name="password">
-            </form>
-        </table>
-    </div>
-</div>
+<div class="container   ">
+    #parse("platform/navbar.vm")
+    <div class="row">
+    ## 设置导航条一下 左侧栏导航
+        <div class="col-md-2">
 
+        </div>
+    ## 内容
+        <div class="row col-md-9">
+            <div class="row" style="height: 50px;width: auto">
+
+            </div>
+            <div class="row">
+                <form action="">
+                    <div class="form-group">
+                        <label for="">账户</label>
+                        <input type="text" name="name" class="form-control">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="">密码</label>
+                        <input type="password" name="password" class="form-control">
+                    </div>
+                </form>
+                <div id="dialog"></div>
+            </div>
+        </div>
+
+</div>
 </body>
-
+#parse("platform/footer.vm")
+<script src="/static/jquery.layout-latest.js"></script>
+<script src="/static/framework/js/kendo.web.min.js"></script>
 <script>
     $(document).ready(function () {
 
@@ -48,7 +61,7 @@
             },
             visible:false,//窗口加载完成是否显示
             //appendTo:"",//追加到 TODO
-            autoFocus:true,//确定打开窗口时是否自动对焦
+            //autoFocus:true,//确定打开窗口时是否自动对焦
             //content:"/test",//设置窗口的内容可以去另一个url中去去
             content:{
                 url:"/test",
@@ -59,12 +72,12 @@
             draggable:true,//设置窗口是否可拖拽
             iframe:true,//和content众的iframe一样用法但比他优先级更高
             height:300,//设置窗口的高度
-            maxHeight:450,//设置窗口最大高度
-            width:200,//设置窗口的宽度
-            maxWidth:300,//设置窗口的最大宽度
-            minHeight:100,//设置窗口最小可调整高度
-            minWidth:100,//设置窗口最小可调整宽度
-            modal:false,//设置父页面是否被覆盖 是否为不可操作形态
+            //maxHeight:450,//设置窗口最大高度
+            //width:200,//设置窗口的宽度
+            //maxWidth:300,//设置窗口的最大宽度
+            //minHeight:100,//设置窗口最小可调整高度
+            //minWidth:100,//设置窗口最小可调整宽度
+            modal:true,//设置父页面是否被覆盖 是否为不可操作形态
             pinned:true,//设置窗口是否被固定，在滚动期间是否与页面内容一起动
             position:{//设置窗口的位置
                 top:100,
@@ -94,8 +107,8 @@
         //dialog.destroy();//窗口销毁方法
 
 
-        dialog.maximize();//是窗口变成最大尺寸
-        dialog.minimize();//设置为窗口最小尺寸
+        //dialog.maximize();//是窗口变成最大尺寸
+        //dialog.minimize();//设置为窗口最小尺寸
         //var str = dialog.isMaximized();//判断窗口是否是最大尺寸
         //var str = dialog.isMinimized(); //测试时暂时不能用
         dialog.pin();//此方法设置窗口为固定位置 不随页面的移动而移动
@@ -105,14 +118,14 @@
             dataType:"json",//参数类型
             template:""//模板
         });
-        dialog.restore();
+        //dialog.restore();
         //dialog.setOption({
             //写上面的属性
 
         //});//设置window的属性
         dialog.title();//无参数时  获取当前窗口的title  有参数 是设置title
         //dialog.toFront();
-        dialog.unpin();//禁止窗口不能随页面滑动
+        //dialog.unpin();//禁止窗口不能随页面滑动
         dialog.toggleMaximization();
 
         #### 内置方法结束 #################################

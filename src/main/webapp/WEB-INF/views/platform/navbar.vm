@@ -35,10 +35,11 @@
                 <li><a href="#">Velocity</a></li>
                 <li><a href="#">JOSN</a></li>
                 <li><a href="#">KENDO</a></li>
-                <li><a href="#">ABOUT US</a></li>
+                <li style="position: absolute;right: 0px"><a href="#">ABOUT US</a></li>
             </ul>
         </div>
 
     </div>
 </div>
 <div class="row" style="height: 50px;width: auto"></div>
+<div style="background-color: #0a4d85; text-align: right;  position: absolute;bottom: 0px;right: 17px; width:1343px;height: 30px" class="row">ddddddddddddddddddddddddddddddddddddd</div>

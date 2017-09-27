@@ -211,6 +211,18 @@
       <artifactId>jodd-http</artifactId>
       <version>3.7.1</version>
     </dependency>
+    <!--jodd-引入发送email依赖jar-->
+    <dependency>
+      <groupId>org.jodd</groupId>
+      <artifactId>jodd-mail</artifactId>
+      <version>3.9.1</version>
+    </dependency>
+    <!--apache邮件发送依赖-->
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-email</artifactId>
+      <version>1.4</version>
+    </dependency>
 
 
   </dependencies>
