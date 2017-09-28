@@ -2,6 +2,7 @@ package com.xuxy.mappers;
 
 import com.xuxy.entities.User;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -17,4 +18,8 @@ public interface UserMapper {
     void insert(User user);
 
     List<User> findByPager();
+
+    List selectByPager(HashMap params);
+
+    Long countByPager(HashMap params);
 }

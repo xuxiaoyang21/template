@@ -2,6 +2,8 @@ package com.xuxy.controllers;
 
 import com.xuxy.entities.User;
 import com.xuxy.services.UserService;
+import com.xuxy.utils.Pageable;
+import com.xuxy.utils.impl.NewPagination;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -37,13 +39,22 @@ public class UserController {
         return "success";
     }
 
-    @RequestMapping(value = "/list",method = RequestMethod.POST)
+    @RequestMapping(value = "/lists",method = RequestMethod.POST)
     @ResponseBody
-    public List<User> list(ModelMap modelMap){
+    public List<User> lists(ModelMap modelMap){
 
         List<User> list = userService.findByPager();
 
         return  list;
     }
+
+    @RequestMapping(value = "/list",method = RequestMethod.POST)
+    @ResponseBody
+    public Pageable<User> list(NewPagination<User> pager,User user){
+        //查询数据列表
+        return this.userService.find(pager,user);
+    }
+
+
 
 }

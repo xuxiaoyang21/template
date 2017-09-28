@@ -1,6 +1,8 @@
 package com.xuxy.services;
 
 import com.xuxy.entities.User;
+import com.xuxy.utils.Pageable;
+import com.xuxy.utils.impl.NewPagination;
 
 import java.util.List;
 
@@ -16,4 +18,6 @@ public interface UserService {
     void insert(User user);
 
     List<User> findByPager();
+
+    Pageable<User> find(NewPagination<User> pager, User user);
 }

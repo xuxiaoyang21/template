@@ -14,6 +14,12 @@
         select * from t_user
     </select>
 
+    <select id="selectByPager" resultType="com.xuxy.entities.User">
+        select * from t_user
+    </select>
+    <select id="countByPager" resultType="long">
+        select Count(0) from t_user
+    </select>
 
 
 </mapper>
