@@ -2,6 +2,8 @@ package com.xuxy.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * Created by Intellij IDEA
@@ -20,6 +22,13 @@ public class WelcomeController {
     }
     @RequestMapping("/menu")
     public String menu(){
-        return "hello";//跳转到首页
+        return "login";//跳转到首页
+    }
+
+    @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @ResponseBody
+    public String login(String name,String password){
+        System.out.println(name+"-"+password);
+        return "success";
     }
 }

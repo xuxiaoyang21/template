@@ -58,14 +58,11 @@
 
             ####工具条设置  有两种模式 一种是模板 一种是自带的属性
             toolbar:[
-                {
-                    name:"cancel",
-                    iconClass:"",//设置图标
-                    text:"取消",
-                },
+
                 {
                     name:"create",
                     text:"新增信息",
+
                 },
                 {name:"save"},
                 {name:"excel"},
