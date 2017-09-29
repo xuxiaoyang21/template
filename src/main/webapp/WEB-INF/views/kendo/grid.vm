@@ -336,17 +336,13 @@
                         pageSize: options.pageSize
                     };
                     return kendo.stringify(parameter);//将分页的页码也尺寸返回给服务端
-                }else if(operation == 'update'){
+                }else{
                     var parameter = options.models[0];//得到更改后的数据对象
 
                     //加上此刷新 才会在更改或者保存数据是关闭页面
                     $("#grid").data("kendoGrid").refresh();
                     ///return kendo.stringify(parameter);
                     return parameter;
-                }else if(operation == "create"){
-                    alert("ddsf")
-
-                    return {models : kendo.stringify(options.models)};
                 }
             },
         },
