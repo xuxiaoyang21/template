@@ -58,16 +58,19 @@
 
             ####工具条设置  有两种模式 一种是模板 一种是自带的属性
             toolbar:[
-
                 {
                     name:"create",
-                    text:"新增信息",
+                    text:"新增用户",
 
                 },
-                {name:"save"},
-                {name:"excel"},
-                {name:"pdf"},
-                { template: kendo.template($("#template").html()) }
+                //模板测试 工具条窗口
+                {
+                    template: kendo.template($("#template").html())
+                },
+                /* {//如果有新增用户 则新增用户不会进入create页面 而是进入update
+                name:"save"
+              },*/
+
 
             ],
             //toolbar:"<input type='button' value='导出' ></input>",//使用模板设置
@@ -82,23 +85,28 @@
             //sortable:true,//设置每类是可排序的
             sortable:{
                 allowUnsort:true, //设置允许取消排序
-                showIndexes:true,
+                //showIndexes:true,
                 mode:"multiple",//排序模式  simple  multiple
                 initialDirection: "desc",//设置初始化方向
             },
             //设置滚动条
-            scrollable:{
+           /* scrollable:{
                 virtual:true
-            },
+            },*/
 
+            saveChanges: function(e) {
+                if (!confirm("Are you sure you want to save all changes?")) {
+                    e.preventDefault();
+                }
+            },
         ############################################## TODO
-            autoBind : true,//默认  数据绑定
-            columnResizeHandleWidth: 1,
+            //autoBind : true,//默认  数据绑定
+            //columnResizeHandleWidth: 1,
             // TODO
             // allowCopy:true,
-            allowCopy:{
+            /*allowCopy:{
                 delimeter:","  //更改分割符 默认是 \t
-            },
+            },*/
         ###############################################
 
 
@@ -238,16 +246,16 @@
                             name:"edit",//设置命令的名称 内置的为destroy edit
                             //text:"编辑",//更改命令的名称
                             text:{  //对内部的命令名称进行显示的更改
-                                edit:"编辑",
+               /* edit:"编辑",
                                 update:"更新",
-                                cancel:"取消"
+                                cancel:"取消"*/
                             },
                             click:function (e) {
                                 //书写点击之后要做的事情
                                 var tr = $(e.target).closest("tr");
                                 var data = this.dataItem(tr);
-                                console.log(data.name);
-                                console.log(e);//输出
+                               // console.log(data.name);
+                                //console.log(e);//输出
                             },
 
 
@@ -263,7 +271,7 @@
                             className:"btn btn-primary",//css样式应用与命令
                             //设置当前命令的可见行
                             visible:function (dataItem) {
-                                console.log(dataItem);
+                                //console.log(dataItem);
                                 return dataItem.id == 5//设置只有姓名为严良的才能显示删除按钮
                             },
 ###########################################################
@@ -286,6 +294,7 @@
        /* aggregate:[
             {"field":"name",}
         ]*/
+        //type: "odata", //如果加这个属性就必须 在返回的列表中有__count 这个对应列表的总数的字段  不过可以在schems中更改
         transport: {
             //当前主页面表格数据阅读
             read: { //
@@ -294,37 +303,60 @@
                 dataType: "json",//发出请求携带参数的类型
                 contentType: "application/json" //请求头设置类型
              },
-            //
-            update:{
+            // 编辑数据时触发测update方法进行数据的更新
+            update: {
                 type:"post",
                 url:"/user/update",
                 dataType:"json",
-                contentType:"application/json"
+                data:{
+                    date:new Date(),
+                },
+                complete:function(){
+                    //跟新完成后进行数据的刷新 重新读取数据
+                    $("#grid").data("kendoGrid").dataSource.read;
+                    layer.msg("更新成功！")
+                }
+
             },
-            create:{
+            create: {
                 type:"post",
                 url:"/user/create",
                 dataType:"json",
-                contentType:"application/json",
-            }
+
+            },
+
             //
-            /*parameterMap: function (options, operation) {
+            parameterMap: function (options, operation) {
                 //用来判断 发出的请求是什么方式  read  create 等
                 if (operation == "read") {
+                    //alert(options.page);
+                    //alert(options.pageSize);
                     var parameter = {
                         page: options.page,
                         pageSize: options.pageSize
                     };
-                    return kendo.stringify(parameter);
+                    return kendo.stringify(parameter);//将分页的页码也尺寸返回给服务端
+                }else if(operation == 'update'){
+                    var parameter = options.models[0];//得到更改后的数据对象
+
+                    //加上此刷新 才会在更改或者保存数据是关闭页面
+                    $("#grid").data("kendoGrid").refresh();
+                    ///return kendo.stringify(parameter);
+                    return parameter;
+                }else if(operation == "create"){
+                    alert("ddsf")
+
+                    return {models : kendo.stringify(options.models)};
                 }
-            }*/
+            },
         },
-       // batch: true,
+        batch: true, //当使用create和update是需要把这个属性设置为true 否则不会发出url
         pageSize: 10, //设置分页 每页条数
         schema: {
-
+            total:"total",//声明返回的总数字段是哪个
+            model:{ id :"id"},
         },
-        //serverPaging: true
+        serverPaging: true,//设置通过服务端进行分页
         //设置 聚合  在grid的中使用 foottemplate才会有效果
         aggregate: [
             { field: "id", aggregate: "min" },

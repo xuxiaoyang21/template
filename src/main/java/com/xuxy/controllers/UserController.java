@@ -1,17 +1,22 @@
 package com.xuxy.controllers;
 
+import com.google.gson.Gson;
 import com.xuxy.entities.User;
 import com.xuxy.services.UserService;
 import com.xuxy.utils.Pageable;
 import com.xuxy.utils.impl.NewPagination;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -30,7 +35,15 @@ public class UserController {
     private UserService userService;
 
 
-    @RequestMapping(value = "/add",method = RequestMethod.POST)
+    /**
+     * Created by Intellij IDEA
+     * @author:xuxiaoyang
+     * @Date: 2017/9/29 13:27
+     * @Description:新增人员
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/create",method = RequestMethod.POST)
     @ResponseBody
     public String  add(User user){
         System.out.println("输出："+user.toString());
@@ -48,11 +61,40 @@ public class UserController {
         return  list;
     }
 
+    /**
+     * Created by Intellij IDEA
+     * @author:xuxiaoyang
+     * @Date: 2017/9/29 13:28
+     * @Description: 查看所有人员列表
+     * @param pager
+     * @param user
+     * @return
+     */
     @RequestMapping(value = "/list",method = RequestMethod.POST)
     @ResponseBody
     public Pageable<User> list(NewPagination<User> pager,User user){
+         System.out.println(pager.getPageSize());
         //查询数据列表
         return this.userService.find(pager,user);
+    }
+
+    /**
+     * Created by Intellij IDEA
+     * @author:xuxiaoyang
+     * @Date: 2017/9/29 13:28
+     * @Description: 更新用户信息
+     * @param
+     * @return
+     */
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
+    @ResponseBody
+    public String update(User user){
+
+       System.out.println(""+user.toString());
+       //保存数据
+        userService.update(user);
+
+        return "success";
     }
 
 

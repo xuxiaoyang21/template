@@ -20,4 +20,6 @@ public interface UserService {
     List<User> findByPager();
 
     Pageable<User> find(NewPagination<User> pager, User user);
+
+    void update(User user);
 }

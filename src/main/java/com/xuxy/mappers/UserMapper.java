@@ -22,4 +22,6 @@ public interface UserMapper {
     List selectByPager(HashMap params);
 
     Long countByPager(HashMap params);
+
+    void update(User user);
 }
