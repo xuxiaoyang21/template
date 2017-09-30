@@ -37,7 +37,7 @@
         <td colspan="3">
             <strong>#: id #</strong>
             <strong>#: name #</strong>
-            <strong>#: address #</strong>
+
         </td>
     </tr>
 </script>
