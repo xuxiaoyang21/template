@@ -96,11 +96,11 @@
     #parse("platform/navbar.vm")
     <div class="row">
     ## 设置导航条一下 左侧栏导航
-        <div class="col-md-2" style="border: solid #ff0000">
-            <p align="center" >左侧边栏</p>
+        <div class="col-md-2 sider" style="width: 100px">
+
         </div>
     ## 内容
-        <div class="row col-md-10">
+        <div class="row col-md-10 content">
             #*<div class="row" style="height: 50px;width: auto;border: solid #ff0000">
                 <p align="center">顶部横条</p>
             </div>*#

@@ -19,12 +19,41 @@
     <link rel="stylesheet" href="/static/layer/mobile/need/layer.css">
     ##  引入小图标css
     <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+    ##  导航栏菜单
+    <link rel="stylesheet" href="/static/bootnav/css/bootsnav.css">
+    ## 设置CSS样式
     <style>
         body {
+            /*设置背景颜色*/
             background-color: #a0969f;
+            /*设置背景图片*/
             background-image: url(/static/images/city.jpg);
-        }
+            background-attachment: fixed;/*设置底色固定不动不随滚动条滑动*/
+            /*设置背景颜色局中*/
+            /*background-position: center;*/
+            /*设置背景图片如果不足 则不重复*/
+            /*background-repeat: no-repeat;*/
+        };
         a {
+            /*设置导航条的字体颜色*/
             color:black;
+        };
+        #title {
+            left: 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        /*设置内容属性*/
+        .content {
+            margin:20px;
+        }
+        /*设置左边栏属性*/
+        .sider {
+            background-image: url('/static/images/side3.png');
+            height: 450px;
+            background-position: center;margin: 20px
         }
     </style>

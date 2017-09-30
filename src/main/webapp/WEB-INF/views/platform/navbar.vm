@@ -1,15 +1,18 @@
-<div class="row" style="font-family: 微软雅黑; margin-top: 10px; opacity: 1;
+<div class="row" id="title" style="font-family: 微软雅黑; margin-top: 10px; opacity: 1;
 ">
     <div class="col-md-12">
     ##  导航图标
         <div class="navbar-header" style="margin: 20px;">
-        <img  src="/static/images/title.ico" style="width: 50px;height: 50px; border:2px solid;
+            <a href="/home">
+                <img  src="/static/images/title.ico" style="width: 50px;height: 50px; border:2px solid;
 border-radius:25px;" alt="首页图标">
+            </a>
+
         </div>
     ##   折叠菜单 列表
         <div class="collapse navbar-collapse" id="navbar-menu" style="margin-top: 20px">
-            <ul class="nav navbar-nav">
-                <li><a href="/">HOME</a></li>## 跳转到主页
+            <ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
+                <li><a href="/home">HOME</a></li>## 跳转到主页
             ## 添加下拉菜单
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">CONTENT</a>
@@ -23,23 +26,25 @@ border-radius:25px;" alt="首页图标">
                         <li><a href="#">百度echarts</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">COSTOM </a>
-                            <ul class="dropdown-menu">
+                            <ul class="dropdown-menu multi-dropdown animated">
                                 <li><a href="#">SSSSSMENU</a></li>
                             </ul>
                         </li>
                         <li><a href="/content/grid">kendo中grid的使用</a></li>
+
                     </ul>
                 </li>
                 <li><a href="#">功能</a></li>
                 <li><a href="#">插件</a></li>
                 <li><a href="#">HTML</a></li>
                 <li><a href="#">Velocity</a></li>
-                <li><a href="#">JOSN</a></li>
+                <li><a href="#">JSON</a></li>
                 <li><a href="#">KENDO</a></li>
-                <li style="position: absolute;right: 0px"><a href="#">ABOUT US</a></li>
+                <li ><a href="#">ABOUT US</a></li>
+                <li style="position: absolute;right: 0px"><a href="/">LOGOUT</a></li>
             </ul>
         </div>
 
     </div>
 </div>
-<div class="row" style="height: 50px;width: auto"></div>
+##<div class="row" style="height: 50px;width: auto"></div>

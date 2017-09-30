@@ -98,7 +98,7 @@ public class MenuController {
         //return "kendo/window";//kendowindow测试页面
         //return "javascript/array";//javascript测试页面
         //return "jqueryFlexSlider/flexslider";
-        return "hello";
+        return "/home";
     }
     @RequestMapping("/test")
     public String test(){

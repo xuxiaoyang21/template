@@ -12,14 +12,12 @@
         #parse("platform/navbar.vm")
         <div class="row">
         ## 设置导航条一下 左侧栏导航
-            <div class="col-md-2">
+            <div class="col-md-2 sider">
 
             </div>
         ## 内容
-            <div class="row col-md-9">
-                <div class="row" style="height: 50px;width: auto">
+            <div class="row col-md-9 content" >
 
-                </div>
                 <div class="row">
                     <div id="grid">
 
@@ -168,7 +166,7 @@
                         style:"text-align:right",//设置id列头靠右对齐
                     },
                     //headerTemplate:"",//设置 当前列头的模板
-                    hidden:false,//是否隐藏当前列
+                    hidden:true,//是否隐藏当前列
                    //locked:true ,//设置是否被冻结
                    //lockable:false,
                     //设置列中的列  如果设置这个列 上面的属性都没用了
@@ -231,7 +229,7 @@
                     //command:["edit","destroy"],//第二种新增两个或者三个命令的方式
                     command:[
                         {
-                            name:"详情",
+                            name:" 详情",
                             iconClass: "fa fa-upload",//给当前命令添加一个图标
                             click:function (e) {
                                 //书写点击之后要做的事情

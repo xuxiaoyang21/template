@@ -31,4 +31,9 @@ public class WelcomeController {
         System.out.println(name+"-"+password);
         return "success";
     }
+
+    @RequestMapping("/home")
+    public String home(){
+        return "/home";//跳转到主页
+    }
 }

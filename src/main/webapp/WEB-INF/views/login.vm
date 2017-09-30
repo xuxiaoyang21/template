@@ -91,7 +91,7 @@
             $.post("/login",$("#formId").serialize(),function (data) {
                 if(data === 'success'){
                     layer.confirm("登录成功",{btn:["确定"]},function () {
-                        window.location.href = "/content/user";
+                        window.location.href = "/home";
                     })
 
                 }else{

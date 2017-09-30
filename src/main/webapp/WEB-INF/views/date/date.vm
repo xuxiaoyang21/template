@@ -7,11 +7,11 @@
         #parse("platform/navbar.vm")
         <div class="row">
         ## 设置导航条一下 左侧栏导航
-            <div class="col-md-2">
+            <div class="col-md-2 sider">
 
             </div>
         ## 内容
-            <div class="row col-md-9">
+            <div class="row col-md-9 content">
                 <div class="row" style="height: 50px;width: auto">
 
                 </div>
