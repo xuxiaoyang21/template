@@ -229,6 +229,12 @@
       <artifactId>fastjson</artifactId>
       <version>1.2.38</version>
     </dependency>
+<!--用户权限控制shiro -->
+    <dependency>
+      <groupId>org.apache.shiro</groupId>
+      <artifactId>shiro-all</artifactId>
+      <version>1.3.2</version>
+    </dependency>
 
 
 

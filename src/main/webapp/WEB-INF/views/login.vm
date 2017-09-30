@@ -24,7 +24,7 @@
         <div class="initial_left_hand" id="left_hand"></div>
         <div class="initial_right_hand" id="right_hand"></div>
     </div>
-    <form id="formId">
+    <form id="formId" action="/login" method="post">
         <p style="padding: 30px 0px 10px; position: relative;">
             <span class="u_logo"></span>
             <input class="ipt" type="text" name="name" placeholder="请输入用户名或邮箱" value="">
@@ -88,17 +88,7 @@
 
         //当点击登录按钮是提交表单并登录
         $("#btn").click(function () {
-            $.post("/login",$("#formId").serialize(),function (data) {
-                if(data === 'success'){
-                    layer.confirm("登录成功",{btn:["确定"]},function () {
-                        window.location.href = "/home";
-                    })
-
-                }else{
-                    layer.msg("登录失败请稍后重试！");
-                }
-
-            })
+            $("#formId").submit();
         })
     });
 </script>

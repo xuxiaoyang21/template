@@ -1,9 +1,19 @@
 package com.xuxy.controllers;
 
+import com.xuxy.dto.Message;
+import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.LockedAccountException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Created by Intellij IDEA
@@ -16,20 +26,51 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class WelcomeController {
 
+    /**
+     * 登录页面
+     * @return
+     */
     @RequestMapping("/")
-    public String login(){
-        return "redirect:menu";//重定向到 首页路径
-    }
-    @RequestMapping("/menu")
-    public String menu(){
-        return "login";//跳转到首页
+    public String login(ModelMap modelMap){
+        return "login";//跳转到登录页面
     }
 
+
+    /**
+     * 登录认证
+     * @param name
+     * @param password
+     * @return
+     */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    @ResponseBody
-    public String login(String name,String password){
-        System.out.println(name+"-"+password);
-        return "success";
+    public String login(ModelMap modelMap ,String name, String password, RedirectAttributes redirectAttributes){
+        //  RedirectAttributes用来页面提示用的
+        System.out.println("name"+name);
+        //判断用户是否登录
+        Subject subject = SecurityUtils.getSubject();//主题类
+        if(subject.isAuthenticated()){
+            subject.logout();//如果已经登陆就登出
+        }
+        try{
+            //未登录则验证登录
+            UsernamePasswordToken token = new UsernamePasswordToken(name,DigestUtils.md5Hex(password+"34324"));
+            subject.login(token);//登录验证
+            return "home";//跳转到首页
+            //不成功一律跳转到原登录页面
+        }catch (LockedAccountException ex) {
+            redirectAttributes.addFlashAttribute("message",new Message(Message.ERROR,ex.getMessage()));
+            return "redirect:/";
+        } catch (UnknownAccountException ex) {
+            redirectAttributes.addFlashAttribute("message",new Message(Message.ERROR,ex.getMessage()));
+            return "redirect:/";
+        } catch (AuthenticationException ex) {
+            modelMap.put("name","sdfsdfsdf");
+            redirectAttributes.addFlashAttribute("message",new Message(Message.ERROR,"账号或密码错误"));
+            return "redirect:/";
+        }
+
+
+
     }
 
     @RequestMapping("/home")

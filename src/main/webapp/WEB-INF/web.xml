@@ -5,6 +5,12 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
          version="3.1">
 
+  <!--指定Spring容器加载的配置文件地址-->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:applicationContext*.xml</param-value>
+  </context-param>
+
 
   <!--配置项-->
   <!--Spring字符集过滤器-->
@@ -40,11 +46,6 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
-  <!--指定Spring容器加载的配置文件地址-->
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>classpath:applicationContext*.xml</param-value>
-  </context-param>
 
   <!--加载Spring容器 监听器-->
   <listener>

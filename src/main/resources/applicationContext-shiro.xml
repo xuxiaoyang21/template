@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?> <!--设置xml头 设置版本和编码  -->
+<!--设置bean头部 这是识别xml的标识-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--shiro创建安全管理器工厂 不加的还会报错-->
+    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="staticMethod"
+                  value="org.apache.shiro.SecurityUtils.setSecurityManager" />
+        <property name="arguments" ref="securityManager" />
+    </bean>
+    <!--<bean id="shiroRealm" class="com.xuxy.services.ShiroRealm"/>-->
+    <!--配置shiro的缓存管理器-->
+    <bean id="cacheManager"  class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
+
+    <!--配置shrio的安全管理器-->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!--将shiro的身份验证的Realm类加入到安全管理器中-->
+        <property name="realm" ref="shiroRealm"/>
+
+        <!--将缓存加入到安全管理器中-->
+        <property name="cacheManager" ref="cacheManager"/>
+    </bean>
+
+
+    <!--配置shiro的过滤器-->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+
+        <!--安全管理器路径-->
+        <property name="securityManager" ref="securityManager"/>
+        <!--配置登录的url路径-->
+        <property name="loginUrl" value="/"/>
+        <!--配置登录成功后的要跳转的url-->
+        <property name="successUrl" value="/menu"/>
+        <!--配置过滤器链-->
+        <property name="filterChainDefinitions">
+            <value>
+                <!--anon是通过不用验证  静态资源不用验证-->
+                /static/** = anon
+                <!--登录页面不用验证-->
+                /login = anon
+                <!--所有的路径都要经过身份验证-->
+                /** = authc
+
+                <!--account/**只用管理员权限才能访问-->
+                <!--/account/** = roles[管理员]-->
+            </value>
+        </property>
+    </bean>
+
+
+
+</beans>

@@ -1,5 +1,7 @@
 package com.xuxy.entities;
 
+import java.io.Serializable;
+
 /**
  * Created by Intellij IDEA
  *
@@ -8,11 +10,33 @@ package com.xuxy.entities;
  * @Description:  添加用户类 测试
  */
 
-public class User {
+public class User implements Serializable {
+
+    public static final String STATE_UNKNOW = "0";
+    public static final String STATE_NORMAL = "1";
+    public static final String STATE_DISABLE = "2";
 
     private Integer id;
     private String name;
     private String address;
+    private String state;
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public Integer getId() {
         return id;

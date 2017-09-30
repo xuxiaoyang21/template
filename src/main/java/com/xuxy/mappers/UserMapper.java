@@ -26,4 +26,6 @@ public interface UserMapper {
     void update(User user);
 
     void deleteById(User user);
+
+    User findByName(String userName);
 }
