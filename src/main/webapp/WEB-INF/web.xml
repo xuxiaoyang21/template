@@ -35,7 +35,18 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
-  <!--Spring中央控制器-->
+    <!--配置shiro过滤器-->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <!--配置需要过滤的url 这里配置所有的又要经过shiro过滤器-->
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--Spring中央控制器-->
   <servlet>
     <servlet-name>mvc</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

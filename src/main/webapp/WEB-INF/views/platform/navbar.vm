@@ -41,7 +41,7 @@ border-radius:25px;" alt="首页图标">
                 <li><a href="#">JSON</a></li>
                 <li><a href="#">KENDO</a></li>
                 <li ><a href="#">ABOUT US</a></li>
-                <li style="position: absolute;right: 0px"><a href="/">LOGOUT</a></li>
+                <li style="position: absolute;right: 0px"><a href="/logout">LOGOUT</a></li>
             </ul>
         </div>
 

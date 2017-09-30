@@ -53,7 +53,7 @@ public class WelcomeController {
         }
         try{
             //未登录则验证登录
-            UsernamePasswordToken token = new UsernamePasswordToken(name,DigestUtils.md5Hex(password+"34324"));
+            UsernamePasswordToken token = new UsernamePasswordToken(name,password);//DigestUtils.md5Hex(password+"34324")
             subject.login(token);//登录验证
             return "home";//跳转到首页
             //不成功一律跳转到原登录页面
@@ -76,5 +76,11 @@ public class WelcomeController {
     @RequestMapping("/home")
     public String home(){
         return "/home";//跳转到主页
+    }
+
+    @RequestMapping("/logout")
+    public String logout(){
+        SecurityUtils.getSubject().logout();//安全登出
+        return "/login";//跳转到登录页面
     }
 }
