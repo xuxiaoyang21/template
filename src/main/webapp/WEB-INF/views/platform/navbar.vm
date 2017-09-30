@@ -1,15 +1,15 @@
-<div class="row" style="background-color: #f9f8f6;font-family: 微软雅黑;">
+<div class="row" style="font-family: 微软雅黑; margin-top: 10px; opacity: 1;
+">
     <div class="col-md-12">
-    ##  导航条
-        <div class="navbar-header">
-            <button class="navbar-toggle" type="button">
-                首页
-            </button>
+    ##  导航图标
+        <div class="navbar-header" style="margin: 20px;">
+        <img  src="/static/images/title.ico" style="width: 50px;height: 50px; border:2px solid;
+border-radius:25px;" alt="首页图标">
         </div>
     ##   折叠菜单 列表
-        <div class="collapse navbar-collapse" id="navbar-menu">
+        <div class="collapse navbar-collapse" id="navbar-menu" style="margin-top: 20px">
             <ul class="nav navbar-nav">
-                <li><a href="/menu">HOME</a></li>## 跳转到主页
+                <li><a href="/">HOME</a></li>## 跳转到主页
             ## 添加下拉菜单
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">CONTENT</a>

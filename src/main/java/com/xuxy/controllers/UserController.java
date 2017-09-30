@@ -73,7 +73,7 @@ public class UserController {
     @RequestMapping(value = "/list",method = RequestMethod.POST)
     @ResponseBody
     public Pageable<User> list(NewPagination<User> pager,User user){
-         System.out.println(pager.getPageSize());
+         System.out.println("分页的尺寸是："+pager.getPageSize());
         //查询数据列表
         return this.userService.find(pager,user);
     }
@@ -95,6 +95,17 @@ public class UserController {
         userService.update(user);
 
         return "success";
+    }
+
+    @RequestMapping(value = "destroy",method = RequestMethod.POST)
+    @ResponseBody
+    public String destroy(User user){
+        System.out.println("删除的id:"+user.getId());
+
+        userService.deleteById(user);
+
+        return "success";
+
     }
 
 

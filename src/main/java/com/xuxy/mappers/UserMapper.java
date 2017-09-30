@@ -24,4 +24,6 @@ public interface UserMapper {
     Long countByPager(HashMap params);
 
     void update(User user);
+
+    void deleteById(User user);
 }

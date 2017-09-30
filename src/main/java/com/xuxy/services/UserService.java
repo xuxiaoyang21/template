@@ -22,4 +22,6 @@ public interface UserService {
     Pageable<User> find(NewPagination<User> pager, User user);
 
     void update(User user);
+
+    void   deleteById(User user);
 }

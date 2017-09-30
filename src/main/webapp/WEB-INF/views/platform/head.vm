@@ -17,8 +17,14 @@
 
 ##    引入弹窗提示插件layer
     <link rel="stylesheet" href="/static/layer/mobile/need/layer.css">
+    ##  引入小图标css
+    <link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
     <style>
         body {
             background-color: #a0969f;
+            background-image: url(/static/images/city.jpg);
+        }
+        a {
+            color:black;
         }
     </style>

@@ -1,10 +1,5 @@
 ##  欢迎页
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+#parse("platform/head.vm")
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>xuxy首页</title>
 ##    给标题添加 logo
@@ -15,7 +10,7 @@
     ## <link rel="shortcut icon" href="/static/images/title.ico" type="image/x-icon">
 
     <!-- Bootstrap -->
-    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+##    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/static/layer/mobile/need/layer.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -31,49 +26,7 @@
 </style>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                ##  导航条
-                <div class="navbar-header">
-                    <button class="navbar-toggle" type="button">
-                    首页
-                    </button>
-                </div>
-                ##   折叠菜单 列表
-                <div class="collapse navbar-collapse" id="navbar-menu">
-                    <ul class="nav navbar-nav">
-                        <li><a href="/menu">HOME</a></li>## 跳转到主页
-                        ## 添加下拉菜单
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">CONTENT</a>
-                            <ul class="dropdown-menu  animated">
-                                <li><a href="/content/ajax">表单序列化</a></li>
-                                <li><a href="/content/date">日期和日期字符串</a></li>
-                                <li><a href="/content/array">Array对象使用</a></li>
-                                <li><a href="/content/flexslider">滚动动画</a></li>
-                                <li><a href="/content/window">kendo中window使用</a></li>
-                                <li><a href="/content/wdatepicker">Wdatepicker</a></li>
-                                <li><a href="#">百度echarts</a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">COSTOM </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#">SSSSSMENU</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                        <li><a href="#">功能</a></li>
-                        <li><a href="#">插件</a></li>
-                        <li><a href="#">HTML</a></li>
-                        <li><a href="#">Velocity</a></li>
-                        <li><a href="#">JOSN</a></li>
-                        <li><a href="#">KENDO</a></li>
-                        <li><a href="#">ABOUT US</a></li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
+        #parse("platform/navbar.vm")
         <div class="row" >
             ## 设置导航条一下 左侧栏导航
             <div class="col-md-2">
@@ -135,13 +88,8 @@
         </div>
 
     </div>
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="/static/jquery.min.js"></script>
-<!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="/static/bootstrap/js/bootstrap.min.js"></script>
-##    引入弹窗插件js
-<script src="/static/layer/layer.js"></script>
 </body>
+#parse("platform/footer.vm")
 <script>
     $(function () {
         //当点击提交按钮提交表单

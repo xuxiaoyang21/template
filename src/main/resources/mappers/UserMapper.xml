@@ -30,5 +30,9 @@
         update t_user set name = #{name},address = #{address} where id = #{id}
     </update>
 
+    <delete id="deleteById">
+        delete FROM  t_user where id = #{id}
+    </delete>
+
 
 </mapper>

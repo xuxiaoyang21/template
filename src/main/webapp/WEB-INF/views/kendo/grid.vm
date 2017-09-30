@@ -313,7 +313,7 @@
                 },
                 complete:function(){
                     //跟新完成后进行数据的刷新 重新读取数据
-                    $("#grid").data("kendoGrid").dataSource.read;
+                    $("#grid").data("kendoGrid").dataSource.read();
                     layer.msg("更新成功！")
                 }
 
@@ -322,7 +322,28 @@
                 type:"post",
                 url:"/user/create",
                 dataType:"json",
+                complete:function(){
+                    //跟新完成后进行数据的刷新 重新读取数据
+                    //不支持链式调用
+                    var grid = $("#grid").data("kendoGrid");
+                    grid.dataSource.read();
+                   // $("#grid").data("kendoGrid").dataSource.read;
+                    layer.msg("新增成功！")
+                }
 
+            },
+            destroy:{
+                type:"post",
+                url:"/user/destroy",
+                dataType:"json",
+                complete:function(){
+                    //跟新完成后进行数据的刷新 重新读取数据
+                    //不支持链式调用
+                    var grid = $("#grid").data("kendoGrid");
+                    grid.dataSource.read();
+                    // $("#grid").data("kendoGrid").dataSource.read;
+                    layer.msg("删除成功！")
+                }
             },
 
             //
@@ -331,11 +352,10 @@
                 if (operation == "read") {
                     //alert(options.page);
                     //alert(options.pageSize);
-                    var parameter = {
-                        page: options.page,
-                        pageSize: options.pageSize
-                    };
-                    return kendo.stringify(parameter);//将分页的页码也尺寸返回给服务端
+                    options.pageNo =  options.page,
+                    options.pageSize = options.pageSize
+
+                    return options;//将分页的页码也尺寸返回给服务端
                 }else{
                     var parameter = options.models[0];//得到更改后的数据对象
 
@@ -349,10 +369,14 @@
         batch: true, //当使用create和update是需要把这个属性设置为true 否则不会发出url
         pageSize: 10, //设置分页 每页条数
         schema: {
-            total:"total",//声明返回的总数字段是哪个
+            total:function(re){ //此回掉函数是返回的查询的数据数组 使用其length可以得到列表的总长度
+                console.log(re);
+                return re.length;
+            },//声明返回的总数字段是哪个
+
             model:{ id :"id"},
         },
-        serverPaging: true,//设置通过服务端进行分页
+        //serverPaging: true,//设置通过服务端进行分页
         //设置 聚合  在grid的中使用 foottemplate才会有效果
         aggregate: [
             { field: "id", aggregate: "min" },
@@ -377,5 +401,18 @@
         return false;
     }
 
+    /**
+     * 重新阅读当前列表
+     */
+    function  reReadList(){
+        var grid = $("#grid").data("kendoGrid");
+        grid.dataSource.read();
+    }
+    /**
+     * 刷新 当前列表
+     */
+    function refresh(){
+        $("#grid").data("kendoGrid").refresh();
+    }
 
 </script>
