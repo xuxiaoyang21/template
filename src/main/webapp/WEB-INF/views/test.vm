@@ -1,0 +1,80 @@
+#parse("platform/head.vm")
+
+<title>测试页</title>
+
+<link rel="stylesheet" href="/static/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+    <div class="container">
+        #parse("platform/navbar.vm")
+        ##
+        <div class="row">
+            ## 导航条
+            <div class="col-md-2 sider">
+
+            </div>
+
+            <div class="col-md-9 content">
+                <div class="row" style="height: 50px;width: auto">
+
+                </div>
+                ## 内容
+                <div>
+                    <p class="test">测试</p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+    </div>
+
+
+</body>
+
+#parse("platform/footer.vm")
+<script>
+    ## 初始化js 脚本
+    $(document).ready(function () {
+
+        ## 测试 $.extend() 和  $.fn.extend() 的用法
+
+        var str = {"name":"xiaoyang","address":"背景"};
+        console.log(str);//
+        var str2 = {name:"ddd","address":"beijing","city":"sadfs"};
+        var str3 = $.extend(true,str,str2);//相当于把str2追加到str中 返回是是str对象
+
+        console.log(str3);
+        //给jquery添加全局的方法  比如$.ajax等
+        $.extend({
+            hello: function () {
+                alert("添加一个hello方法测试结果")
+            }
+        })
+        $.hello();//全局方法的调用方式
+
+        ##  $.fn.extend()
+
+        var str = {"name":"xiaoyang","address":"背景"};
+        console.log(str);//
+        var str2 = {name:"ddd","address":"beijing","city":"sadfs"};
+        var str3 = $.fn.extend(str,str2);//相当于把str2追加到str中 返回是是str对象
+
+        console.log(str3);
+
+        $.fn.extend({
+            hello:function () {
+                alert("fn测试")
+            }
+        })
+
+        $.fn.hello();
+        $(".test").hello();
+    })## ------------ js脚本初始化完成
+
+
+</script>

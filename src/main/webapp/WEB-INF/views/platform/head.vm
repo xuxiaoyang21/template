@@ -33,16 +33,17 @@
             /*background-position: center;*/
             /*设置背景图片如果不足 则不重复*/
             /*background-repeat: no-repeat;*/
-        };
+        }
         a {
             /*设置导航条的字体颜色*/
             color:black;
-        };
+        }
         #title {
             left: 0;
             position: fixed;
             top: 0;
             width: 100%;
+            /*此属性是滚动时导航栏在内容值上*/
             z-index: 1000;
         }
 
@@ -55,5 +56,8 @@
             background-image: url('/static/images/side3.png');
             height: 450px;
             background-position: center;margin: 20px
+        }
+        .container{
+            margin-top: 100px;
         }
     </style>

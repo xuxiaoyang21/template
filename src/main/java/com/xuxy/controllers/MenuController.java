@@ -103,7 +103,7 @@ public class MenuController {
     @RequestMapping("/test")
     public String test(){
 
-        return "wdatepicker/wdatepicker";
+        return "test";
     }
 
     /**
@@ -118,4 +118,5 @@ public class MenuController {
 
         return "kendo/grid";
     }
+
 }

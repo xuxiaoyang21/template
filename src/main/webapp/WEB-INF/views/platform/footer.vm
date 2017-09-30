@@ -8,3 +8,10 @@
 ## 引入弹窗layer 插件 配合 layer.css一起使用
 <script src="/static/layer/layer.js"></script>
 <script src="/static/bootnav/js/bootsnav.js"></script>
+<script>
+    //页面滚动事件  当页面发生滚动是 将导航条的底色调整
+    window.onscroll = function(){
+        $("#title").css("background-image","url(/static/images/city.jpg)");
+        $("#title").css("opacity",0.9);
+    }
+</script>

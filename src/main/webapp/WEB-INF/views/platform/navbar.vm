@@ -34,7 +34,7 @@ border-radius:25px;" alt="首页图标">
 
                     </ul>
                 </li>
-                <li><a href="#">功能</a></li>
+                <li><a href="/content/test">TEST</a></li>
                 <li><a href="#">插件</a></li>
                 <li><a href="#">HTML</a></li>
                 <li><a href="#">Velocity</a></li>
