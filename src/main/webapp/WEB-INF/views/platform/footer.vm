@@ -14,4 +14,16 @@
         $("#title").css("background-image","url(/static/images/city.jpg)");
         $("#title").css("opacity",0.9);
     }
+    //登出
+    $("#logout").click(function () {
+        $.get("/logout",function (data) {
+            if(data.message == "success"){
+
+                layer.confirm("登出成功！",{btn:"确定"},function () {
+                    window.location.href = "/";//跳转到登录页
+                });
+            }
+
+        })
+    })
 </script>

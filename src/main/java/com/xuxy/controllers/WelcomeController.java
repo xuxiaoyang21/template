@@ -79,8 +79,14 @@ public class WelcomeController {
     }
 
     @RequestMapping("/logout")
-    public String logout(){
-        SecurityUtils.getSubject().logout();//安全登出
-        return "/login";//跳转到登录页面
+    @ResponseBody
+    public Message logout(){
+        try {
+            SecurityUtils.getSubject().logout();//安全登出
+        }catch (AuthenticationException e){
+            return new Message(Message.ERROR,"服务器错误！");
+        }
+        //return "/login";//跳转到登录页面
+        return new Message(Message.SUCCESS,"success");
     }
 }
