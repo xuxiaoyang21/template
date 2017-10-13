@@ -36,6 +36,10 @@
                 </div>
 
             </div>
+            <div class="row">
+                <label for="">文本字符替换测试</label>
+                <textarea onclick="text()" name="text" id="text" cols="30" rows="10"></textarea>
+            </div>
         </div>
     </div>
 </div>
@@ -63,6 +67,33 @@
         });
     })
 
+    function text(){
+        var text = $("#text").val();
+        //var str = text.replace(new RegExp("\n","gm"),"\n")
+        var array = new Array();
+        array= text.split("\n");
+        //array = array[0].split("");
+        alert(array )
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+####### 闭包的测试
     var name = "The Window";
     var object = {
         name : "My Object",
