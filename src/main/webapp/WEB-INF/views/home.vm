@@ -97,12 +97,22 @@
 </body>
 #parse("platform/footer.vm")
 <script src="/static/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+## 遮罩插件 必须jquery1.3版本以上的才能使用
+<script src="/static/js/jquery.blockUI.js"></script>
 <script>
     $(function () {
         //当点击提交按钮提交表单
         $("#btn").click(function () {
+            $.blockUI({
+                message:"请稍等...",
+               // baseZ:9999,
+                css: { backgroundColor: '#AAAAAA',opacity:0.5, color: 'black'},
+               /* overlayCSS:{
+                    cursor:''
+                }*/
+            });
             $.post("/user/add",$("#formId").serialize(),function (data) {
-
+                $.unblockUI();
                 //将表格中的数据清空
                 $("#name").val("");
                 $("#address").val("");
