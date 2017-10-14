@@ -19,7 +19,7 @@
 <div class="top_div">
 
 </div>
-<div style="background: rgb(255, 255, 255); margin: -100px auto auto; border: 1px solid rgb(231, 231, 231); border-image: none; width: 400px; height: 200px; text-align: center;">
+<div style="background: rgb(255, 255, 255); margin: -100px auto auto; border: 1px solid rgb(231, 231, 231); border-image: none; width: 400px; height: 210px; text-align: center;">
     <div style="width: 165px; height: 96px; position: absolute;">
         <div class="tou"></div>
         <div class="initial_left_hand" id="left_hand"></div>
@@ -28,15 +28,15 @@
     <form id="formId" action="/login" method="post">
         <p style="padding: 30px 0px 10px; position: relative;">
             <span class="u_logo"></span>
-            <input class="ipt" type="text" name="name" placeholder="请输入用户名或邮箱" value="">
+            <input style="margin-left: 10px" class="ipt" type="text" name="name" placeholder="请输入用户名或邮箱" value="">
         </p>
         <P style="position: relative;">
             <SPAN class="p_logo"></SPAN>
-            <INPUT class="ipt" id="password" name="password" type="password" placeholder="请输入密码" value="">
+            <INPUT style="margin-left: 10px" class="ipt" id="password" name="password" type="password" placeholder="请输入密码" value="">
         </P>
     </form>
 
-    <div style="height: 50px; line-height: 50px; margin-top: 30px; border-top-color: rgb(231, 231, 231); border-top-width: 1px; border-top-style: solid;">
+    <div style="height: 50px; line-height: 50px; margin-top: 20px; border-top-color: rgb(231, 231, 231); border-top-width: 0px; border-top-style: solid;">
         <P style="margin: 0px 35px 20px 45px;">
             <span style="float: left;">
                 <A style="color: rgb(204, 204, 204);" href="#">忘记密码?</A>

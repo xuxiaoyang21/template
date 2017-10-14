@@ -2,7 +2,7 @@
 <div class="row" style="background-color: #0c090c;height: 20px;float:left;">
     #### 2017###
 </div>
-<script src="/static/jquery.min.js"></script>
+<script src="/static/js/jquery-3.2.1.js"></script>
 ## 引入页面ui插件 配合bootstrap.min.css一起使用
 <script src="/static/bootstrap/js/bootstrap.min.js"></script>
 ## 引入弹窗layer 插件 配合 layer.css一起使用

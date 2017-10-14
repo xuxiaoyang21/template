@@ -119,4 +119,13 @@ public class MenuController {
         return "kendo/grid";
     }
 
+    /**
+     * 图片放大器的使用
+     * @return
+     */
+    @RequestMapping("jqzoom")
+    public String jqzoom(){
+        return "jquery/jqzoom";
+    }
+
 }
