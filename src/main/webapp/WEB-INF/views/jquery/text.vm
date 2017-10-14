@@ -1,0 +1,54 @@
+#parse("platform/head.vm")
+<title>jquery测试</title>
+
+</head>
+<body>
+<div class="box">
+    <ul class="menu">
+        <li class="levell">
+            <a href="#">衬衫</a>
+            <ul class="level2">
+                <li><a href="#">长袖衬衫</a></li>
+                <li><a href="#">短袖衬衫</a></li>
+                <li><a href="#">短袖T恤</a></li>
+                <li><a href="#">长袖T恤</a></li>
+
+            </ul>
+        </li>
+        <li class="levell">
+            <a href="#">卫衣</a>
+            <ul class="level2">
+                <li><a href="#">运动卫衣</a></li>
+                <li><a href="#">开口卫衣</a></li>
+                <li><a href="#">套头卫衣</a></li>
+                <li><a href="#">风衣</a></li>
+
+            </ul>
+        </li>
+        <li class="levell">
+            <a href="#">裤子</a>
+            <ul class="level2">
+                <li><a href="#">短裤</a></li>
+                <li><a href="#">长裤</a></li>
+                <li><a href="#">休闲裤</a></li>
+                <li><a href="#">牛字库</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+#parse("platform/footer.vm")
+<script>
+    $(document).ready(function () {
+        $(".levell >a").siblings().hide();//隐藏a的同胞元素ul level2
+        //$(".levell >a").hide();
+        $(".levell >a").click(function(){
+            $(this).addClass("current").next().show().parent().siblings()
+                    .children("a").removeClass("current").next().hide();
+            return false;
+        })
+
+
+    })
+
+</script>
+</body>
