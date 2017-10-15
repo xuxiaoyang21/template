@@ -36,6 +36,28 @@
         </li>
     </ul>
 </div>
+<div class="SubCategoryBox">
+    <ul>
+        <li><a href="#">佳能</a><i>(123)</i></li>
+        <li><a href="#">索尼</a><i>(123)</i></li>
+        <li><a href="#">三星</a><i>(123)</i></li>
+        <li><a href="#">尼康</a><i>(123)</i></li>
+        <li><a href="#">松下</a><i>(123)</i></li>
+        <li><a href="#">卡西欧</a><i>(123)</i></li>
+        <li><a href="#">富士</a><i>(123)</i></li>
+        <li><a href="#">柯达</a><i>(123)</i></li>
+        <li><a href="#">宾得</a><i>(123)</i></li>
+        <li><a href="#">理光</a><i>(123)</i></li>
+        <li><a href="#">奥林巴斯</a><i>(123)</i></li>
+        <li><a href="#">明基</a><i>(123)</i></li>
+        <li><a href="#">爱国者</a><i>(123)</i></li>
+        <li><a href="#">其他相机品牌</a><i>(123)</i></li>
+    </ul>
+    <div class="showmore">
+        <a href="more"><span>显示所有品牌</span></a>
+    </div>
+
+</div>
 #parse("platform/footer.vm")
 <script>
     $(document).ready(function () {
@@ -46,6 +68,33 @@
                     .children("a").removeClass("current").next().hide();
             return false;
         })
+
+        //获取从索引第五个开始最后一个不要的所有li标签
+        var $category = $(".SubCategoryBox ul li:gt(5):not(:last)");
+        $category.hide();//进行隐藏
+
+        var toggleBtn = $("div.showmore > a");//获取显示全部品牌
+        toggleBtn.click(function(){ //给当前标签一个点击事件
+            if($category.is(":visible")){
+                $category.hide();
+                $(this).find("span")
+                        .text("显示所有品牌");
+                $("ul li").removeClass("promoted");
+            }else{
+                //显示全部品牌
+                    $category.show();
+                $(this).find("span")
+                //.css("backgroud","url(static/images/city.jpg) no-repeat 0 0")
+                        .text("精简品牌显示");
+
+                $("ul li").filter(":contains('佳能')，:contains('尼康')")
+                        .addClass("promoted");
+            }
+
+            return false;
+
+        })
+
 
 
     })
