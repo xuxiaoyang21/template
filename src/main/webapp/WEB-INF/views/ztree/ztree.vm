@@ -1,0 +1,66 @@
+###  树插件测试
+#parse("platform/head.vm")
+<title>zTree</title>
+<link rel="stylesheet" href="/static/ztree/zTreeStyle.css">
+</head>
+<body>
+<div class="container">
+    #parse("platform/navbar.vm")
+    <div class="row">
+    ## 设置导航条一下 左侧栏导航
+        <div class="col-md-2 sider">
+
+        </div>
+    ## 内容
+        <div class="row col-md-9 content" >
+
+            <div class="row">
+##               内容
+                <div id="ztreeMenu" class="ztree">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+#parse("platform/footer.vm")
+<script src="/static/ztree/jquery.ztree.all-3.5.min.js"></script>
+<script src="/static/ztree/jquery.ztree.exhide-3.5.js"></script>
+<script>
+    //初始化
+    $(function () {
+        ztree = $.fn.zTree.init($("#ztreeMenu"),setting,treeNodes);
+
+
+    })
+
+    var setting = {
+        data: {
+            simpleData: {
+                enable: true,
+                idKey: "id",
+                pIdKey: "pId",
+                rootPId: 0
+            }
+        }
+    };
+    var treeNodes = [
+        {"id":1, "pId":0, "name":"test1", 'icon':"/static/ztree/img/diy/2.png", },
+        {"id":11, "pId":1, "name":"test11",'icon':"/static/ztree/img/diy/2.png",},
+        {"id":12, "pId":1, "name":"test12",'icon':"/static/ztree/img/diy/2.png",},
+        {"id":111, "pId":11, "name":"test111",'icon':"/static/images/side.png"},
+        {"id":1111, "pId":11, "name":"test1111",'icon':"/static/images/side.png"},
+        {"id":11111, "pId":11, "name":"test11111",'icon':"/static/images/side.png"},
+        {"id":111111, "pId":11, "name":"test111111",'icon':"/static/images/side.png"},
+        {"id":1111111, "pId":11, "name":"test1111111",'icon':"/static/images/side.png"},
+        {"id":11111111, "pId":11, "name":"test11111111",'icon':"/static/images/side.png"},
+        {"id":111111111, "pId":11, "name":"test111111111",'icon':"/static/images/side.png"},
+        {"id":1111111111, "pId":11, "name":"test1111111111",'icon':"/static/images/side.png"},
+        {"id":11111111111, "pId":11, "name":"test11111111111",'icon':"/static/images/side.png"},
+        {"id":111111111111, "pId":11, "name":"test111111111111",'icon':"/static/images/side.png"},
+        {"id":1111111111111, "pId":11, "name":"test111111111111",'icon':"/static/images/side.png"},
+    ];
+
+</script>

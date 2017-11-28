@@ -4,6 +4,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 进入主页面跳转页面
@@ -26,6 +30,22 @@ public class MenuController {
         return "ajax/serialize";//表单的序列还
     }
 
+    String text;
+    @RequestMapping(value = "/serialize",method = RequestMethod.POST)
+    @ResponseBody
+    public String sereee(HttpServletResponse response,String id, String name , String address, String flag){
+        if(flag==null || flag.equals("")){
+           text = id+name+address;
+            return "success";
+        }else if(flag.equals("0")){
+            response.setCharacterEncoding("utf-8");
+            String result = text;
+            text="";
+            return result;
+        }
+
+        return "为空";
+    }
     /**
      * Created by Intellij IDEA
      * @author:xuxiaoyang
@@ -126,6 +146,28 @@ public class MenuController {
     @RequestMapping("jqzoom")
     public String jqzoom(){
         return "jquery/jqzoom";
+    }
+
+
+    @RequestMapping("uploadify")
+    public String uploadify(){
+        return "jquery/uploadify";
+    }
+    @RequestMapping(value = "upload",method = RequestMethod.POST)
+    public String upload(){
+        System.out.println("上传.......");
+        return "";
+    }
+    @RequestMapping(value = "upload",method = RequestMethod.GET)
+    public String uploadww(){
+        System.out.println("上传get.......");
+        return "";
+    }
+
+
+    @RequestMapping(value = "ztree")
+    public String ztree(){
+        return "ztree/ztree";
     }
 
 }

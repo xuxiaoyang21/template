@@ -1,0 +1,53 @@
+## 圖片放大插件jqzoom的使用
+#parse("platform/head.vm")
+<title>图片上传</title>
+<link rel="stylesheet" href="/static/uploadify/uploadify.css">
+</head>
+<body>
+<div class="container">
+    #parse("platform/navbar.vm")
+    <div class="row">
+    ## 设置导航条一下 左侧栏导航
+        <div class="col-md-2 sider">
+
+        </div>
+    ## 内容
+        <div class="row col-md-9 content">
+            <div class="row" style="height: 50px;width: auto">
+
+            </div>
+            <div class="row">
+                ############内容
+                    <input type="file" id="uploader" name="uploader"  multiple="true" />
+                <div id="upload"></div>
+                    <button type="button" id="uploadify">开始上传</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+
+#parse("platform/footer.vm")
+<script src="/static/layui/lay/modules/jquery.js"></script>
+<script src="/static/uploadify/jquery.uploadify.min.js"></script>
+<script>
+    $(function () {
+        alert("sdsdsds")
+        $("#uploader").uploadify({
+            'buttonText' : '上传图片',
+            'queueID'  : 'upload',
+            'width' : 85,
+            'height' : 20,
+            'uploader': '/content/upload',
+            'swf':'/static/uploadify/uploadify.swf',
+            'cancelImg': '/static/uploadify/uploadify-cancel.png',
+
+        });
+        $("#uploadify").uploadify('upload')
+
+    })
+
+</script>

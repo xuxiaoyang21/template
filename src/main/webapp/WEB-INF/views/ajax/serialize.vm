@@ -55,17 +55,28 @@
         $("#btn").click(function () {
             console.log($("#formId").serialize());
             console.log($("#formId").serializeArray())
+
+            $.ajax({
+                url:"/content/serialize",
+                type:"post",
+                data:$("#formId").serialize(),
+                success:function (data) {
+                    //请求完成之后回调函数
+                    alert("存数据：")
+                    $.ajax({
+                        url:"/content/serialize",
+                        type:"post",
+                        data:{"flag":"0"},
+                        success:function (data) {
+                            alert("取数据："+data)
+                        }
+                    })
+                }
+            })
         })
 
         //异步提交不想一个表单一个表单的写传输数据可以直接序列还表单如下：
-        $.ajax({
-            url:"/demo",
-            type:"post",
-            data:$("#formId").serialize(),
-            success:function (data) {
-                //请求完成之后回调函数
-            }
-        })
+
     });
     //创建一个转化的方法
     function getFormData(formId){

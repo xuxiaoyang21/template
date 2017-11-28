@@ -30,7 +30,9 @@
                         <input type="password" name="password" class="form-control">
                     </div>
                 </form>
-                <div id="dialog"></div>
+                <div id="dialog">
+
+                </div>
             </div>
         </div>
 
@@ -52,7 +54,7 @@
                 //窗口关闭时展示动画
                 close:{//可以是boolean | object
                     effects:"fade:out", //渐隐
-                    duration:3000//关闭延迟时间设置
+                    duration:1000//关闭延迟时间设置
                 },
                 open:{
                     effect:"fade:in",//设置显示时动画方式
