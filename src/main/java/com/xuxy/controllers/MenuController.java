@@ -123,7 +123,7 @@ public class MenuController {
     @RequestMapping("/test")
     public String test(){
 
-        return "test";
+        return "jquery/text";
     }
 
     /**
