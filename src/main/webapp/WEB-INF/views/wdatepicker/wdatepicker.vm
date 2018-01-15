@@ -22,7 +22,7 @@
                 <form action="">
                     <div class="form-group">
                         <label>选择时间：</label>
-                        <input type="text" class="form-control" name="wdate" placeholder="点击添加时间"
+                        <input type="text" class="form-control" id="date" name="wdate" placeholder="点击添加时间"
                                onclick="showtime()"/>
                     </div>
 
@@ -62,6 +62,9 @@
                 }
             })
         })*/
+
+     $("#date").click();
+
         /**
          * 展示日期选择器
          */

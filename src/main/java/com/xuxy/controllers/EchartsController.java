@@ -133,7 +133,7 @@ public class EchartsController {
 
         //填充数据
         for(int i = 0; i < searchs.length; i++){
-            Map<String,Object> map = new HashMap<>();
+            Map<String,Object> map = new HashMap<String,Object>();
             map.put("value",datas[i]);//填充饼图数据
             map.put("name",searchs[i]);//填充饼图数据对应的搜索引擎
             pie.data(map);
@@ -205,7 +205,7 @@ public class EchartsController {
         //pie.roseType(RoseType.area);//显示方式  角度 半径  面积
         for(int i = 0; i<datas.length;i++){
 
-            Map<String,Object> map = new HashMap<>();
+            Map<String,Object> map = new HashMap<String,Object>();
             map.put("value",datas[i]);
             map.put("name",types[i]);
             pie.data(map);
@@ -271,7 +271,7 @@ public class EchartsController {
         bar.name("路段数据");
         bar.type(SeriesType.bar);
         for(int i = 0; i < roads.length; i++){
-            Map<String,Object> map = new HashMap<>();
+            Map<String,Object> map = new HashMap<String,Object>();
             map.put("value",datas[i]);
             map.put("name",roads[i]);
             bar.data(map);//指定路段装入指定数据
@@ -282,7 +282,7 @@ public class EchartsController {
         line.name("123");
         line.type(SeriesType.line);
         for(int i = 0; i < roads.length; i++){
-            Map<String,Object> map = new HashMap<>();
+            Map<String,Object> map = new HashMap<String,Object>();
             map.put("value",datas[i]);
             map.put("name",roads[i]);
             line.data(map);//指定路段装入指定数据
@@ -315,7 +315,7 @@ public class EchartsController {
         map.itemStyle().normal().label().show(true);
         map.itemStyle().emphasis().label().show(true);
 
-        Map<String,Object> map1 = new HashMap<>();
+        Map<String,Object> map1 = new HashMap<String,Object>();
         //选中广东省
         map1.put("name","广东");
         map1.put("selected",true);
