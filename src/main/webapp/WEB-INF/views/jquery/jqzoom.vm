@@ -46,17 +46,17 @@
 
 
 </body>
-
+#parse("platform/footer.vm")
 <script src="/static/jqzoom/js/jquery.jqzoom1.0.1.js"></script>
 <script src="/static/jqzoom/js/jquery-1.3.2.min.codefans.net.js"></script>
 <script src="/static/jqzoom/js/jqzoom.pack.1.0.1.js"></script>
-#parse("platform/footer.vm")
+
 
 <script>
     $(function () {
         $('#img1').jqzoom({
-            zoomWidth:300,//放大后图片显示的宽度
-            zoomHeight:300,//放大后图片显示的长度
+            zoomWidth:200,//放大后图片显示的宽度
+            zoomHeight:200,//放大后图片显示的长度
             zoomType:'reverse',//鼠标在小图片上移动是覆盖方式
             position:"right",//放大图片的位置
             yOffset:50,//放大后的图片与小图片间的Y(纵坐标)距离。
@@ -73,25 +73,8 @@
         var array = new Array();
         array= text.split("\n");
         //array = array[0].split("");
-        alert(array )
+//        alert(array )
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ####### 闭包的测试
     var name = "The Window";
@@ -103,7 +86,7 @@
             };
         }
     };
-    alert(object.getNameFunc()());
+//    alert(object.getNameFunc()());
     var name = "The Window";
     var object = {
         name : "My Object",
@@ -114,14 +97,14 @@
             };
         }
     };
-    alert(object.getNameFunc()());
+//    alert(object.getNameFunc()());
 
     ##  闭包测试方法
 
     function demo(){
         var str = 1;
         return function(){
-            alert(str++);
+//            alert(str++);
         }
     }
     var fun = demo();
