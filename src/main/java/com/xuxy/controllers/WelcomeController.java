@@ -1,6 +1,7 @@
 package com.xuxy.controllers;
 
 import com.xuxy.dto.Message;
+import jodd.http.HttpRequest;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Intellij IDEA
@@ -43,7 +46,8 @@ public class WelcomeController {
      * @return
      */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
-    public String login(ModelMap modelMap ,String name, String password, RedirectAttributes redirectAttributes){
+    public String login(HttpServletRequest httpRequest, ModelMap modelMap , String name, String password, RedirectAttributes redirectAttributes){
+        System.out.println(httpRequest.getRequestURL());
         //  RedirectAttributes用来页面提示用的
         System.out.println("name"+name);
         //判断用户是否登录

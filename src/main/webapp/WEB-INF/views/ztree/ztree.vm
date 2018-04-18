@@ -39,7 +39,9 @@
     var setting = {
         data: {
             simpleData: {
-                enable: true,
+                enable: true,//开启简单数据模式  这事只需要按照id和pid的对应关系写数据列表就好
+                //默认无false,为标准的数据JSON模式 意思是必须要按照规定的父子对应关系进行JSON格式的凭借
+                //详情可以看官方文档 demo中的标准JSON数据和简单JSON数据；
                 idKey: "id",
                 pIdKey: "pId",
                 rootPId: 0

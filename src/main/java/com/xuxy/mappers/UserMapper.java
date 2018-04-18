@@ -1,6 +1,7 @@
 package com.xuxy.mappers;
 
 import com.xuxy.entities.User;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;

@@ -108,6 +108,13 @@ public class UserController {
 
     }
 
+    @RequestMapping(value = "add",method = RequestMethod.POST)
+    @ResponseBody
+    public String addd(User user) {
+        userService.insert(user);
+        return "success";
+    }
+
 
 
 }

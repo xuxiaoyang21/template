@@ -34,7 +34,7 @@
         delete FROM  t_user where id = #{id}
     </delete>
     <select id="findByName" parameterType="string" resultType="com.xuxy.entities.User">
-        Select * from t_users where `name` = #{name}
+        Select * from t_user where `name` = #{name}
     </select>
 
 

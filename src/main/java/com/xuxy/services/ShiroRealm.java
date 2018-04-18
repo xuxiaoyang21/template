@@ -55,7 +55,7 @@ public class ShiroRealm extends AuthorizingRealm {
             if(User.STATE_DISABLE.equals(user.getState())){
                 throw new UnknownAccountException("账号已经被禁用");
             }
-            return new SimpleAuthenticationInfo(user,user.getPassword(),getName());
+            return new SimpleAuthenticationInfo(user,user.getPassword(),user.getName());
         }
         throw new UnknownAccountException("账号或密码错误");
     }
