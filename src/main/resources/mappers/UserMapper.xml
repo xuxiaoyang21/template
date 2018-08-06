@@ -37,5 +37,26 @@
         Select * from t_user where `name` = #{name}
     </select>
 
+    <select id="findAllUser" resultMap="userMap">
+        SELECT t_user.*,t_role.id AS role_id,t_role.view_name ,t_role.role_name FROM t_user
+        LEFT JOIN t_user_role ON t_user_role.user_id = t_user.id
+        LEFT JOIN t_role ON t_user_role.role_id = t_role.id
+
+    </select>
+
+
+    <resultMap id="userMap" type="User">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <result column="mobile" property="mobile"/>
+        <collection property="roleList" ofType="Role">
+            <id column="role_id" property="id"/>
+            <result column="role_name" property="roleName"/>
+            <result column="view_name" property="viewName"/>
+        </collection>
+
+    </resultMap>
+
 
 </mapper>

@@ -29,4 +29,6 @@ public interface UserMapper {
     void deleteById(User user);
 
     User findByName(String name);
+
+    List<User> findAllUser();
 }

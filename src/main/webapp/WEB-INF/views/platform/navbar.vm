@@ -22,7 +22,7 @@ border-radius:25px;" alt="首页图标">
                         <li><a href="/content/array">Array对象使用</a></li>
 
                         <li><a href="/content/wdatepicker">Wdatepicker</a></li>
-                        <li><a href="#">百度echarts</a></li>
+                        <li><a href="/content/echarts">百度echarts</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">COSTOM </a>
                             <ul class="dropdown-menu multi-dropdown animated">

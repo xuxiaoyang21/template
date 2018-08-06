@@ -65,7 +65,14 @@ public class UserServiceImpl implements UserService {
         userMapper.deleteById(user);
     }
 
+    @Override
+    public List<User> findAllUser() {
+       return  userMapper.findAllUser();
+    }
+
     protected <X> long calculateTotal(Pageable<X> pager, List<X> result) {
         return pager.hasPrevPage()?(CollectionUtils.isEmpty(result)?-1L:(result.size() == pager.getPageSize()?-1L:(long)((pager.getPageNo() - 1) * pager.getPageSize() + result.size()))):(result.size() < pager.getPageSize()?(long)result.size():-1L);
     }
+
+
 }

@@ -1,5 +1,8 @@
 package com.xuxy.controllers;
 
+import com.xuxy.entities.User;
+import com.xuxy.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 /**
  * 进入主页面跳转页面
@@ -18,6 +22,8 @@ import javax.servlet.http.HttpServletResponse;
 public class MenuController {
 
 
+    @Autowired
+    private UserService userService;
     /**
      * Created by Intellij IDEA
      * @author:xuxiaoyang
@@ -169,5 +175,13 @@ public class MenuController {
     public String ztree(){
         return "ztree/ztree";
     }
+
+    @RequestMapping("echarts")
+    public String echarts() {
+        List<User> users =  userService.findAllUser();
+        return "echarts";
+    }
+
+
 
 }

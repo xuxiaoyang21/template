@@ -236,7 +236,9 @@
       <version>1.3.2</version>
     </dependency>
 
-<!--获取系统信息包-->
+
+
+    <!--获取系统信息包-->
     <!--<dependency>-->
       <!--<groupId>org.hyperic</groupId>-->
       <!--<artifactId>sigar</artifactId>-->
@@ -253,6 +255,89 @@
       <artifactId>sigar</artifactId>
       <version>1.6.4</version>
     </dependency>
+
+    <!--缓存-->
+    <dependency>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache</artifactId>
+      <version>2.10.2</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-net</groupId>
+      <artifactId>commons-net</artifactId>
+      <version>3.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-dbcp</groupId>
+      <artifactId>commons-dbcp</artifactId>
+      <version>1.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.axis2</groupId>
+      <artifactId>axis2-kernel</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.axis2</groupId>
+      <artifactId>axis2-adb</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.axis2</groupId>
+      <artifactId>axis2-adb</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.axis2</groupId>
+      <artifactId>axis2-transport-local</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.axis2</groupId>
+      <artifactId>axis2-transport-http</artifactId>
+      <version>1.6.2</version>
+    </dependency>
+
+
+    <!--poi导出依赖jar包  2003以前的版本依赖-->
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>3.17</version>
+    </dependency>
+
+    <!--2007及以后版本 需体添加依赖-->
+
+    <!--二维码生成依赖jar包-->
+    <dependency>
+      <groupId>com.google.zxing</groupId>
+      <artifactId>core</artifactId>
+      <version>3.3.0</version>
+    </dependency>
+    <dependency>
+      <groupId>com.google.zxing</groupId>
+      <artifactId>javase</artifactId>
+      <version>3.1.0</version>
+    </dependency>
+
+
+    <!--添加storm依赖-->
+    <dependency>
+      <groupId>org.apache.storm</groupId>
+      <artifactId>storm-core</artifactId>
+      <version>1.0.4</version>
+    </dependency>
+
+    <!--语音播报-->
+    <dependency>
+      <groupId>net.sf.jacob-project</groupId>
+      <artifactId>jacob</artifactId>
+      <version>1.14.3</version>
+    </dependency>
+
 
 
   </dependencies>
@@ -276,13 +361,9 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-<<<<<<< HEAD
           <source>1.7</source>
           <target>1.7</target>
-=======
-          <source>1.8</source>
-          <target>1.8</target>
->>>>>>> fafaf21acbefd2a5507b0779e5cbc87148d068bd
+
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin>

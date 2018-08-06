@@ -1,9 +1,7 @@
 package com.xuxy.utils;
 
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import jodd.util.StringUtil;
@@ -100,4 +98,42 @@ public class StringUtils extends StringUtil {
             return "";
         }
     }
+
+
+    /**
+     * 字符串根据制定的pattern转成集合
+     * @param str 字符串
+     * @param pattern 规则
+     * @return 返回转换好的集合数据
+     */
+    public static List<String> stringToList(String str, String pattern) {
+        if(!org.apache.commons.lang.StringUtils.isEmpty(str)) {
+            return Arrays.asList(str.split(pattern));
+        }
+        return null;
+    }
+
+    /**
+     * 将string字符串转换为加单引号可以供oracle查询使用
+     * @param list  传入的字符串集合
+     * @return  返回可供oracle操纵的带单引号的数据拼接
+     */
+    public static String stringToOracle(List<String> list) {
+        StringBuffer result = new StringBuffer();
+        if(list != null) {
+            boolean flag = true;
+            for (String str : list) {
+
+                if(flag) { //第一次
+                    result.append("\'").append(str).append("\'");
+                    flag = false;
+                }else { //出去第一次 接下去每次都加上逗号
+                    result.append(",").append("\'").append(str).append("\'");
+                }
+            }
+            return result.toString();
+        }
+        return  null;
+    }
+
 }

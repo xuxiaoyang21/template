@@ -5,7 +5,7 @@ package com.xuxy.dto;
  *
  * @author:xuxiaoyang
  * @Date: 2017/9/30  16:03
- * @Description:
+ * @Description: 错误提示类
  */
 public class Message {
 

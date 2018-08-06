@@ -24,4 +24,6 @@ public interface UserService {
     void update(User user);
 
     void   deleteById(User user);
+
+    List<User> findAllUser();
 }

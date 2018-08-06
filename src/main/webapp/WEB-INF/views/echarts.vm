@@ -3,21 +3,40 @@
     <meta content="text/html;charset=utf-8"/>
 
 </head>
+<style>
+    body {
+        background-color: #d9dfd8;
+    }
+</style>
 <body>
 #*<div id="main" style="width: 600px;height:400px;"></div>*#
 
     #demo("content","sdfsdf");
-<div id="psLine" style="height:300px;width:600px;">
+<div id="psLine" style="height:400px;width:600px">
 
 
 </div>
+<canvas id="canvas" width="250px" height="250px"></canvas>
 
 
 <script src="/static/jquery.min.js"></script>
 <script src="/static/echarts-all.js"></script>
+##圆角渐变js
+##<script src="/static/js/echarts.common.min.js"></script>
+##水球图js
+<script src="/static/js/echarts-shuiqiu.js"></script>
+##
+<script src="/static/js/echarts-circle.js"></script>
 <script>
     //var echarts = echarts.init(document.getElementById('main'));
 
+    /**
+    *
+    * @author xuxiaoyang
+    * @email xuxiaoyang1@supcon.com
+    * @date 2018/5/7
+    * @description 测试柱状图
+    */
     // 指定图表的配置项和数据
     /*var option = {
         title: {
@@ -52,6 +71,711 @@
 
     //图表
     var psLineChar = echarts.init(document.getElementById('psLine'));
+
+    var title = '笛卡尔坐标系上的热力图';
+
+    var exps = ['01', '02', '03', '04', '05', '06', '07',
+        '08', '09', '10', '11', '12', '13', '14',
+        '15', '16', '17', '18', '19', '20', '21',
+        '22', '23', '24'
+    ];
+    var students = ['张三', '李四', '王五', '赵六', '田七', '苏八', '吴九', '曹操', '刘备', '孙权'];
+
+    var data = [
+        [0, 0, 75],
+        [0, 1, 60],
+        [0, 2, 0],
+        [0, 3, 0],
+        [0, 4, 20],
+        [0, 5, 0],
+        [0, 6, 0],
+        [0, 7, 0],
+        [0, 8, 0],
+        [0, 9, 0],
+        [0, 10, 0],
+        [0, 11, 20],
+        [0, 12, 40],
+        [0, 13, 10],
+        [0, 14, 65],
+        [0, 15, 30],
+        [0, 16, 40],
+        [0, 17, 60],
+        [0, 18, 40],
+        [0, 19, 45],
+        [0, 20, 30],
+        [0, 21, 30],
+        [0, 22, 20],
+        [0, 23, 50],
+        [1, 0, 70],
+        [1, 1, 0],
+        [1, 2, 0],
+        [1, 3, 0],
+        [1, 4, 0],
+        [1, 5, 0],
+        [1, 6, 0],
+        [1, 7, 0],
+        [1, 8, 0],
+        [1, 9, 0],
+        [1, 10, 50],
+        [1, 11, 20],
+        [1, 12, 25],
+        [1, 13, 60],
+        [1, 14, 90],
+        [1, 15, 100],
+        [1, 16, 65],
+        [1, 17, 75],
+        [1, 18, 80],
+        [1, 19, 95],
+        [1, 20, 5],
+        [1, 21, 5],
+        [1, 22, 70],
+        [1, 23, 2],
+        [2, 0, 1],
+        [2, 1, 1],
+        [2, 2, 0],
+        [2, 3, 0],
+        [2, 4, 0],
+        [2, 5, 0],
+        [2, 6, 0],
+        [2, 7, 0],
+        [2, 8, 0],
+        [2, 9, 0],
+        [2, 10, 3],
+        [2, 11, 2],
+        [2, 12, 1],
+        [2, 13, 9],
+        [2, 14, 8],
+        [2, 15, 10],
+        [2, 16, 6],
+        [2, 17, 5],
+        [2, 18, 5],
+        [2, 19, 5],
+        [2, 20, 7],
+        [2, 21, 4],
+        [2, 22, 2],
+        [2, 23, 4],
+        [3, 0, 7],
+        [3, 1, 3],
+        [3, 2, 0],
+        [3, 3, 0],
+        [3, 4, 0],
+        [3, 5, 0],
+        [3, 6, 0],
+        [3, 7, 0],
+        [3, 8, 1],
+        [3, 9, 0],
+        [3, 10, 5],
+        [3, 11, 4],
+        [3, 12, 7],
+        [3, 13, 14],
+        [3, 14, 13],
+        [3, 15, 12],
+        [3, 16, 9],
+        [3, 17, 5],
+        [3, 18, 5],
+        [3, 19, 10],
+        [3, 20, 6],
+        [3, 21, 4],
+        [3, 22, 4],
+        [3, 23, 1],
+        [4, 0, 1],
+        [4, 1, 3],
+        [4, 2, 0],
+        [4, 3, 0],
+        [4, 4, 0],
+        [4, 5, 1],
+        [4, 6, 0],
+        [4, 7, 0],
+        [4, 8, 0],
+        [4, 9, 2],
+        [4, 10, 4],
+        [4, 11, 4],
+        [4, 12, 2],
+        [4, 13, 4],
+        [4, 14, 4],
+        [4, 15, 14],
+        [4, 16, 12],
+        [4, 17, 1],
+        [4, 18, 8],
+        [4, 19, 5],
+        [4, 20, 3],
+        [4, 21, 7],
+        [4, 22, 3],
+        [4, 23, 0],
+        [5, 0, 2],
+        [5, 1, 1],
+        [5, 2, 0],
+        [5, 3, 3],
+        [5, 4, 0],
+        [5, 5, 0],
+        [5, 6, 0],
+        [5, 7, 0],
+        [5, 8, 2],
+        [5, 9, 0],
+        [5, 10, 4],
+        [5, 11, 1],
+        [5, 12, 5],
+        [5, 13, 10],
+        [5, 14, 5],
+        [5, 15, 7],
+        [5, 16, 11],
+        [5, 17, 6],
+        [5, 18, 0],
+        [5, 19, 5],
+        [5, 20, 3],
+        [5, 21, 4],
+        [5, 22, 2],
+        [5, 23, 0],
+        [6, 0, 1],
+        [6, 1, 0],
+        [6, 2, 0],
+        [6, 3, 0],
+        [6, 4, 0],
+        [6, 5, 0],
+        [6, 6, 0],
+        [6, 7, 0],
+        [6, 8, 0],
+        [6, 9, 0],
+        [6, 10, 1],
+        [6, 11, 0],
+        [6, 12, 2],
+        [6, 13, 1],
+        [6, 14, 3],
+        [6, 15, 4],
+        [6, 16, 0],
+        [6, 17, 0],
+        [6, 18, 0],
+        [6, 19, 0],
+        [6, 20, 1],
+        [6, 21, 2],
+        [6, 22, 2],
+        [6, 23, 6],
+        [7, 0, 1],
+        [7, 1, 3],
+        [7, 2, 0],
+        [7, 3, 0],
+        [7, 4, 0],
+        [7, 5, 1],
+        [7, 6, 0],
+        [7, 7, 0],
+        [7, 8, 0],
+        [7, 9, 2],
+        [7, 10, 4],
+        [7, 11, 4],
+        [7, 12, 2],
+        [7, 13, 4],
+        [7, 14, 4],
+        [7, 15, 14],
+        [7, 16, 12],
+        [7, 17, 1],
+        [7, 18, 8],
+        [7, 19, 5],
+        [7, 20, 3],
+        [7, 21, 7],
+        [7, 22, 3],
+        [7, 23, 0],
+        [8, 0, 2],
+        [8, 1, 1],
+        [8, 2, 0],
+        [8, 3, 3],
+        [8, 4, 0],
+        [8, 5, 0],
+        [8, 6, 0],
+        [8, 7, 0],
+        [8, 8, 2],
+        [8, 9, 0],
+        [8, 10, 4],
+        [8, 11, 1],
+        [8, 12, 5],
+        [8, 13, 10],
+        [8, 14, 5],
+        [8, 15, 7],
+        [8, 16, 11],
+        [8, 17, 6],
+        [8, 18, 0],
+        [8, 19, 5],
+        [8, 20, 3],
+        [8, 21, 4],
+        [8, 22, 2],
+        [8, 23, 0],
+        [9, 0, 1],
+        [9, 1, 0],
+        [9, 2, 0],
+        [9, 3, 0],
+        [9, 4, 0],
+        [9, 5, 0],
+        [9, 6, 0],
+        [9, 7, 0],
+        [9, 8, 0],
+        [9, 9, 0],
+        [9, 10, 1],
+        [9, 11, 0],
+        [9, 12, 2],
+        [9, 13, 1],
+        [9, 14, 3],
+        [9, 15, 4],
+        [9, 16, 0],
+        [9, 17, 0],
+        [9, 18, 0],
+        [9, 19, 0],
+        [9, 20, 1],
+        [9, 21, 2],
+        [9, 22, 2],
+        [9, 23, 6]
+    ];
+
+    data = data.map(function(item) {
+        return [item[1], item[0], item[2] || '-'];
+    });
+
+    var option = {
+        tooltip: {
+            position: 'top'
+        },
+        animation: false,
+        grid: {
+            height: '50%',
+            y: '10%'
+        },
+        xAxis: {
+            type: 'category',
+            data: exps,
+            splitArea: {
+                show: true
+            }
+        },
+        yAxis: {
+            type: 'category',
+            data: students,
+            splitArea: {
+                show: true
+            }
+        },
+        visualMap: {
+            min: 0,
+            max: 100,
+            calculable: true,
+            orient: 'horizontal',
+            left: 'center',
+            bottom: '25%'
+        },
+        series: [{
+            name: '学习进度（%）',
+            type: 'heatmap',
+            data: data,
+            label: {
+                normal: {
+                    show: true
+                }
+            },
+            itemStyle: {
+                emphasis: {
+                    shadowBlur: 10,
+                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+            }
+        }]
+    };
+    /**
+    *
+    * @author xuxiaoyang
+    * @email xuxiaoyang1@supcon.com
+    * @date 2018/5/7
+    * @description  雷达图
+    */
+    /*var option = {
+        title : {
+            show:false,
+            text: '罗纳尔多 vs 舍普琴科',
+            subtext: '完全实况球员数据'
+        },
+        tooltip : {
+            show:false,
+            trigger: 'axis'
+        },
+        legend: {
+            show:false,
+            x : 'center',
+            data:['罗纳尔多','舍普琴科']
+        },
+        toolbox: {
+            show : false,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : false,
+        polar : [
+            {
+                indicator : [
+                    {text : '进攻', max  : 100},
+                    {text : '防守', max  : 100},
+                    {text : '体能', max  : 100},
+                    {text : '速度', max  : 100},
+                    {text : '力量', max  : 100},
+                    {text : '技巧', max  : 100}
+                ],
+                radius : 130
+            }
+        ],
+        series : [
+            {
+                name: '完全实况球员数据',
+                type: 'radar',
+                itemStyle: {
+                    normal: {
+                        areaStyle: {
+                            type: 'default'
+                        }
+                    }
+                },
+                data : [
+                    {
+                        value : [97, 42, 88, 94, 90, 86],
+                        name : '舍普琴科',
+                        color:"#FFF"
+                    },
+//                    {
+//                        value : [97, 32, 74, 95, 88, 92],
+//                        name : '罗纳尔多'
+//                    }
+                ]
+            }
+        ]
+    };*/
+//    var canvas = document.getElementById('canvas');
+//    var ctx = canvas.getContext('2d');
+//    var ring = new Ring("100", "25", "#ccc", ["#a1b91d", "#e9636a", "#e7ba21"], "round");
+//    ring.drawRing(ctx, 2 * Math.PI / 3, [20, 50, 30],125,125);//占据的百分比分别是20%，50%，30%
+
+    /**
+    *
+    * @author xuxiaoyang
+    * @email xuxiaoyang1@supcon.com
+    * @date 2018/5/7
+    * @description   叠加柱状图
+    */
+    /*var option = {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            }
+        },
+        legend: {
+            data:['直接访问', '邮件营销','联盟广告','视频广告','搜索引擎']
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {show: true, type: ['line', 'bar', 'stack', 'tiled']},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        xAxis : [
+            {
+                type : 'category',
+                data : ['周一','周二','周三','周四','周五','周六','周日']
+            }
+        ],
+        series : [
+            {
+                name:'直接访问',
+                type:'bar',
+                stack:'总量',
+                itemStyle : {
+                    emphasis: {
+                       // barBorderRadius: 30
+                    },
+                    normal: {
+                        //圆角
+                        barBorderRadius: 30,
+                        //渐变
+                        color: new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0,
+                                [
+                                    {offset: 0, color: '#3977E6'},
+                                    {offset: 1, color: '#37BBF8'}
+
+                                ]
+                        ),
+                        label :
+                                {
+                                    show: true,
+                                    position: 'insideRight'
+                                }
+                    }
+                },
+                data:[320, 302, 301, 334, 390, 330, 320]
+            },
+            /!*{
+                name:'访问',
+                type:'bar',
+                stack:'总量',
+                itemStyle : {
+                    emphasis: {
+                        barBorderRadius: 30
+                    },
+                    normal: {
+                        barBorderRadius: 30,
+                        color: new echarts.graphic.LinearGradient(
+                                0, 0, 1, 0,
+                                [
+                                    {offset: 0, color: '#3977E6'},
+                                    {offset: 1, color: '#37BBF8'}
+
+                                ]
+                        ),
+                        label :
+                                {
+                                    show: true,
+                                    position: 'insideRight'
+                                }
+                    }
+                },
+                data:[320, 302, 301, 334, 390, 330, 320]
+            }*!/
+        ]
+    };*/
+
+    /**
+    *
+    * @author xuxiaoyang
+    * @email xuxiaoyang1@supcon.com
+    * @date 2018/5/7
+    * @description   双环形图
+    */
+    /*var option = {
+        title: {
+            text: '你幸福吗？',
+            subtext: 'From ExcelHome',
+            sublink: 'http://e.weibo.com/1341556070/AhQXtjbqh',
+            x: 'center',
+            y: 'center',
+            itemGap: 20,
+            textStyle : {
+                color : 'rgba(30,144,255,0.8)',
+                fontFamily : '微软雅黑',
+                fontSize : 25,
+                fontWeight : 'bolder'
+            }
+        },
+
+        tooltip : {
+            show: true,
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient : 'vertical',
+            x : document.getElementById('psLine').offsetWidth / 1.5,
+            y : 45,
+            itemGap:12,
+            data:['68%的人表示过的不错','29%的人表示生活压力很大','3%的人表示“我姓曾”']
+        },
+        toolbox: {
+            show : false,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        series : [
+            {
+                name:'1',
+                type:'pie',
+                clockWise:false,
+                radius : [125, 145],
+                label:{
+//                    borderRadius: 5
+                },
+                itemStyle : {
+                    borderType: 'dotted',
+                    normal: {
+                        label: {show:false},
+                        labelLine: {show:false}
+                    }
+                },
+                data:[
+                    {
+                        value:68,
+                        name:'68%的人表示过的不错'
+                    },
+                    {
+                        value:32,
+                        name:'invisible',
+                        itemStyle : {
+                            normal : {
+                                color: 'rgba(0,0,0,0)',
+                                label: {show:false},
+                                labelLine: {show:false}
+                            },
+                            emphasis : {
+                                color: 'rgba(0,0,0,0)'
+                            }
+                        }
+                    }
+                ]
+            },
+            /!*{
+                name:'2',
+                type:'pie',
+                clockWise:false,
+                radius : [100, 120],
+                itemStyle : {
+                    emphasis: {
+                        barBorderRadius: 7
+                    },
+                    normal: {
+                        barBorderRadius: 7,
+                        label: {show:false},
+                        labelLine: {show:false}
+                    }
+                },
+                data:[
+                    {
+                        value:29,
+                        name:'29%的人表示生活压力很大'
+                    },
+                    {
+                        value:71,
+                        name:'invisible',
+                        itemStyle : {
+                            emphasis: {
+                                barBorderRadius: 7
+                            },
+                            normal : {
+                                color: 'rgba(0,0,0,0)',
+                                label: {show:false},
+                                labelLine: {show:false}
+                            },
+                            emphasis : {
+                                color: 'rgba(0,0,0,0)'
+                            }
+                        }
+                    }
+                ]
+            },
+            {
+                name:'3',
+                type:'pie',
+                clockWise:false,
+                radius : [65, 80],
+                itemStyle : {
+                    emphasis: {
+                        barBorderRadius: 7
+                    },
+                    normal: {
+                        barBorderRadius: 7,
+                        label: {show:false},
+                        labelLine: {show:false}
+                    }
+                },
+                data:[
+                    {
+                        value:90,
+                        name:'3%的人表示“我姓曾”'
+                    },
+                    {
+                        value:97,
+                        name:'invisible',
+                        itemStyle : {
+                            emphasis: {
+                                barBorderRadius: 7
+                            },
+                            normal : {
+                                color: 'rgba(0,0,0,0)',
+                                label: {show:false},
+                                labelLine: {show:false}
+                            },
+                            emphasis : {
+                                color: 'rgba(0,0,0,0)'
+                            }
+                        }
+                    }
+                ]
+            }*!/
+        ]
+    };*/
+
+    /**
+    *
+    * @author xuxiaoyang
+    * @email xuxiaoyang1@supcon.com
+    * @date 2018/5/7
+    * @description   水球图
+    */
+   /* var option = {
+        series: [{
+            //使用水球图
+            type: 'liquidFill',
+            //展示几个水波纹
+            data: [0.6],
+            //水波纹颜色
+            color:['#adf7f6'],
+            //占容器比
+            radius: '90%',
+            //是否显示外边框
+            outline: {
+                show: true,
+                //设置间隔
+                borderDistance: 2,
+                //设置外边框样式
+                itemStyle: {
+//                    color: 'none',
+                    borderColor: '#adf7f6',
+                    borderWidth: 2,
+                    shadowBlur: 10,
+//                    shadowColor: 'rgba(0, 0, 0, 0.25)'
+                }
+            },
+
+            //底色显示
+            backgroundStyle: {
+                //设置饼图透明
+                color:'rgba(0, 0, 0, 0)',
+//                borderColor: '#adf7f6',
+//                borderWidth: 5,
+//                shadowColor: 'rgba(0, 0, 0, 0.4)',
+//                shadowBlur: 20
+            },
+            // shape: 'path://M367.855,428.202c-3.674-1.385-7.452-1.966-11.146-1.794c0.659-2.922,0.844-5.85,0.58-8.719 c-0.937-10.407-7.663-19.864-18.063-23.834c-10.697-4.043-22.298-1.168-29.902,6.403c3.015,0.026,6.074,0.594,9.035,1.728 c13.626,5.151,20.465,20.379,15.32,34.004c-1.905,5.02-5.177,9.115-9.22,12.05c-6.951,4.992-16.19,6.536-24.777,3.271 c-13.625-5.137-20.471-20.371-15.32-34.004c0.673-1.768,1.523-3.423,2.526-4.992h-0.014c0,0,0,0,0,0.014 c4.386-6.853,8.145-14.279,11.146-22.187c23.294-61.505-7.689-130.278-69.215-153.579c-61.532-23.293-130.279,7.69-153.579,69.202 c-6.371,16.785-8.679,34.097-7.426,50.901c0.026,0.554,0.079,1.121,0.132,1.688c4.973,57.107,41.767,109.148,98.945,130.793 c58.162,22.008,121.303,6.529,162.839-34.465c7.103-6.893,17.826-9.444,27.679-5.719c11.858,4.491,18.565,16.6,16.719,28.643 c4.438-3.126,8.033-7.564,10.117-13.045C389.751,449.992,382.411,433.709,367.855,428.202z',
+            label: {
+                normal: {
+                    position: ['50%', '30%'],
+//                    formatter: function() {
+//                        return 'ECharts\nLiquid Fill';
+//                    },
+                    textStyle: {
+                        //设置字体大小
+                        fontSize: 20,
+                        //字体颜色
+                        color: '#adf7f6',
+                        //设置字体样式
+                        fontWeight: '',
+
+                    }
+                }
+            }
+        }]
+
+    };*/
+
+    psLineChar.setOption(option);
+
     /* var option ={
          "title": {
              "text": "地市数据"
@@ -256,8 +980,8 @@
 */
     //查询
 
-    loadDrugs();
-    function loadDrugs() {
+   // loadDrugs();
+  /*  function loadDrugs() {
         psLineChar.clear();
         psLineChar.showLoading({text: '正在努力的读取数据中...'});
         $.ajax({
@@ -275,14 +999,21 @@
         })
 
 
-    }
+    }*/
     psLineChar.on("dblclick", function (param) {
-        console.log(param)
-        alert(param.name)
-        alert(param.type)
+//        console.log(param)
+//        alert(param.name)
+//        alert(param.type)
         //alert(param.data.name);
         // alert("亲 你是来搞笑的吗 你点我干嘛  是不是有病")
     })
+    /**
+    *
+    * @author xuxiaoyang
+    * @email xuxiaoyang1@supcon.com
+    * @date 2018/5/7
+    * @description   中国地图
+    */
     /*var option = {
         tooltip: {
             trigger: 'item',

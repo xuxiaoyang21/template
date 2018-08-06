@@ -1,6 +1,7 @@
 package com.xuxy.entities;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Created by Intellij IDEA
@@ -21,6 +22,28 @@ public class User implements Serializable {
     private String address;
     private String state;
     private String password;
+
+    private String mobile;
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public List<Role> getRoleList() {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> roleList) {
+        this.roleList = roleList;
+    }
+
+    private List<Role> roleList;
+
+
 
     public String getPassword() {
         return password;
