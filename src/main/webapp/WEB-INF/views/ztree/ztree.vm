@@ -25,7 +25,7 @@
 
     <div id="bdtts_div_id">
         <audio id="tts_autio_id" autoplay="autoplay">
-            <source id="tts_source_id" src="http://tts.baidu.com/text2audio?lan=zh&ie=UTF-8&spd=9&text=播报内容" type="audio/mpeg">
+            <source id="tts_source_id" src="/static/images/1test.wav" type="audio/mpeg">
             <embed id="tts_embed_id" height="0" width="0" src="">
         </audio>
     </div>
@@ -43,6 +43,12 @@
         var ttsAudio = document.getElementById('tts_autio_id');
 
         ttsAudio.play();
+
+        //将新的播放文件路径添加到body中
+        var playContent ="/static/images/1test.wav";
+        $('#tts_source_id').attr('src',""+playContent+"");//把src属性更改为'6.jpg';
+        document.getElementById("tts_autio_id").play();
+
     })
 
     var setting = {

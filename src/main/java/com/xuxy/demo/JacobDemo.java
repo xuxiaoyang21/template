@@ -8,7 +8,7 @@ public class JacobDemo {
 
 
     public static void main(String[] args) {
-        strat("语音朗读的内容", 0);
+        getAlarmWav("语音朗读的内容", "E:/1test.wav");
     } /**
      * @Title: Voice.java
      * @Package org.util
@@ -30,53 +30,47 @@ public class JacobDemo {
          * @return  返回类型：void
          * @throws
          */
-        public static void strat(String content, int type) {
-            // ？？ 这个Sapi.SpVoice是需要安装什么东西吗，感觉平白无故就来了
-            ActiveXComponent sap = new ActiveXComponent("Sapi.SpVoice");
-            // Dispatch是做什么的？
-            Dispatch sapo = sap.getObject();
+        public static void getAlarmWav(String text, String path) {
+            ActiveXComponent ax = null;
+            try {
+                ax = new ActiveXComponent("Sapi.SpVoice");
+                Dispatch spVoice = ax.getObject();
 
-            if (type == 0) {
-                try {
-                    // 音量 0-100
-                    sap.setProperty("Volume", new Variant(100));
-                    // 语音朗读速度 -10 到 +10
-                    sap.setProperty("Rate", new Variant(1.3));
-                    Variant defalutVoice = sap.getProperty("Voice");
+                ax = new ActiveXComponent("Sapi.SpFileStream");
+                Dispatch spFileStream = ax.getObject();
 
-                    Dispatch dispdefaultVoice = defalutVoice.toDispatch();
-                    Variant allVoices = Dispatch.call(sapo, "GetVoices");
-                    Dispatch dispVoices = allVoices.toDispatch();
+                ax = new ActiveXComponent("Sapi.SpAudioFormat");
+                Dispatch spAudioFormat = ax.getObject();
 
-                    Dispatch setvoice = Dispatch.call(dispVoices, "Item",
-                            new Variant(1)).toDispatch();
-                    ActiveXComponent voiceActivex = new ActiveXComponent(
-                            dispdefaultVoice);
-                    ActiveXComponent setvoiceActivex = new ActiveXComponent(
-                            setvoice);
+                //设置音频流格式
+                Dispatch.put(spAudioFormat, "Type", new Variant(22));
 
-                    Variant item = Dispatch.call(setvoiceActivex, "GetDescription");
-                    // 执行朗读
-                    Dispatch.call(sapo, "Speak", new Variant(content));
+                //设置文件输出流格式
+                Dispatch.putRef(spFileStream, "Format", spAudioFormat);
 
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    sapo.safeRelease();
-                    sap.safeRelease();
-                }
-            } else {
-                // 停止
+                //调用输出 文件流打开方法，创建一个.wav文件
+                Dispatch.call(spFileStream, "Open", new Variant(path), new Variant(3), new Variant(true));
+                //设置声音对象的音频输出流为输出文件对象
+                Dispatch.putRef(spVoice, "AudioOutputStream", spFileStream);
+                //设置音量 0到100
+                Dispatch.put(spVoice, "Volume", new Variant(100));
+                //设置朗读速度
+                Dispatch.put(spVoice, "Rate", new Variant(-2));
+                //开始朗读
+                Dispatch.call(spVoice, "Speak", new Variant(text));
 
-                try {
-                    Dispatch.call(sapo, "Speak", new Variant(content), new Variant(
-                            2));
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                    e.printStackTrace();
-                }
+                //关闭输出文件
+                Dispatch.call(spFileStream, "Close");
+                Dispatch.putRef(spVoice, "AudioOutputStream", null);
+
+                spAudioFormat.safeRelease();
+                spFileStream.safeRelease();
+                spVoice.safeRelease();
+                ax.safeRelease();
+
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-
         }
 
 

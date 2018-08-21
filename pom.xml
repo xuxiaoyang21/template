@@ -337,6 +337,13 @@
       <artifactId>jacob</artifactId>
       <version>1.14.3</version>
     </dependency>
+    <!--activeMq-->
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-all</artifactId>
+      <version>5.9.0</version>
+    </dependency>
+
 
 
 
