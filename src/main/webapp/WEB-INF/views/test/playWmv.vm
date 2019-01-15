@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="renderer" content="webkit"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <title>hls</title>
+    <meta http-equiv="Access-Control-Allow-Origin" content="*"/>
+    <link rel="stylesheet" href="../css/common.css"/>
+    <style>
+        #video {
+            position: relative;
+            width: 800px;
+            height: 800px;
+            left: 40px;
+        }
+    </style>
+</head>
+<body>
+<div class="searcher">
+    <div class="layui-form-item inputclass">
+        <label class="layui-form-label">HLS-URL:</label>
+        <div class="layui-input-block">
+            <input class="layui-input" id="hlsurl" value="" />
+        </div>
+    </div>
+    <button class="layui-btn layui-btn-normal" id="startbt">Start</button>
+</div>
+<video id="video"></video>
+<script src="/static/js/jquery-3.2.1.js" charset="utf-8"></script>
+<script src="/static/video/hls.js" charset="utf-8"></script>
+<script src="/static/video/hlsVideo.js" charset="utf-8"></script>
+
+</body>
+</html>

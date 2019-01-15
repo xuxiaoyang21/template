@@ -33,7 +33,7 @@ public class WordReader implements IRichSpout {
     public void deactivate() {
 
     }
-
+    @Override
     public void fail(Object msgId) {
         System.out.println("FAIL:"+msgId);
     }

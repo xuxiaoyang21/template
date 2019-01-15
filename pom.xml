@@ -134,6 +134,18 @@
       <version>1.2.4</version>
     </dependency>
 
+    <dependency>
+      <groupId>org.apache.httpcomponents</groupId>
+      <artifactId>httpclient</artifactId>
+      <version>4.4</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.oracle</groupId>
+      <artifactId>ojdbc14</artifactId>
+      <version>10.2.0.4.0</version>
+    </dependency>
+
 
     <!--other-->
     <dependency>
@@ -343,6 +355,13 @@
       <artifactId>activemq-all</artifactId>
       <version>5.9.0</version>
     </dependency>
+    <!--日志依赖jar-->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
+    </dependency>
+
 
 
 

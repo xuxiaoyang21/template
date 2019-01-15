@@ -1,0 +1,267 @@
+## 引入页面的表头数据
+#parse("platform/head.vm")
+
+<title>表单的序列化</title>
+
+</head>
+
+<body>
+<div class="container">
+## 引入页面的导航条
+    #parse("platform/navbar.vm")
+    <div class="row" >
+    ## 设置导航条一下 左侧栏导航
+        <div class="col-md-2 sider">
+
+        </div>
+    ## 内容
+        <div class="row col-md-9 content">
+##            <div style="width: 500px;height: 500px">
+
+####                <embed src="/static/video/123.wmv" autostart=false>
+##                <object data="/static/video/123.wmv" height="200" width="200"/>
+##                    <embed src="/static/video/123.wmv" type="video/x-ms-wmv"/>
+##    <object id="MediaPlayer" classid="clsid:22D6F312-B0F6-11D0-94AB-0080C74C7E95" width="800" height="600" standby="Loading Windows Media Player components…" type="application/x-oleobject" codebase="http://activex.microsoft.com/activex/controls/mplayer/en/nsmp2inf.cab#Version=6,4,7,1112">
+##        <param name="FileName" value="test.avi">
+##        <param name="AutoStart" value="true">
+##        <param name="ShowControls" value="true">
+##        <param name="BufferingTime" value="2">
+##        <param name="ShowStatusBar" value="true">
+##        <param name="AutoSize" value="true">
+##        <param name="InvokeURLs" value="false">
+##        <param name="AnimationatStart" value="1">
+##        <param name="TransparentatStart" value="1">
+##        <param name="Loop" value="1">
+##        <embed type="application/x-mplayer2" src="/static/video/123.wmv" name="MediaPlayer" autostart="1" showstatusbar="1" showdisplay="1" showcontrols="1" loop="0" videoborder3d="0" pluginspage="http://www.microsoft.com/Windows/MediaPlayer/" width="800" height="600"></embed>
+##    </object>
+##            </div>
+
+            <div style="width: 800px;height: 500px">
+               #* <canvas onmousemove="cnvs_getCoordinates(event)" id="myCanvas"
+                        width="500px" height="300px"
+                        draggable="true"
+                        style="background-color: #0a7ac1">
+
+                </canvas>*#
+                   <video id="video" width="1000px" height="600px">
+                       不支持标签
+                   </video>
+            </div>
+            <div id="show">
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+    #parse("platform/footer.vm")
+<script src="/static/js/canvas2image.js"></script>
+<script src="/static/js/excanvas.js"></script>
+<script src="/static/video/hls.js"></script>
+<script>
+    $('.test').load(url,function () {
+        
+    })
+    // $(document).ready(function () {
+    //
+    //
+    //     //获取canvas对象
+    //     var myCanvas = document.getElementById("myCanvas");
+    //
+    //
+    //     //获取绘制模型
+    //     // var target = myCanvas.getContext("2d");
+    //     // target.fillStyle = "#FFF";
+    //     // target.fillRect(0,0,150,75);
+    //
+    //     //绘制线段
+    //     var cxt = myCanvas.getContext("2d");
+    //     // cxt.fillStyle="#000";
+    //     // cxt.beginPath();
+    //     // cxt.moveTo(0,0);
+    //     // cxt.lineTo(20,100);
+    //     // cxt.closePath();
+    //     // cxt.stroke();
+    //     //获取 画布的长度和宽度
+    //     var myWidth = $("#myCanvas").width();
+    //     var myHeight = $("#myCanvas").height();
+    //
+    //     // alert(myWidth+" : "+myHeight);
+    //
+    //     var tar = myWidth/3;
+    //     for(var i = 1; i<4;i++) {
+    //         // alert(tar*i)
+    //         cxt.moveTo(tar*i,0);
+    //         cxt.lineTo(tar*i,myHeight);
+    //         cxt.stroke();
+    //     }
+    // });
+    // getShpin()
+    function getShpin() {
+        /*$.post("https://33.173.56.78/artemis-web/debug",{
+            "httpMethod":"GET",
+            "path":"/api/mss/v1/hls/{indexCode}",
+            "contentType":"application/x-www-form-urlencoded;charset=UTF-8",
+            "headers":{},
+            "query":{},
+            "parameter":{"indexCode":"330603690006031660"},
+            "mock":false,
+            "appKey":"20321868",
+            "appSecret":"jL3U7wgTFZDE3TCgLgQF"
+        },function () {
+            alert()
+        })*/
+        /*$.ajax({
+            url:"https://33.173.56.78/artemis-web/debug",
+            type:"POST",
+            // dataType:"json",
+            data:{
+                "httpMethod":"GET",
+                "path":"/api/mss/v1/hls/{indexCode}",
+                "contentType":"application/x-www-form-urlencoded;charset=UTF-8",
+                "headers":{},
+                "query":{},
+                "parameter":{
+                    indexCode:"330603690006031660"
+                },
+                "mock":false,
+                "appKey":"20321868",
+                "appSecret":"jL3U7wgTFZDE3TCgLgQF"
+            },
+            success:function (e) {
+                alert(e.status);
+                console.log(e)
+            }
+        })*/
+    }
+    $(document).ready(function () {
+        dd()
+        // getdata();
+    })
+
+    //播放视频
+    function dd() {
+        if (Hls.isSupported()) {
+            var video = document.getElementById('video');
+            console.log(video)
+            video.control
+            var hls = new Hls();
+            var hlssource = '';
+            // $('#startbt').on('click',function () {
+            var inputurl = "http://33.173.56.199:83/ncg/33.173.56.78/7099/0/330603690006031660/MAIN/TCP/live.m3u8&checkinfo=ewogICAidGltZSIgOiAiMjAxODExMjJUMTMyNzQ2WiIsCiAgICJ1cmwiIDogImh0dHA6Ly8zMy4xNzMuNTYuMTk5OjgzL25jZy8zMy4xNzMuNTYuNzgvNzA5OS8wLzMzMDYwMzY5MDAwNjAzMTY2MC9NQUlOL1RDUC9saXZlLm0zdTgiCn0K&idinfo=EAAAAAAQAAB%2FBVxC1w9L9G8CWuTY7t2fxIWEsWNDM23nqKe5gxhUYuA9zdRDnIBEide43F%2Bhezk%3D";
+            if (!inputurl==''){
+                hlssource = inputurl;
+            }
+            hls.loadSource(hlssource);
+            hls.attachMedia(video);
+            hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                video.play();
+            })
+            // });
+            // hls.loadSource(hlssource);
+            // hls.attachMedia(video);
+            // hls.on(Hls.Events.MANIFEST_PARSED, function () {
+            //     video.play();
+            // })
+        }
+    }
+
+    function getdata() {
+        debugger;
+        $.ajax({
+            type: "POST",
+            async:true,
+            url: "https://33.173.56.78/artemis-web/debug",
+            dataType: "json",
+            contentType: 'application/json',
+            data:JSON.stringify({
+
+                    appKey: "27890152",
+                    // appKey: "20321868",
+                    // appSecret: "jL3U7wgTFZDE3TCgLgQF",
+                    appSecret: "CVZzWPb0dm466OxkFbjX",
+                    contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+                    headers: {},
+                    httpMethod: "GET",
+                    mock: false,
+                    parameter: {indexCode: "154202395611369660"},
+                    path: "/api/mss/v1/hls/{indexCode}",
+                    query: {}
+                }),
+            success: function(data){
+                debugger;
+
+                console.log(data);
+            },
+            error:function(e){
+                debugger;
+            }
+        });
+        /*var data  = {
+            appKey: "20321868",
+            appSecret: "jL3U7wgTFZDE3TCgLgQF",
+            contentType: "application/x-www-form-urlencoded;charset=UTF-8",
+            headers: {},
+            httpMethod: "GET",
+            mock: false,
+            parameter: {indexCode: "154207637936190160"},
+            path: "/api/mss/v1/hls/{indexCode}",
+            query: {}
+        }
+        $.ajax({
+            url:"https://33.173.56.78/artemis-web/debug",
+            type:"post",
+            dataType:"json",
+            contentType:"application/json",
+            data:JSON.stringify(data),
+            success:function () {
+                console.log(1);
+            },
+            error:function (e) {
+                // alert(e)
+                console.log(e)
+            }
+        })*/
+    }
+
+
+    function cnvs_getCoordinates(e)
+    {
+        console.log(e);
+        x=e.clientX;
+        y=e.clientY;
+
+        x = e.offsetX; //鼠标一直位置
+        y = e.offsetY; //鼠标移植y轴坐标
+        document.getElementById("show").innerHTML="Coordinates: (" + x + "," + y + ")";
+    }
+
+    /* if (Hls.isSupported()) {
+         var video = document.getElementById('video');
+         var hls = new Hls();
+         var hlssource = '';
+         // $('#startbt').on('click',function () {
+             var inputurl = "http://33.173.56.199:83/ncg/33.173.56.78/7099/0/330603690006031660/MAIN/TCP/live.m3u8&checkinfo=ewogICAidGltZSIgOiAiMjAxODExMjJUMTMyNzQ2WiIsCiAgICJ1cmwiIDogImh0dHA6Ly8zMy4xNzMuNTYuMTk5OjgzL25jZy8zMy4xNzMuNTYuNzgvNzA5OS8wLzMzMDYwMzY5MDAwNjAzMTY2MC9NQUlOL1RDUC9saXZlLm0zdTgiCn0K&idinfo=EAAAAAAQAAB%2FBVxC1w9L9G8CWuTY7t2fxIWEsWNDM23nqKe5gxhUYuA9zdRDnIBEide43F%2Bhezk%3D";
+             if (!inputurl==''){
+                 hlssource = inputurl;
+             }
+             hls.loadSource(hlssource);
+             hls.attachMedia(video);
+             hls.on(Hls.Events.MANIFEST_PARSED, function () {
+                 video.play();
+             })
+         // });
+         // hls.loadSource(hlssource);
+         // hls.attachMedia(video);
+         // hls.on(Hls.Events.MANIFEST_PARSED, function () {
+         //     video.play();
+         // })
+     }*/
+
+</script>
+</body>
+</html>
+
+
