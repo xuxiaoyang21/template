@@ -1,0 +1,187 @@
+##  欢迎页
+#parse("platform/head.vm")
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>webUploader 图片上传</title>
+##    给标题添加 logo
+
+## 标题栏logo
+<link rel="icon" href="/static/images/title.ico" type="image/x-icon">
+## 收藏夹 logo
+## <link rel="shortcut icon" href="/static/images/title.ico" type="image/x-icon">
+
+<!-- Bootstrap -->
+##    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+##<link rel="stylesheet" href="/static/layer/mobile/need/layer.css">
+
+<link rel="stylesheet" href="/static/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+<link rel="stylesheet" href="/static/upload/dist/webuploader.css">
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+<script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+<script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+</head>
+<style>
+    body {
+        background-color: #fef5fd;
+    }
+    .ui-datepicker-calendar {
+        display: none;
+    }
+
+
+    .webuploader-container {
+        position: relative;
+    }
+    .webuploader-element-invisible {
+        position: absolute !important;
+        clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+        clip: rect(1px,1px,1px,1px);
+    }
+    .webuploader-pick {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        background: #00b7ee;
+        padding: 10px 15px;
+        color: #fff;
+        text-align: center;
+        border-radius: 3px;
+        overflow: hidden;
+    }
+    .webuploader-pick-hover {
+        background: #00a2d4;
+    }
+
+    .webuploader-pick-disable {
+        opacity: 0.6;
+        pointer-events:none;
+    }
+
+    .uploader-list {
+        border: 2px;
+        border-color: #0c090c;
+    }
+
+</style>
+<body>
+<div class="container">
+    #parse("platform/navbar.vm")
+    <div class="row" >
+    ## 设置导航条一下 左侧栏导航
+        <div class="col-md-2">
+
+        </div>
+    ## 内容
+        <div class="row col-md-9">
+            <div class="row" style="height: 50px;width: auto">
+
+            </div>
+            <div class="row">
+                <div id="uploader" class="wu-example">
+                    <!--用来存放文件信息-->
+                    <div id="thelist" class="uploader-list"></div>
+                    <div class="btns">
+                        <div id="picker">选择文件</div>
+                        <button id="ctlBtn" class="btn btn-default">开始上传</button>
+                        <button id="replyBtn" class="btn btn-error">清空队列</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+</body>
+#parse("platform/footer.vm")
+<script src="/static/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="/static/upload/dist/webuploader.js"></script>
+<script>
+    $(function () {
+
+        var uploader = WebUploader.create({
+
+            // swf文件路径
+            swf:  '/static/webUploader/dist/Uploader.swf',
+
+            // 文件接收服务端。
+            server: '/webUploader/uploader',
+
+            // 选择文件的按钮。可选。
+            // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+            pick: {
+                id:'#picker',
+                multiple : false
+            },
+            // fileNumLimit:1,
+
+            // 不压缩image, 默认如果是jpeg，文件上传前会压缩一把再上传！
+            resize: false,
+            // auto:true, //自动上传
+            // 只允许选择excel文件。
+            accept: {
+                title: 'file',
+                extensions: 'xls,xlsx',
+                mimeTypes: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            }
+        });
+
+        // 当有文件被添加进队列的时候
+        uploader.on( 'fileQueued', function( file ) {
+                // $("#thelist").html("");
+                // uploader.retry();
+                $("#thelist").append( '<div id="' + file.id + '" class="item">' +
+                    '<h4 class="info">' + file.name + '</h4>' +
+                    '<p class="state">等待上传...</p>' +
+                    '</div>' );
+        });
+
+
+        // 文件上传过程中创建进度条实时显示。
+        uploader.on( 'uploadProgress', function( file, percentage ) {
+            var li = $( '#'+file.id ),
+                percent = li.find('.progress .progress-bar');
+
+            // 避免重复创建
+            if ( !percent.length ) {
+                percent = $('<div class="progress progress-striped active">' +
+                        '<div class="progress-bar" role="progressbar" style="width: 0%">' +
+                        '</div>' +
+                        '</div>').appendTo( li ).find('.progress-bar');
+            }
+
+                li.find('p.state').text('上传中');
+
+                percent.css( 'width', percentage * 100 + '%' );
+        });
+
+
+
+        uploader.on( 'uploadSuccess', function( file ) {
+            uploader.reset();
+            $( '#'+file.id ).find('p.state').text('已上传');
+        });
+
+        uploader.on( 'uploadError', function( file ) {
+            $( '#'+file.id ).find('p.state').text('上传出错');
+        });
+
+        uploader.on( 'uploadComplete', function( file ) {
+            $( '#'+file.id ).find('.progress').fadeOut();
+        });
+        // uploader.removeFile();
+
+        $("#ctlBtn").click(function () {
+            uploader.upload();//开始上传
+        })
+
+        $("#replyBtn").click(function () {
+            uploader.reset();
+            $("#thelist").html("");
+        })
+
+    })
+</script>
+</html>

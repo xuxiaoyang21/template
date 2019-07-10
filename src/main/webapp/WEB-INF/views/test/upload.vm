@@ -1,0 +1,177 @@
+##  日期函数
+#parse("platform/head.vm")
+##    引入需要的css
+
+<title>数据上传</title>
+</head>
+<body>
+<div class="container">
+
+    #parse("platform/navbar.vm")
+    <div class="row">
+    ## 设置导航条一下 左侧栏导航
+        <div class="col-md-2 sider">
+
+        </div>
+    ## 内容
+        <div class="row col-md-9 content">
+            <div class="row" style="height: 50px;width: auto">
+
+            </div>
+            <div class="row">
+                <div class='picShow' id='speed_show'>请点击选择文件按钮上传文件！</div>
+                <input type="file" name='file' id='file' onchange="preview(this,'speed_show','file')"/>
+
+            </div>
+        </div>
+    </div>
+    #parse("platform/footer.vm")
+## 书写js脚本
+    <script src="/static/upload/jquery-1.7.1.js"></script>
+    <script src="/static/upload/ajaxfileupload.js"></script>
+    ###
+    ### 测试 js 对象实例
+    <script>
+
+        /**
+         * 通过fun 函数 模拟对象使用
+         * @param name
+         * @param address
+         */
+        var initClass = function(name,address,getTexts){
+            this.name = name ;
+            this.address = address;
+            this.getName = function() {
+                return this.name;
+            };
+            this.getAddress = function () {
+                return this.address;
+            };
+            this.getTexts = getTexts
+
+        };
+        function getTexts() {
+            return this.name +"---"+this.address;
+        }
+        var init = new initClass("xuxioayang","zhoukou",getTexts);
+        alert(init.getName());
+        alert(init.getAddress());
+        alert(init.getTexts());
+
+
+        /**
+         * 对象的使用方法
+         * @type {{name: string, fun: (function(): string)}}
+         */
+        var newClass = {
+            "name":"name",
+            "fun":function () {
+                return this.name;
+            }
+        };
+
+        alert(newClass.name);
+        alert(newClass.fun())
+
+        var myClass = function() {
+            var obj = {
+                "name":"name",
+                "fun":function(){
+                    return this.name+"++++++测试函数"
+                }
+            }
+            return obj;
+        }
+
+        var my = new myClass();
+        alert(my.name);//打印属性
+        alert(my.fun());//打印方法;
+
+
+    </script>
+
+
+
+
+    ## 图片上传
+    <script>
+        //	图片切换后调用	上传图片
+        function preview(file, id_show, id) {
+            var prevDiv = document.getElementById(id_show);
+            //上传图片	id
+            if (document.getElementById(id).value == '') {
+                return;
+            }
+
+            //兼容IE8
+            $.ajaxFileUpload({
+                url: "$!{rc.contextPath}/test/upload",
+                type:"post",
+                fileElementId: id,
+                secureuri: false, //一般设置为false
+                dataType: 'text', //返回值类型 一般设置为json
+                success: function (data, status) {
+                    var jsonData = JSON.parse(data);
+                    if(jsonData.status == "success") {
+                        alert("上传成功")
+                        prevDiv.innerHTML = "<img src=''/>"
+                    }
+                }
+            });
+
+            /*if (myBrowser() == "IE8") {
+                //兼容IE8
+                $.ajaxFileUpload({
+                    url: "$!{rc.contextPath}/test/upload",
+                    type:"post",
+                    fileElementId: id,
+                    secureuri: false, //一般设置为false
+                    dataType: 'text', //返回值类型 一般设置为json
+                    success: function (data, status) {
+                        var jsonData = JSON.parse(data);
+                        ## if (jsonData.mark) {
+                        ##     ## prevDiv.innerHTML = "<img class='showPic' Imgpath='" + jsonData.fileUrl + "' src='$!{rc.contextPath}" + jsonData.fileUrl + "' >";
+                        ##     // selectData.parseData.url = jsonData.fileUrl;
+                        ##     // flushshowLed();
+                        ## }
+                    }
+                });
+            } else {
+                var formData = new FormData();
+                formData.append("dvtfile", document.getElementById(id).files[0]);
+                var request = new XMLHttpRequest();
+                request.open('POST', "$!{rc.contextPath}/test/upload");
+                request.send(formData);
+                request.onreadystatechange = function () {//服务器返回值的处理函数，此处使用匿名函数进行实现
+                    if (request.readyState == 4) {
+                        //表示和服务器端的交互已经完成
+                        if (request.status == 200) {
+                            //表示服务器端的响应代码是200，正确的返回了数据
+                            var jsonData = JSON.parse(request.responseText);
+                            if (jsonData.mark) {
+                                prevDiv.innerHTML = "<img class='showPic' Imgpath='" + jsonData.fileUrl + "' src='$!{rc.contextPath}" + jsonData.fileUrl + "' >";
+                                selectData.parseData.url = jsonData.fileUrl;
+                                flushshowLed();
+                            }
+                        }
+                    }
+                };
+            }*/
+        }
+
+
+        //判断浏览器类型
+        function myBrowser(){
+            if(!!window.ActiveXObject||"ActiveXObject" in window){
+                alert()
+                return "IE";
+            }else{
+                return "Chrome";
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
