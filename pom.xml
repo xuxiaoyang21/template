@@ -391,6 +391,14 @@
       <version>1.2.3</version>
     </dependency>
 
+    <!--DWR开始-->
+    <dependency>
+      <groupId>org.directwebremoting</groupId>
+      <artifactId>dwr</artifactId>
+      <version>3.0.1-RELEASE</version>
+    </dependency>
+    <!--DWR结束-->
+
 
 
 

@@ -65,7 +65,43 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
-
+  <!--dwr开始-->
+  <servlet>
+    <display-name>DWR Servlet</display-name>
+    <servlet-name>dwr-invoker</servlet-name>
+<!--    <servlet-class>com.xuxy.jtjc.dwr.DefaultDwrServlet</servlet-class>-->
+    <servlet-class>org.directwebremoting.servlet.DwrServlet</servlet-class>
+    <!--<servlet-class>org.directwebremoting.server.tomcat.DwrCometProcessor</servlet-class>-->
+    <!--初始化dwr配置文件-->
+    <init-param>
+      <param-name>config-2</param-name>
+      <param-value>/WEB-INF/classes/dwr.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>activeReverseAjaxEnabled</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>debug</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>initApplicationScopeCreatorsAtStartup</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <init-param>
+      <param-name>org.directwebremoting.extend.ServerLoadMonitor</param-name>
+      <param-value>org.directwebremoting.impl.ThrottlingServerLoadMonitor</param-value>
+    </init-param>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <!--指定要自动生成的js的目录路径-->
+  <servlet-mapping>
+    <servlet-name>dwr-invoker</servlet-name>
+<!--    <url-pattern>http://127.0.0.1:8081/screen/js/dwr/*</url-pattern>-->
+    <url-pattern>/static/dwr/*</url-pattern>
+  </servlet-mapping>
+  <!--dwr结束-->
   <!--加载Spring容器 监听器-->
   <listener>
     <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>

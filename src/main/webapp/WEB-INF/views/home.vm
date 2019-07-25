@@ -5,15 +5,15 @@
 ##    给标题添加 logo
 
     ## 标题栏logo
-    <link rel="icon" href="/static/images/title.ico" type="image/x-icon">
+    <link rel="icon" href="/template/static/images/title.ico" type="image/x-icon">
     ## 收藏夹 logo
     ## <link rel="shortcut icon" href="/static/images/title.ico" type="image/x-icon">
 
     <!-- Bootstrap -->
 ##    <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/static/layer/mobile/need/layer.css">
+    <link rel="stylesheet" href="/template/static/layer/mobile/need/layer.css">
 
-<link rel="stylesheet" href="/static/jquery-ui-1.12.1.custom/jquery-ui.min.css">
+<link rel="stylesheet" href="/template/static/jquery-ui-1.12.1.custom/jquery-ui.min.css">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
         display: none;
     }
 </style>
-<body>
+<body onload="dwr.engine.setActiveReverseAjax(true);dwr.engine.setNotifyServerOnPageUnload(true);">
     <div class="container">
         #parse("platform/navbar.vm")
         <div class="row" >
@@ -96,10 +96,22 @@
     </div>
 </body>
 #parse("platform/footer.vm")
-<script src="/static/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
+<script src="/template/static/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 ## 遮罩插件 必须jquery1.3版本以上的才能使用
-<script src="/static/js/jquery.blockUI.js"></script>
+<script src="/template/static/js/jquery.blockUI.js"></script>
+<script src="/template/static/dwr/engine.js"></script>
+<script src="/template/static/dwr/util.js"></script>
+<script src="/template/static/dwr/interface/Info.js"></script>
 <script>
+
+
+
+
+    function test(msg) {
+        alert("dwr调用提示"+msg);
+    //msg为推送的内容
+    //执行要推送的服务
+    }
     $(function () {
         //当点击提交按钮提交表单
         $("#btn").click(function () {

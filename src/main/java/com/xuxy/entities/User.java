@@ -1,5 +1,10 @@
 package com.xuxy.entities;
 
+import com.sun.xml.internal.txw2.annotation.XmlElement;
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.io.Serializable;
 import java.util.List;
 
@@ -16,7 +21,7 @@ public class User implements Serializable {
     public static final String STATE_UNKNOW = "0";
     public static final String STATE_NORMAL = "1";
     public static final String STATE_DISABLE = "2";
-
+    @Autowired
     private Integer id;
     private String name;
     private String address;
