@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration scan="true" >
+
+    <property name="log.pattern" value="%-20(%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread]) %-5level %logger{80} - %msg%n" />
+    <property name="log.filePath" value="${user.dir}/logs" />
+    <appender name="STDOUT"  class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>
+                ${log.pattern}
+            </pattern>
+        </encoder>
+
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <encoder>
+            <pattern>
+                ${log.pattern}
+            </pattern>
+        </encoder>
+    </appender>
+    <appender name="ROLL_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.filePath}/debug.log</file>
+        <Encoding>UTF-8</Encoding>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${log.filePath}/debug/log__debug.%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+    <logger name="com.xuxy" level="TRACE"/>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE" />
+        <appender-ref ref="ROLL_FILE"/>
+    </root>
+
+</configuration>

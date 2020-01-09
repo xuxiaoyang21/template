@@ -26,7 +26,7 @@ public class EmailTest {
     private static SendMailSession createSession(){
         SmtpServer smtpServer = SmtpServer.create("smtp.126.com")//设置邮件的服务器
                 //#####################################
-                .authenticateWith("15738862640@126.com","zmx5211314");//设置发送端的账号和密码 此处密码是客户端授权码
+                .authenticateWith("15738862640@126.com","11111111");//设置发送端的账号和密码 此处密码是客户端授权码
                 //.timeout(10);//设置超时时间
                 //.properties()//设置额外的邮件属性
         SendMailSession session = smtpServer.createSession();

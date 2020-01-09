@@ -46,4 +46,33 @@
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="com.xuxy.mappers"/>
     </bean>
+
+
+    <!-- 配置Activiti -->
+    <!-- 配置流程引擎配置信息对象 -->
+    <bean id="processEngineConfigureation" class="org.activiti.spring.SpringProcessEngineConfiguration">
+        <property name="dataSource" ref="dataSource" />
+        <property name="transactionManager" ref="transactionManager" />
+        <property name="databaseSchemaUpdate" value="true" />
+        <!-- 设置建表策略，如果没有表，自动创建表  修改这个地方为大写 -->
+        <!--        <property name="databaseSchema" value="ACTIVITI"/>-->
+        <property name="jobExecutorActivate" value="false" />
+        <property name="deploymentResources" value="classpath:activiti/*.bpmn" />
+        <property name="activityFontName" value="宋体" />
+        <property name="labelFontName" value="宋体" />
+    </bean>
+
+    <!-- 配置流程引擎 -->
+    <bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+        <property name="processEngineConfiguration" ref="processEngineConfigureation" />
+    </bean>
+    <!-- 配置六个服务Bean -->
+    <bean id="repositoryService" factory-bean="processEngine" factory-method="getRepositoryService" />
+    <bean id="runtimeService" factory-bean="processEngine" factory-method="getRuntimeService" />
+    <bean id="formService" factory-bean="processEngine" factory-method="getFormService" />
+    <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService" />
+    <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
+    <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
+    <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+
 </beans>

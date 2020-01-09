@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.activiti.org/test" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" expressionLanguage="http://www.w3.org/1999/XPath" id="m1571039256368" name="" targetNamespace="http://www.activiti.org/test" typeLanguage="http://www.w3.org/2001/XMLSchema">
+  <process id="maintenance" isClosed="false" isExecutable="true" name="设备维修流程" processType="None">
+    <startEvent id="startevent1" name="Start"/>
+    <userTask activiti:exclusive="true" id="faultDeclaration" name="故障申报">
+      <extensionElements>
+        <activiti:formProperty default="0" id="estimatedCost" name="预计费用" required="true" type="long"/>
+        <activiti:formProperty id="terminate" name="终止流程(y:终止流程 n:继续流程)" required="true" type="string"/>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" name="开始" sourceRef="startevent1" targetRef="faultDeclaration"/>
+    <exclusiveGateway gatewayDirection="Unspecified" id="amountJudge1" name="金额判断1"/>
+    <sequenceFlow id="flow2" sourceRef="faultDeclaration" targetRef="amountJudge1"/>
+    <userTask activiti:exclusive="true" id="firstTrial1" name="初审1">
+      <extensionElements>
+        <activiti:formProperty id="reject" name="是否驳回(y:驳回 n:通过)" required="true" type="string"/>
+      </extensionElements>
+    </userTask>
+    <userTask activiti:exclusive="true" id="firstTrial2" name="初审2">
+      <extensionElements>
+        <activiti:formProperty id="reject" name="是否驳回(y:驳回 n:通过)" required="true" type="string"/>
+      </extensionElements>
+    </userTask>
+    <userTask activiti:exclusive="true" id="firstTrial3" name="初审3">
+      <extensionElements>
+        <activiti:formProperty id="reject" name="是否驳回(y:驳回 n:通过)" required="true" type="string"/>
+      </extensionElements>
+    </userTask>
+    <exclusiveGateway gatewayDirection="Unspecified" id="exclusivegateway2" name="Exclusive Gateway"/>
+    <sequenceFlow id="flow6" sourceRef="firstTrial2" targetRef="exclusivegateway2"/>
+    <exclusiveGateway gatewayDirection="Unspecified" id="exclusivegateway3" name="Exclusive Gateway"/>
+    <sequenceFlow id="flow7" sourceRef="firstTrial1" targetRef="exclusivegateway3"/>
+    <exclusiveGateway gatewayDirection="Unspecified" id="exclusivegateway4" name="Exclusive Gateway"/>
+    <sequenceFlow id="flow8" sourceRef="firstTrial3" targetRef="exclusivegateway4"/>
+    <userTask activiti:exclusive="true" id="wxsc" name="维修厂商">
+      <extensionElements>
+        <activiti:formProperty id="actualCost" name="实际费用" required="true" type="long"/>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow10" sourceRef="exclusivegateway3" targetRef="wxsc">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reject == "n" || reject == "N"}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow11" sourceRef="exclusivegateway4" targetRef="wxsc">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reject == "n" || reject == "N"}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow12" sourceRef="exclusivegateway3" targetRef="faultDeclaration">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reject == "y" || reject == "Y"}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow13" sourceRef="exclusivegateway2" targetRef="faultDeclaration">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reject == "y" || reject == "Y"}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow14" name="驳回" sourceRef="exclusivegateway4" targetRef="faultDeclaration">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reject == "y" || reject == "Y"}]]></conditionExpression>
+    </sequenceFlow>
+    <userTask activiti:exclusive="true" id="maintenanceTrial1" name="维修确认1"/>
+    <userTask activiti:exclusive="true" id="maintenanceTrial2" name="维修确认2"/>
+    <userTask activiti:exclusive="true" id="maintenanceTrial3" name="维修确认3"/>
+    <endEvent id="endevent1" name="End"/>
+    <sequenceFlow id="flow27" name="终止流程" sourceRef="amountJudge1" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${terminate == "y"}]]></conditionExpression>
+    </sequenceFlow>
+    <exclusiveGateway gatewayDirection="Unspecified" id="amountJudge2" name="金额判断2"/>
+    <sequenceFlow id="flow34" sourceRef="wxsc" targetRef="amountJudge2"/>
+    <sequenceFlow id="flow35" name="实际费用(0,1000)" sourceRef="amountJudge2" targetRef="maintenanceTrial1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${actualCost > 0 && actualCost < 1000}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow36" name="实际费用[1000,5000)" sourceRef="amountJudge2" targetRef="maintenanceTrial2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${actualCost >= 1000 && actualCost < 5000}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow37" name="实际费用[5000,+∞)" sourceRef="amountJudge2" targetRef="maintenanceTrial3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${actualCost >= 5000}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow38" name="维修费用[1000,5000)" sourceRef="amountJudge1" targetRef="firstTrial2">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${terminate == "n" && estimatedCost >= 1000 && estimatedCost < 5000}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow39" name="维修费用[0,1000)" sourceRef="amountJudge1" targetRef="firstTrial1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${terminate == "n" && estimatedCost >= 0 && estimatedCost < 1000}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow40" name="维修费用[5000,+∞)" sourceRef="amountJudge1" targetRef="firstTrial3">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${terminate == "n" && estimatedCost >= 5000}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow41" sourceRef="exclusivegateway2" targetRef="wxsc">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${reject == "n" || reject == "N"}]]></conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="flow42" name="结束" sourceRef="maintenanceTrial2" targetRef="endevent1"/>
+    <sequenceFlow id="flow43" sourceRef="maintenanceTrial3" targetRef="endevent1"/>
+    <sequenceFlow id="flow44" sourceRef="maintenanceTrial1" targetRef="endevent1"/>
+    <sequenceFlow id="flow45" name="实际费用==0" sourceRef="amountJudge2" targetRef="endevent1">
+      <conditionExpression xsi:type="tFormalExpression"><![CDATA[${actualCost == 0}]]></conditionExpression>
+    </sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram documentation="background=#3C3F41;count=1;horizontalcount=2;orientation=0;width=842.4;height=1195.2;imageableWidth=832.4;imageableHeight=1185.2;imageableX=5.0;imageableY=5.0" id="Diagram-_1" name="New Diagram">
+    <bpmndi:BPMNPlane bpmnElement="maintenance">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="Shape-startevent1">
+        <omgdc:Bounds height="32.0" width="32.0" x="30.0" y="313.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="faultDeclaration" id="Shape-faultDeclaration">
+        <omgdc:Bounds height="55.0" width="105.0" x="130.0" y="303.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="105.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="amountJudge1" id="Shape-amountJudge1" isMarkerVisible="false">
+        <omgdc:Bounds height="32.0" width="32.0" x="290.0" y="310.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="firstTrial1" id="Shape-firstTrial1">
+        <omgdc:Bounds height="55.0" width="105.0" x="445.0" y="180.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="105.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="firstTrial2" id="Shape-firstTrial2">
+        <omgdc:Bounds height="55.0" width="105.0" x="445.0" y="301.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="105.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="firstTrial3" id="Shape-firstTrial3">
+        <omgdc:Bounds height="55.0" width="105.0" x="445.0" y="415.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="105.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway2" id="Shape-exclusivegateway2" isMarkerVisible="false">
+        <omgdc:Bounds height="32.0" width="32.0" x="595.0" y="309.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway3" id="Shape-exclusivegateway3" isMarkerVisible="false">
+        <omgdc:Bounds height="32.0" width="32.0" x="565.0" y="187.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway4" id="Shape-exclusivegateway4" isMarkerVisible="false">
+        <omgdc:Bounds height="32.0" width="32.0" x="635.0" y="422.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="wxsc" id="Shape-wxsc">
+        <omgdc:Bounds height="55.0" width="105.0" x="680.0" y="302.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="105.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="maintenanceTrial1" id="Shape-maintenanceTrial1">
+        <omgdc:Bounds height="55.0" width="105.0" x="965.0" y="249.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="105.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="maintenanceTrial2" id="Shape-maintenanceTrial2">
+        <omgdc:Bounds height="55.0" width="105.0" x="965.0" y="357.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="105.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="maintenanceTrial3" id="Shape-maintenanceTrial3">
+        <omgdc:Bounds height="55.0" width="105.0" x="965.0" y="453.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="55.0" width="105.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="Shape-endevent1">
+        <omgdc:Bounds height="32.0" width="32.0" x="1200.0" y="312.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="amountJudge2" id="Shape-amountJudge2" isMarkerVisible="false">
+        <omgdc:Bounds height="32.0" width="32.0" x="825.0" y="309.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="32.0" width="32.0" x="0.0" y="0.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow27" id="BPMNEdge_flow27" sourceElement="amountJudge1" targetElement="endevent1">
+        <omgdi:waypoint x="308.0" y="340.0"/>
+        <omgdi:waypoint x="308.0" y="532.0"/>
+        <omgdi:waypoint x="853.0" y="533.0"/>
+        <omgdi:waypoint x="1217.0" y="533.0"/>
+        <omgdi:waypoint x="1216.0" y="344.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="44.0" x="321.0" y="510.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1" sourceElement="startevent1" targetElement="faultDeclaration">
+        <omgdi:waypoint x="62.0" y="329.0"/>
+        <omgdi:waypoint x="130.0" y="330.5"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="22.0" x="79.0" y="310.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2" sourceElement="faultDeclaration" targetElement="amountJudge1">
+        <omgdi:waypoint x="235.0" y="330.5"/>
+        <omgdi:waypoint x="290.0" y="326.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6" sourceElement="firstTrial2" targetElement="exclusivegateway2">
+        <omgdi:waypoint x="550.0" y="328.5"/>
+        <omgdi:waypoint x="595.0" y="325.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow42" id="BPMNEdge_flow42" sourceElement="maintenanceTrial2" targetElement="endevent1">
+        <omgdi:waypoint x="1070.0" y="384.5"/>
+        <omgdi:waypoint x="1200.0" y="328.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="22.0" x="1249.0" y="312.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7" sourceElement="firstTrial1" targetElement="exclusivegateway3">
+        <omgdi:waypoint x="550.0" y="207.5"/>
+        <omgdi:waypoint x="565.0" y="203.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow43" id="BPMNEdge_flow43" sourceElement="maintenanceTrial3" targetElement="endevent1">
+        <omgdi:waypoint x="1070.0" y="480.5"/>
+        <omgdi:waypoint x="1200.0" y="328.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8" sourceElement="firstTrial3" targetElement="exclusivegateway4">
+        <omgdi:waypoint x="550.0" y="442.5"/>
+        <omgdi:waypoint x="635.0" y="438.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow44" id="BPMNEdge_flow44" sourceElement="maintenanceTrial1" targetElement="endevent1">
+        <omgdi:waypoint x="1070.0" y="276.5"/>
+        <omgdi:waypoint x="1200.0" y="328.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow45" id="BPMNEdge_flow45" sourceElement="amountJudge2" targetElement="endevent1">
+        <omgdi:waypoint x="844.0" y="312.0"/>
+        <omgdi:waypoint x="844.0" y="172.0"/>
+        <omgdi:waypoint x="1217.0" y="172.0"/>
+        <omgdi:waypoint x="1216.0" y="312.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="100.0" x="853.0" y="180.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow40" id="BPMNEdge_flow40" sourceElement="amountJudge1" targetElement="firstTrial3">
+        <omgdi:waypoint x="322.0" y="326.0"/>
+        <omgdi:waypoint x="445.0" y="442.5"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="92.0" x="315.0" y="398.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow41" id="BPMNEdge_flow41" sourceElement="exclusivegateway2" targetElement="wxsc">
+        <omgdi:waypoint x="627.0" y="325.0"/>
+        <omgdi:waypoint x="680.0" y="329.5"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow39" id="BPMNEdge_flow39" sourceElement="amountJudge1" targetElement="firstTrial1">
+        <omgdi:waypoint x="322.0" y="326.0"/>
+        <omgdi:waypoint x="445.0" y="207.5"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="84.0" x="300.0" y="250.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13" sourceElement="exclusivegateway2" targetElement="faultDeclaration">
+        <omgdi:waypoint x="615.0" y="313.0"/>
+        <omgdi:waypoint x="615.0" y="144.0"/>
+        <omgdi:waypoint x="615.0" y="129.0"/>
+        <omgdi:waypoint x="573.0" y="129.0"/>
+        <omgdi:waypoint x="336.0" y="129.0"/>
+        <omgdi:waypoint x="182.0" y="129.0"/>
+        <omgdi:waypoint x="182.5" y="303.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow35" id="BPMNEdge_flow35" sourceElement="amountJudge2" targetElement="maintenanceTrial1">
+        <omgdi:waypoint x="844.0" y="312.0"/>
+        <omgdi:waypoint x="844.0" y="276.0"/>
+        <omgdi:waypoint x="965.0" y="276.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="100.0" x="853.0" y="256.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14" sourceElement="exclusivegateway4" targetElement="faultDeclaration">
+        <omgdi:waypoint x="655.0" y="426.0"/>
+        <omgdi:waypoint x="655.0" y="111.0"/>
+        <omgdi:waypoint x="655.0" y="93.0"/>
+        <omgdi:waypoint x="332.0" y="93.0"/>
+        <omgdi:waypoint x="182.0" y="93.0"/>
+        <omgdi:waypoint x="182.5" y="303.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="22.0" x="187.0" y="188.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow36" id="BPMNEdge_flow36" sourceElement="amountJudge2" targetElement="maintenanceTrial2">
+        <omgdi:waypoint x="844.0" y="338.0"/>
+        <omgdi:waypoint x="844.0" y="384.0"/>
+        <omgdi:waypoint x="965.0" y="384.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="48.0" width="100.0" x="853.0" y="349.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow37" id="BPMNEdge_flow37" sourceElement="amountJudge2" targetElement="maintenanceTrial3">
+        <omgdi:waypoint x="845.0" y="337.0"/>
+        <omgdi:waypoint x="845.0" y="480.0"/>
+        <omgdi:waypoint x="965.0" y="480.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="16.0" width="92.0" x="852.0" y="461.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow38" id="BPMNEdge_flow38" sourceElement="amountJudge1" targetElement="firstTrial2">
+        <omgdi:waypoint x="322.0" y="326.0"/>
+        <omgdi:waypoint x="445.0" y="328.5"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="48.0" width="100.0" x="365.0" y="295.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10" sourceElement="exclusivegateway3" targetElement="wxsc">
+        <omgdi:waypoint x="592.0" y="208.0"/>
+        <omgdi:waypoint x="732.0" y="208.0"/>
+        <omgdi:waypoint x="732.0" y="302.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11" sourceElement="exclusivegateway4" targetElement="wxsc">
+        <omgdi:waypoint x="664.0" y="441.0"/>
+        <omgdi:waypoint x="732.0" y="441.0"/>
+        <omgdi:waypoint x="732.0" y="357.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12" sourceElement="exclusivegateway3" targetElement="faultDeclaration">
+        <omgdi:waypoint x="585.0" y="191.0"/>
+        <omgdi:waypoint x="585.0" y="168.0"/>
+        <omgdi:waypoint x="565.0" y="168.0"/>
+        <omgdi:waypoint x="406.0" y="168.0"/>
+        <omgdi:waypoint x="180.0" y="168.0"/>
+        <omgdi:waypoint x="182.5" y="303.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow34" id="BPMNEdge_flow34" sourceElement="wxsc" targetElement="amountJudge2">
+        <omgdi:waypoint x="785.0" y="329.5"/>
+        <omgdi:waypoint x="825.0" y="325.0"/>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="-1.0" width="-1.0" x="-1.0" y="-1.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

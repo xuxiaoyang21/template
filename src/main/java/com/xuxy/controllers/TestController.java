@@ -1,5 +1,6 @@
 package com.xuxy.controllers;
 
+import com.xuxy.ip.IPAddress;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -128,6 +129,13 @@ public class TestController {
 
         System.out.println(byteBuffer);
         System.out.println(new String(bytes));
+    }
+
+    @RequestMapping("ip")
+    @ResponseBody
+    public String getIpAddress(HttpServletRequest request) {
+        IPAddress ipAddress = new IPAddress();
+        return ipAddress.getIpAddress(request);
     }
 
 

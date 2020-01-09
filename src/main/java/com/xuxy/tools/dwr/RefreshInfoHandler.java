@@ -15,7 +15,7 @@ import java.util.TimerTask;
 @Component
 public class RefreshInfoHandler {
 
-    @PostConstruct
+   // @PostConstruct
     public void init() {
         TimerTask  timerTask = new TimerTask() {
             @Override

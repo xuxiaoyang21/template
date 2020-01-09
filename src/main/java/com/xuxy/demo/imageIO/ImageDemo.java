@@ -13,10 +13,16 @@ public class ImageDemo {
 
 
     public static void main(String[] args) {
-        BufferedImage bi = new BufferedImage(263,192,BufferedImage.TYPE_INT_BGR);
+        BufferedImage bi = new BufferedImage(256,192,BufferedImage.TYPE_INT_BGR);
         getImage(bi);
+//        getImageFontDemo(bi);
 
     }
+
+    /**
+     * 绘制停车场 总数/余数 列表
+     * @param bi
+     */
     private static void getImage(BufferedImage bi) {
         //计算比例
         /**
@@ -30,6 +36,8 @@ public class ImageDemo {
             lineCount = 6;
         } else if(scale>0.8 && scale <=4) {
             lineCount = 5;
+        } else {
+
         }
         //计计算画线间隔
         int interval = bi.getHeight()/lineCount;
@@ -44,10 +52,11 @@ public class ImageDemo {
          * 如果字体大小小于15按0.7来算
          * 如果字体大于25 按
          */
-        int fontSize = (int) (interval*0.5) < 15 ? (int) (interval*0.7) : (int) (interval*0.5);
-        if(fontSize >25) {
-            fontSize = 25;
-        }
+//        int fontSize = (int) (interval*0.5) < 15 ? (int) (interval*0.6) : (int) (interval*0.5);
+//        if(fontSize >25) {
+//            fontSize = 25;
+//        }
+        int fontSize = interval -4;
         System.out.println("字体大小："+fontSize);
         /**
          * 字体的个数
@@ -59,7 +68,7 @@ public class ImageDemo {
          */
         for(int i = fontSize;i >15;i--) {
             fontCount = (zxInterval*2-2*offset)/i;
-            if(fontCount >5) {
+            if(fontCount >8) {
                 fontSize = i;
                 break;
             }
@@ -73,7 +82,9 @@ public class ImageDemo {
 
 
         //开始画线
-        Graphics graphics = bi.getGraphics();
+        Graphics2D graphics = bi.createGraphics();
+        //消除锯齿
+        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING , RenderingHints.VALUE_ANTIALIAS_ON);
         //画笔改为红色
         graphics.setColor(Color.red);
         //画横线--
@@ -99,19 +110,42 @@ public class ImageDemo {
         //绘制停车场文字信息
         for(int i = 2;i <= lineCount;i++) {
             graphics.setColor(Color.green);
-            graphics.drawString("num"+i+parkName,offset,interval*i-offset);
+            graphics.drawString("浙北大厦地面停车场"+i,2*offset,interval*i-offset);
             graphics.setColor(Color.green);
-            graphics.drawString(50*i+"",2*zxInterval+offset,interval*i-offset);
+            graphics.drawString(50*i+"",2*zxInterval+2*offset,interval*i-offset);
             graphics.setColor(Color.red);
-            graphics.drawString(500*i+"",3*zxInterval+offset,interval*i-offset);
+            graphics.drawString(500*i+"",3*zxInterval+2*offset,interval*i-offset);
         }
         graphics.dispose();
         try {
             ImageIO.write(bi,"png",new File("/Users/starrysky/Desktop/demo.png"));
+//            BufferedImage bio = new BufferedImage(256,180,BufferedImage.TYPE_INT_RGB);
+//            bio.getGraphics().drawImage(ImageIO.read(new File("/Users/starrysky/Desktop/demo.png")),0,0,256,180,null);
+//            ImageIO.write(bio,"png",new File("/Users/starrysky/Desktop/demo.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+    }
+
+    private static void getImageFontDemo(BufferedImage bi) {
+        Graphics2D graphics = bi.createGraphics();
+
+        graphics.setColor(Color.green);
+        //消除文字锯齿
+        graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING,RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+//消除画图锯齿
+
+//        graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        graphics.setFont(new Font("font",1,20));
+        graphics.drawString("测试苏asdasdasdasd侧后方 i 撒地方史蒂夫水电费是的你哦当你知道的送的那个冻是在剧sdfsdf",0,100);
+
+        graphics.dispose();
+        try {
+            ImageIO.write(bi,"jpg",new File("/Users/starrysky/Desktop/demo.jpg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

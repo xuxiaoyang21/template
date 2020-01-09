@@ -5,6 +5,7 @@ import org.apache.ibatis.cache.Cache;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -67,6 +68,8 @@ public class ArrayDemo {
         //如果使用下面添加面板的方法，面板将布满整个窗口，可以试试看
 
         f. setContentPane(p);
+
+
 
 
 

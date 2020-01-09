@@ -4,14 +4,14 @@ package com.xuxy.demo;
 import com.xuxy.demo.storm.WordCounter;
 import com.xuxy.demo.storm.WordNormalizer;
 import com.xuxy.demo.storm.WordReader;
+import org.apache.axis2.databinding.types.xsd.String;
 import org.apache.commons.lang.StringUtils;
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
 import org.apache.storm.topology.TopologyBuilder;
 import org.apache.storm.tuple.Fields;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * @author xuxiaoyang
@@ -19,6 +19,7 @@ import java.util.List;
  * @description
  */
 public class Demo {
+    private Vector vector;
 
 //
 //    public static void main(String[] args) {
@@ -36,19 +37,42 @@ public class Demo {
         TopologyBuilder builder = new TopologyBuilder();
         builder.setSpout("word-reader", new WordReader());
         builder.setBolt("word-normalizer", new WordNormalizer()).shuffleGrouping("word-reader");
-        builder.setBolt("word-counter", new WordCounter(),2).fieldsGrouping("word-normalizer", new Fields("word"));
+        builder.setBolt("word-counter", new WordCounter(), 2).fieldsGrouping("word-normalizer", new Fields("word"));
 
         //配置
-        Config conf = new Config();
-        conf.put("wordsFile", "src/main/resources/words.txt");
-        conf.setDebug(false);
+        Config conf = getConfig();
 
         //运行拓扑
+        conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1);
         conf.put(Config.TOPOLOGY_MAX_SPOUT_PENDING, 1);
         LocalCluster cluster = new LocalCluster();
         cluster.submitTopology("Getting-Started-Topologie", conf, builder.createTopology());
         Thread.sleep(1000);
-       // cluster.shutdown();
+        // cluster.shutdown();
+
+        List<String> list = new ArrayList<>();
+        list.iterator();
+
+        LinkedList list1 = new LinkedList();
+
+        list1.iterator();
+
+        Vector vector = new Vector();
+
+
+
+        System.out.println();
+
+        ClassLoader loader = ClassLoader.getSystemClassLoader();
+        char[] chars = new char[0];
+        String string = new String();
+    }
+
+    private static Config getConfig() {
+        Config conf = new Config();
+        conf.put("wParameter info (within method call arguments)ordsFile", "src/main/resources/words.txt");
+        conf.setDebug(false);
+        return conf;
     }
 
 
