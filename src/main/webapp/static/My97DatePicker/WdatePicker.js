@@ -137,7 +137,7 @@ var $dp, WdatePicker;
     }
 
     function J() {
-        var _, A, $ = X[M][C]("script");
+        var _, A, $ = X[M][C]("com.starry.sky.jni.script");
         for (var B = 0; B < $.length; B++) {
             _ = $[B].getAttribute("src");
             _ = _.substr(0, _.toLowerCase().indexOf("wdatepicker.js"));

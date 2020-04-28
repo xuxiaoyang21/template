@@ -11,7 +11,7 @@
                   value="org.apache.shiro.SecurityUtils.setSecurityManager" />
         <property name="arguments" ref="securityManager" />
     </bean>-->
-    <!--<bean id="shiroRealm" class="com.xuxy.services.ShiroRealm"/>-->
+    <!--<bean id="shiroRealm" class="ShiroRealm"/>-->
     <!--配置shiro的缓存管理器-->
     <bean id="cacheManager"  class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
 

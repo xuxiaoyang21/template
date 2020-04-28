@@ -1496,7 +1496,7 @@ var esl;
             return interactiveScript;
         }
 
-        var scripts = document.getElementsByTagName('script');
+        var scripts = document.getElementsByTagName('com.starry.sky.jni.script');
         var scriptLen = scripts.length;
         while (scriptLen--) {
             var script = scripts[scriptLen];
@@ -1519,7 +1519,7 @@ var esl;
         // 这里不挂接onerror的错误处理
         // 因为高级浏览器在devtool的console面板会报错
         // 再throw一个Error多此一举了
-        var script = document.createElement('script');
+        var script = document.createElement('com.starry.sky.jni.script');
         script.setAttribute('data-require-id', moduleId);
         script.src = toUrl(moduleId + '.js');
         script.async = true;

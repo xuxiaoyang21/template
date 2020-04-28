@@ -13,7 +13,7 @@
 
   <filter>
     <filter-name>testFilter</filter-name>
-    <filter-class>com.xuxy.filter.MyFilter</filter-class>
+    <filter-class>com.starry.sky.filter.MyFilter</filter-class>
   </filter>
   <filter-mapping>
     <filter-name>testFilter</filter-name>
@@ -109,7 +109,7 @@
   <!--加载Spring容器 监听器-->
   <listener>
 <!--    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
-    <listener-class>com.xuxy.listener.DemoContextLoaderListener</listener-class>
+    <listener-class>com.starry.sky.listener.DemoContextLoaderListener</listener-class>
   </listener>
 
 

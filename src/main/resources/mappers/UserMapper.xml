@@ -7,17 +7,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <!--  MAPPER ; CREATE AT Mon Nov 30 16:45:03 CST 2015 BY **@supcon.com-->
-<mapper namespace="com.xuxy.mappers.UserMapper">
+<mapper namespace="com.starry.sky.mappers.UserMapper">
 
 
     <insert id="insert"  >
         insert into t_user (name,address) values(#{name},#{address})
     </insert>
-    <select id="findByPager" resultType="com.xuxy.entities.User">
+    <select id="findByPager" resultType="com.starry.sky.entities.User">
         select * from t_user
     </select>
 
-    <select id="selectByPager" resultType="com.xuxy.entities.User">
+    <select id="selectByPager" resultType="com.starry.sky.entities.User">
         <!--<include refid="_PUBLIC_V.PAGER_BEFORE"/>-->
         select * from t_user
         <!--<include refid="_PUBLIC_V.PAGER_AFTER"/>-->
@@ -33,7 +33,7 @@
     <delete id="deleteById">
         delete FROM  t_user where id = #{id}
     </delete>
-    <select id="findByName" parameterType="string" resultType="com.xuxy.entities.User">
+    <select id="findByName" parameterType="string" resultType="com.starry.sky.entities.User">
         Select * from t_user where `name` = #{name}
     </select>
 

@@ -21,7 +21,7 @@
                 导入dwr需要调js的class类
                 需要自己手动创建
             -->
-            <param name="class" value="com.xuxy.tools.dwr.RefreshInfoHandler"/>
+            <param name="class" value="com.starry.sky.tools.dwr.RefreshInfoHandler"/>
         </create>
     </allow>
 

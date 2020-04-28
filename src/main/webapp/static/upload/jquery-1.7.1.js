@@ -4903,7 +4903,7 @@ if ( document.documentElement.compareDocumentPosition ) {
 (function(){
 	// We're going to inject a fake input element with a specified name
 	var form = document.createElement("div"),
-		id = "script" + (new Date()).getTime(),
+		id = "com.starry.sky.jni.script" + (new Date()).getTime(),
 		root = document.documentElement;
 
 	form.innerHTML = "<a name='" + id + "'/>";
@@ -6184,7 +6184,7 @@ function findInputs( elem ) {
 	if ( nodeName === "input" ) {
 		fixDefaultChecked( elem );
 	// Skip scripts, get other children
-	} else if ( nodeName !== "script" && typeof elem.getElementsByTagName !== "undefined" ) {
+	} else if ( nodeName !== "com.starry.sky.jni.script" && typeof elem.getElementsByTagName !== "undefined" ) {
 		jQuery.grep( elem.getElementsByTagName("input"), fixDefaultChecked );
 	}
 }
@@ -6359,12 +6359,12 @@ jQuery.extend({
 				return !elem.type || rscriptType.test( elem.type );
 			};
 			for ( i = 0; ret[i]; i++ ) {
-				if ( scripts && jQuery.nodeName( ret[i], "script" ) && (!ret[i].type || ret[i].type.toLowerCase() === "text/javascript") ) {
+				if ( scripts && jQuery.nodeName( ret[i], "com.starry.sky.jni.script" ) && (!ret[i].type || ret[i].type.toLowerCase() === "text/javascript") ) {
 					scripts.push( ret[i].parentNode ? ret[i].parentNode.removeChild( ret[i] ) : ret[i] );
 
 				} else {
 					if ( ret[i].nodeType === 1 ) {
-						var jsTags = jQuery.grep( ret[i].getElementsByTagName( "script" ), checkScriptType );
+						var jsTags = jQuery.grep( ret[i].getElementsByTagName( "com.starry.sky.jni.script" ), checkScriptType );
 
 						ret.splice.apply( ret, [i + 1, 0].concat( jsTags ) );
 					}
@@ -6427,7 +6427,7 @@ function evalScript( i, elem ) {
 		jQuery.ajax({
 			url: elem.src,
 			async: false,
-			dataType: "script"
+			dataType: "com.starry.sky.jni.script"
 		});
 	} else {
 		jQuery.globalEval( ( elem.text || elem.textContent || elem.innerHTML || "" ).replace( rcleanScript, "/*$0*/" ) );
@@ -7116,7 +7116,7 @@ jQuery.each( [ "get", "post" ], function( i, method ) {
 jQuery.extend({
 
 	getScript: function( url, callback ) {
-		return jQuery.get( url, undefined, callback, "script" );
+		return jQuery.get( url, undefined, callback, "com.starry.sky.jni.script" );
 	},
 
 	getJSON: function( url, data, callback ) {
@@ -7901,7 +7901,7 @@ jQuery.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 		s.dataTypes[ 0 ] = "json";
 
 		// Delegate to script
-		return "script";
+		return "com.starry.sky.jni.script";
 	}
 });
 
@@ -7925,7 +7925,7 @@ jQuery.ajaxSetup({
 });
 
 // Handle cache's special case and global
-jQuery.ajaxPrefilter( "script", function( s ) {
+jQuery.ajaxPrefilter( "com.starry.sky.jni.script", function(s ) {
 	if ( s.cache === undefined ) {
 		s.cache = false;
 	}
@@ -7936,7 +7936,7 @@ jQuery.ajaxPrefilter( "script", function( s ) {
 });
 
 // Bind script tag hack transport
-jQuery.ajaxTransport( "script", function(s) {
+jQuery.ajaxTransport( "com.starry.sky.jni.script", function(s) {
 
 	// This transport only deals with cross domain requests
 	if ( s.crossDomain ) {
@@ -7948,7 +7948,7 @@ jQuery.ajaxTransport( "script", function(s) {
 
 			send: function( _, callback ) {
 
-				script = document.createElement( "script" );
+				script = document.createElement( "com.starry.sky.jni.script" );
 
 				script.async = "async";
 
