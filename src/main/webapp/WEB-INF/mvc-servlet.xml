@@ -8,7 +8,7 @@
     <context:property-placeholder location="classpath:config.properties"/>
 
     <!--自动扫描Controller-->
-    <context:component-scan base-package="com.xuxy.controllers"/>
+    <context:component-scan base-package="com.starry.sky"/>
 
     <!--基于注解的Controller-->
     <mvc:annotation-driven>
@@ -24,6 +24,7 @@
     <mvc:resources mapping="/static/**" location="/static/">
         <mvc:cache-control max-age="3600" cache-public="true"/>
     </mvc:resources>
+    <mvc:default-servlet-handler/>
 
     <!--视图解析器-->
    <!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">

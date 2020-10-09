@@ -1,6 +1,10 @@
 package com.starry.sky.controllers;
 
 import com.starry.sky.dto.Message;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import io.swagger.annotations.ApiOperation;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -23,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
  * @Date: 2017/9/26  9:59
  * @Description: 首页 欢迎页
  */
-
+@Api("登录控制器")
 @Controller
 public class WelcomeController {
 
@@ -33,7 +37,8 @@ public class WelcomeController {
      */
     @RequestMapping("/")
     public String login(ModelMap modelMap){
-        return "login";//跳转到登录页面
+        //跳转到登录页面
+        return "login";
     }
 
 
@@ -44,6 +49,7 @@ public class WelcomeController {
      * @return
      */
     @RequestMapping(value = "/login",method = RequestMethod.POST)
+    @ApiOperation("接口")
     public String login(HttpServletRequest httpRequest, ModelMap modelMap , String name, String password, RedirectAttributes redirectAttributes){
         System.out.println(httpRequest.getRequestURL());
         //  RedirectAttributes用来页面提示用的

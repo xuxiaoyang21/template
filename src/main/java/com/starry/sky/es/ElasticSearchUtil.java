@@ -1,9 +1,11 @@
 package com.starry.sky.es;
 
+import org.elasticsearch.action.admin.indices.get.GetIndexResponse;
 import org.elasticsearch.action.index.IndexRequestBuilder;
 import org.elasticsearch.action.search.SearchRequestBuilder;
 import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.client.Client;
+import org.elasticsearch.client.IndicesAdminClient;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.search.aggregations.Aggregation;
@@ -473,4 +475,16 @@ public class ElasticSearchUtil {
         client.prepareBulk().add(builder);
     }
 
+    /**
+     * 获取所有index
+     */
+    public static String[] getAllIndices(Client client) {
+        //ActionFuture<IndicesStatsResponse> isr = client.admin().indices().stats(new IndicesStatsRequest().all());
+        IndicesAdminClient indicesAdminClient = client.admin().indices();
+        GetIndexResponse response = indicesAdminClient.prepareGetIndex().execute().actionGet();
+        //Map<String, IndexStats> indexStatsMap = isr.actionGet().getIndices();
+        //Set<String> set = isr.actionGet().getIndices().keySet();
+        String[] strings = response.getIndices();
+        return strings;
+    }
 }

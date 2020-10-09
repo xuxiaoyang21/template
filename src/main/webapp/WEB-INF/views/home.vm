@@ -100,8 +100,8 @@
 ## 遮罩插件 必须jquery1.3版本以上的才能使用
 <script src="/template/static/js/jquery.blockUI.js"></script>
 <script src="/template/static/dwr/engine.js"></script>
-<script src="/template/static/dwr/util.js"></script>
-<script src="/template/static/dwr/interface/Info.js"></script>
+##<script src="/template/static/dwr/util.js"></script>
+##<script src="/template/static/dwr/interface/Info.js"></script>
 <script>
 
 

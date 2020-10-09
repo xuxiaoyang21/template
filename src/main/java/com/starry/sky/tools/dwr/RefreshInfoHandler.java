@@ -32,7 +32,7 @@ public class RefreshInfoHandler {
     public void sendReflashInfo(){
         //这个url是会被spring mvc拦截然后转到你所要更新的界面
         //这个是请求url路径 不是试图的位置路径
-        Browser.withPageFiltered("/home", new ScriptSessionFilter() {
+        Browser.withPageFiltered("/template/home", new ScriptSessionFilter() {
             @Override
             public boolean match(ScriptSession scriptSession) {
                 return true; //返回true代表执行推送

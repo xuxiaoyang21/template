@@ -19,7 +19,6 @@
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <!--将shiro的身份验证的Realm类加入到安全管理器中-->
         <property name="realm" ref="shiroRealm"/>
-
         <!--将缓存加入到安全管理器中-->
         <property name="cacheManager" ref="cacheManager"/>
     </bean>
@@ -43,7 +42,6 @@
                 /login = anon
                 <!--所有的路径都要经过身份验证-->
                 /** = authc
-
                 <!--account/**只用管理员权限才能访问-->
                 <!--/account/** = roles[管理员]-->
             </value>

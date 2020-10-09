@@ -11,6 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.xml.crypto.Data;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -106,6 +111,17 @@ public class UserController {
     public String addd(User user) {
         userService.insert(user);
         return "success";
+    }
+
+    public static void main(String[] args) {
+        Date date = new Date();
+        DateFormat format = new SimpleDateFormat("yyyy.MM'_m'");
+        try {
+            String str =  format.format(date);
+            System.out.println(str);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

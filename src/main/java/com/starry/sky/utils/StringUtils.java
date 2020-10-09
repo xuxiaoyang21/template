@@ -136,4 +136,21 @@ public class StringUtils extends StringUtil {
         return  null;
     }
 
+
+    /**
+     * 字符数据反转
+     * @author 徐晓阳
+     * @creatTime 2020-09-22 09:26
+     * @param arrays 需要反转的字符数组
+     * @return
+     * @version 1.0
+     */
+    public static String[] reversalArrary(String[] arrays) {
+        String[] result = new String[arrays.length];
+        for(int i = arrays.length,j=0; i > 0; i--,j++) {
+            result[j] = arrays[i];
+        }
+        return result;
+    }
+
 }

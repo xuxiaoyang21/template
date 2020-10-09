@@ -25,7 +25,7 @@
         <div class="initial_left_hand" id="left_hand"></div>
         <div class="initial_right_hand" id="right_hand"></div>
     </div>
-    <form id="formId" action="/login" method="post">
+    <form id="formId" action="/template/login" method="post">
         <p style="padding: 30px 0px 10px; position: relative;">
             <span class="u_logo"></span>
             <input style="margin-left: 10px" class="ipt" type="text" name="name" placeholder="请输入用户名或邮箱" value="">

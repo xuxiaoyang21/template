@@ -2,20 +2,23 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
            http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/context
            http://www.springframework.org/schema/context/spring-context.xsd
            http://www.springframework.org/schema/tx
-           http://www.springframework.org/schema/tx/spring-tx.xsd">
+           http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
     <!--搭建基本架构-->
 
+    <task:annotation-driven/>
+<!--    <tx:annotation-driven/>-->
 
     <!--自动扫面容器包-->
-    <context:component-scan base-package="com.xuxy">
+    <context:component-scan base-package="com.starry.sky">
         <!--排除controller扫描的包-->
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+        <context:exclude-filter type="assignable" expression="com.starry.sky.config.swagger.SwaggerConfiguration"/>
     </context:component-scan>
 
     <!--使用注解-->
@@ -39,12 +42,12 @@
     <!--配置mybatis的SqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="typeAliasesPackage" value="com.xuxy.entities"/>
+        <property name="typeAliasesPackage" value="com.starry.sky.entities"/>
         <property name="mapperLocations" value="classpath:mappers/*.xml"/>
     </bean>
     <!--扫描mapper文件-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.xuxy.mappers"/>
+        <property name="basePackage" value="com.starry.sky.mappers"/>
     </bean>
 
 
@@ -74,5 +77,7 @@
     <bean id="taskService" factory-bean="processEngine" factory-method="getTaskService" />
     <bean id="historyService" factory-bean="processEngine" factory-method="getHistoryService" />
     <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService" />
+
+
 
 </beans>

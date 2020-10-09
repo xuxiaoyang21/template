@@ -1,12 +1,16 @@
 package com.starry.sky.demo;
 
+import com.alibaba.excel.ExcelWriter;
+import com.alibaba.excel.analysis.ExcelAnalyser;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.ibatis.cache.Cache;
 
+import javax.servlet.Servlet;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.ServiceLoader;
 
 /**
  * Created by Intellij IDEA
@@ -72,7 +76,12 @@ public class ArrayDemo {
 
 
 
+        //servlet
+//        Service.providers();
+//        ServiceLoader.load()
 
+
+//        ExcelAnalyser
 
     }
 

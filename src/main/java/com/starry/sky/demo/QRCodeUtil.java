@@ -90,14 +90,17 @@ public class QRCodeUtil {
             this.image = image;
         }
 
+        @Override
         public int getWidth() {
             return image.getWidth();
         }
 
+        @Override
         public int getHeight() {
             return image.getHeight();
         }
 
+        @Override
         public int getPixel(int x, int y) {
             return image.getRGB(x, y);
         }
