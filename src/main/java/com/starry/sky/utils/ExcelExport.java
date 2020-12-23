@@ -1,7 +1,6 @@
 package com.starry.sky.utils;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -14,14 +13,14 @@ import java.lang.annotation.Target;
 public class ExcelExport {
 
     public static void convert(String fileName, String base64, String contentType, HttpServletResponse response) throws IOException {
-        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
-
-        response.setContentType(contentType);
-
-        byte[] data = DatatypeConverter.parseBase64Binary(base64);
-
-        response.setContentLength(data.length);
-        response.getOutputStream().write(data);
+//        response.setHeader("Content-Disposition", "attachment;filename=" + fileName);
+//
+//        response.setContentType(contentType);
+//
+//        byte[] data = DatatypeConverter.parseBase64Binary(base64);
+//
+//        response.setContentLength(data.length);
+//        response.getOutputStream().write(data);
     }
 
     @Retention(RetentionPolicy.RUNTIME)

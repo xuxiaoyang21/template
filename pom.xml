@@ -30,11 +30,11 @@
             <scope>test</scope>
         </dependency>
         <!--hibernate依赖-->
-        <dependency>
+        <!--<dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
                 <version>4.3.6.Final</version>
-        </dependency>
+        </dependency>-->
         <!--jdbc  连接数据库使用 -->
         <dependency>
             <groupId>mysql</groupId>
